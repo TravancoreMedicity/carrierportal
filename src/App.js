@@ -14,6 +14,8 @@ import { Provider } from 'react-redux';
 import { store } from './Redux/store'
 import ProtectedRoute from './routes/ProtectedRoute';
 
+import { ToastContainer } from 'react-toastify';
+
 const RootLayout = lazy(() => import('./routes/RootLayout'));
 const Home = lazy(() => import('./Pages/Home/Home'));
 const Admission = lazy(() => import('./Pages/Admission/Admission'));
@@ -70,6 +72,7 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-svh bg-[url('./assets/Landing.jpg')] bg-cover bg-center">
+      <ToastContainer />
       <Provider store={store}>
         <Suspense fallback={<Loader />} >
           <RouterProvider router={router} />

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Box, CircularProgress, LinearProgress, Typography } from '@mui/joy'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import MailIcon from '@mui/icons-material/Mail'
 import { Paper } from '@mui/material'
 import CustomInput from '../Components/CustomInput'
@@ -41,7 +41,7 @@ const Registration = () => {
     const userEmail = data?.email[0]?.value;
     const userGoogleID = data?.id
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setLoader(true)
         const getApplication = async () => {
             const result = await axioslogin.get(`/app_registration/getregistration/${userGoogleID}`)

@@ -10,6 +10,7 @@
 
 # production
 /build
+/Constant/Static.jsx
 
 # misc
 .DS_Store

@@ -6,9 +6,9 @@ const CadidateHeader = lazy(() => import('./Components/CandidateHeader'))
 
 const CandidateHome = () => {
     return (
-        <div className='flex flex-1 flex-col' >
+        <div className='flex flex-1 flex-col overflow-hidden' >
             <CadidateHeader />
-            <Box className="flex flex-1 justify-center" >
+            <Box className="flex flex-1 justify-center " >
                 <Outlet />
             </Box>
         </div>
