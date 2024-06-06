@@ -83,16 +83,17 @@ const NewsandEventCarousel = () => {
                     <div key={step.label}>
                         {Math.abs(activeStep - index) <= 2 ? (
                             <Box
-                                component="img"
+                                // component="img"
                                 sx={{
                                     height: 400,
+                                    bgcolor: 'background.paper',
                                     display: 'block',
                                     // maxWidth: 400,
                                     overflow: 'hidden',
                                     width: '100%',
                                 }}
-                                src={step.imgPath}
-                                alt={step.label}
+                            // src={step.imgPath}
+                            // alt={step.label}
                             />
                         ) : null}
                     </div>

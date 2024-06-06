@@ -1,17 +1,31 @@
 import { Box } from '@mui/joy'
-import React, { lazy } from 'react'
-import { Outlet } from 'react-router'
+import React, { Suspense, lazy } from 'react'
+import { Outlet, useLocation } from 'react-router'
+import Loader from '../../Components/Loader'
 
 const CadidateHeader = lazy(() => import('./Components/CandidateHeader'))
+const AdmissionProcedure = lazy(() => import('./Components/AdmissionProcedure'))
+
 
 const CandidateHome = () => {
+
+    const { pathname } = useLocation()
+
+    console.log(pathname)
+
     return (
-        <div className='flex flex-1 flex-col overflow-hidden' >
+        <>
             <CadidateHeader />
-            <Box className="flex flex-1 justify-center " >
-                <Outlet />
-            </Box>
-        </div>
+            <div className='flex flex-1 flex-col overflow-hidden' >
+                <Suspense fallback={<Loader />} >
+                    <Box className="flex flex-1 justify-center" >
+                        {
+                            pathname === '/CandidateHome' ? <AdmissionProcedure /> : <Outlet />
+                        }
+                    </Box>
+                </Suspense>
+            </div>
+        </>
     )
 }
 
