@@ -1,7 +1,6 @@
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import { format } from 'date-fns'
-import { colors } from "@mui/joy";
+
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export const ApplicationPdfView = (appdata) => {
@@ -16,7 +15,7 @@ export const ApplicationPdfView = (appdata) => {
         two_perc, one_english, one_eng_max, two_english, two_eng_max, english_per, ten_institute,
         ten_board, ten_yearofpass, ten_registerno, ten_attempts, ten_mark, ten_max_mark, ten_perc,
         two_institute, two_board, two_yearofpass, two_registerno, two_attempt,
-        dob, religion, cast, paymentDate
+        dob, religion, cast, paymentDate,
     } = appdata
 
     var doc = {
@@ -32,7 +31,7 @@ export const ApplicationPdfView = (appdata) => {
             };
         },
 
-        pageMargins: [40, 30, 40, 10],
+        pageMargins: [40, 30, 40, 30],
         footer: function (currentPage, pageCount) {
             return {
                 margin: 5,
@@ -74,7 +73,7 @@ export const ApplicationPdfView = (appdata) => {
 
             [
                 {
-                    margin: [50, 5, 20, 0],
+
                     text: 'N. H Bypass Road, Thattamala P O, Kollam - 691020,', bold: true,
                     fontSize: 10, font: 'Roboto', colors: '#f2a516', alignment: 'center'
                 },
@@ -82,7 +81,7 @@ export const ApplicationPdfView = (appdata) => {
             ],
             [
                 {
-                    margin: [30, 3, 0, 0],
+
                     text: 'Ph:0474 272 1661, +91 9495996174', bold: true,
                     fontSize: 10, font: 'Roboto', colors: '#f2a516', alignment: 'center'
                 },
@@ -90,7 +89,7 @@ export const ApplicationPdfView = (appdata) => {
             ],
             [
                 {
-                    margin: [30, 3, 0, 0],
+
                     text: 'Web:www.travancoremedicity.com, Email:travancoreparamedical@tmc.ac.in', bold: true,
                     fontSize: 10, font: 'Roboto', colors: '#f2a516', alignment: 'center'
                 },
@@ -305,7 +304,7 @@ export const ApplicationPdfView = (appdata) => {
                         ],
                         [{ text: board, fontSize: 8, font: 'Roboto' },
                         { text: boardname, fontSize: 9, bold: true, font: 'Roboto' },
-                        { text: yearofpass, fontSize: 8, font: 'Roboto' },
+                        { text: ten_yearofpass, fontSize: 8, font: 'Roboto' },
                         { text: registerno, fontSize: 8, bold: true, font: 'Roboto' }
                         ],
                     ]
@@ -443,7 +442,7 @@ export const ApplicationPdfView = (appdata) => {
 
             [
                 {
-                    margin: [5, 100, 5, 0],
+                    margin: [5, 150, 5, 0],
                     text: 'Details of 10th & 12th Standard Examination', bold: true,
                     fontSize: 10, font: 'Roboto', colors: '#f2a516'
                 },
@@ -547,6 +546,17 @@ export const ApplicationPdfView = (appdata) => {
                 },
 
             ],
+
+            [
+                {
+                    margin: [330, 80, 0, 0],
+                    text: ' Name & Signature of the Applicant', bold: true,
+                    fontSize: 10, font: 'Roboto', colors: '#f2a516',
+                },
+
+            ],
+
+
         ],
         images: {
             // snow: 'https://collegeofalliedhealth.travancoremedicity.com/wp-content/uploads/2024/05/CAHS-LOGO-300x135.png'
