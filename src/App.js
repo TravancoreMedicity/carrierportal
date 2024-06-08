@@ -58,7 +58,8 @@ function App() {
       element: <ProtectedRoute />,
       children: [
         {
-          path: '/CandidateHome', element: <CandidateHome />, children: [
+          path: '/CandidateHome', element: <CandidateHome />,
+          children: [
             { path: 'Application', element: <Application /> },
             { path: 'Registration', element: <Registration /> },
             { path: 'CourseSelection', element: <CourseSelection /> },

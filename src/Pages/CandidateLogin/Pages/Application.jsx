@@ -443,14 +443,14 @@ const Application = () => {
     return (
         <Box className="flex w-full flex-col items-center " >
             <ToastContainer />
-            <Paper className='flex h-[80%]  sm:w-[100%] md:w-[100%] lg:w-[90%] xl:w-[90%] items-center flex-col gap-1 mt-3'>
+            <Paper className='flex flex-1 mb-10 sm:w-[100%] md:w-[100%] lg:w-[90%] xl:w-[90%] items-center flex-col gap-1 mt-3'>
                 <Box className=" flex w-full items-center pl-5 bg-transparent shadow-md" >
                     <Typography level="h4" sx={{ color: '#6b5e68', p: 1 }} >Application</Typography>
                 </Box>
                 <CustBackDropWithState open={open} handleClose={setOpen} />
                 {
                     applicationProcess === true ?
-                        <Box className="flex flex-1 justify-center items-center" >
+                        <Box className="flex flex-1  justify-center items-center" >
                             <Typography level='title-lg' fontSize={20} color='danger' >
                                 Application Submitted Successfully
                             </Typography>
