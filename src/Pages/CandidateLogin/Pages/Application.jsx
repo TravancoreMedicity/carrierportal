@@ -350,7 +350,7 @@ const Application = () => {
                     app_google_ID: userGoogleID,
                     name: applicationForm.name,
                     gender: applicationForm.gender,
-                    community: applicationForm.community,
+                    religion: applicationForm.community,
                     cast: applicationForm.cast,
                     placebirth: applicationForm.placebirth,
                     age: applicationForm.age,
