@@ -15,7 +15,7 @@ export const ApplicationPdfView = (appdata) => {
         two_perc, one_english, one_eng_max, two_english, two_eng_max, english_per, ten_institute,
         ten_board, ten_yearofpass, ten_registerno, ten_attempts, ten_mark, ten_max_mark, ten_perc,
         two_institute, two_board, two_yearofpass, two_registerno, two_attempt,
-        dob, religion, cast, paymentDate,
+        dob, religion, cast, paymentDate, createDate
     } = appdata
 
     var doc = {
@@ -244,7 +244,7 @@ export const ApplicationPdfView = (appdata) => {
                         [{ text: 'E-mail', fontSize: 8, font: 'Roboto' },
                         { text: app_email, fontSize: 9, bold: true, font: 'Roboto' },
                         { text: 'Date', fontSize: 8, font: 'Roboto' },
-                        { text: application_id, fontSize: 8, bold: true, font: 'Roboto' }
+                        { text: createDate, fontSize: 8, bold: true, font: 'Roboto' }
                         ],
                     ]
                 }
