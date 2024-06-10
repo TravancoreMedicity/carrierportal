@@ -693,7 +693,7 @@ const ApplicationView = () => {
                                             color: '#f2a516', pt: 1, fontSize: 18,
                                             textAlign: "left"
                                         }} >
-                                            Joint Declaration by the Applicant & Parent / Guardian
+                                            Declaration by the Applicant
 
                                         </Typography>
                                         <Box>
@@ -702,7 +702,7 @@ const ApplicationView = () => {
                                                 pt: 1, fontSize: 18,
                                                 textAlign: "left"
                                             }} >
-                                                We, {appdata.app_name} & {appdata.father}  A do hereby declare that all the information furnished above are true and correct and
+                                                I do hereby declare that all the information furnished above are true and correct and
                                                 we will obey the rules and regulations of the institution , if admitted.
                                                 We promise to submit all certificates and documents in orginal at the time of admission
                                                 failingwhich the admission will be liable for cancellation
