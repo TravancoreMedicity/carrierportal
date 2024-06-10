@@ -532,14 +532,14 @@ export const ApplicationPdfView = (appdata) => {
             [
                 {
                     margin: [2, 10, 0, 3],
-                    text: 'Joint Declaration by the Applicant & Parent / Guardian', bold: true,
+                    text: 'Declaration by the Applicant', bold: true,
                     fontSize: 10, font: 'Roboto', colors: '#f2a516'
                 },
 
             ],
             [
                 {
-                    margin: [6, 10, 0, 3],
+                    margin: [6, 5, 0, 3],
                     text: 'I do hereby declare that all the information furnished above are true and correct and we will obey the rules and regulations of the institution, if admitted. We promise to submit all certificates and documents in orginal at the time of admission failingwhich the admission will be liable for cancellation',
                     bold: true,
                     fontSize: 8, font: 'Roboto', colors: '#f2a516'
@@ -547,9 +547,16 @@ export const ApplicationPdfView = (appdata) => {
 
             ],
 
+
             [
                 {
-                    margin: [330, 80, 0, 0],
+                    margin: [0, 80, 0, 0],
+                    text: ' Name & Signature of the Parent / Guardian', bold: true,
+                    fontSize: 10, font: 'Roboto', colors: '#f2a516',
+                },
+
+                {
+                    margin: [330, -10, 0, 0],
                     text: ' Name & Signature of the Applicant', bold: true,
                     fontSize: 10, font: 'Roboto', colors: '#f2a516',
                 },
