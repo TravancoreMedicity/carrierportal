@@ -11,10 +11,8 @@ const CourseSelectionCmp = ({ value, setValue, setValueLength }) => {
     useLayoutEffect(() => {
         const getCourses = async () => {
             const result = await axioslogin.get(`/app_registration/getCources`)
-            console.log(result)
             const { data, success } = result.data
             if (success === 2) {
-                console.log(data)
                 setCources(data)
                 // setValueLength(data?.length)
             }

@@ -1,136 +1,316 @@
-import React from 'react'
+import React, { memo, useMemo } from 'react';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-// import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import Logo from "../../../assets/logo.png"
-import Typography from '@mui/joy/Typography';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux'
+import Logo from "../../../assets/logo.png"
 import { getUser } from '../../../Redux/LoginSlice'
-import Avatar from '@mui/joy/Avatar';
-import { Dropdown, Menu, MenuButton, MenuItem } from '@mui/joy';
+import { Avatar, Box, Dropdown, Menu, MenuButton, MenuItem, Typography } from '@mui/joy';
 import LogoutIcon from '@mui/icons-material/Logout';
-import CustBackDropWithState from '../../../Components/CustBackDropWithState';
+import { useNavigate } from 'react-router';
+import axioslogin from '../../../Axios/Axios';
+import moment from 'moment';
+import { warningNofity } from '../../CommonCode/CommonFunc';
+const { differenceInCalendarDays } = require('date-fns');
 
-const CandidateHeader = () => {
+const pages = [
+    'My Application',
+    'My Portfolio',
+    'Vacancy List',
+
+];
+
+// const settings = ['Settings', 'Profile', 'Logout'];
+
+const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyData, personalData }) => {
+
+
 
     const loggedInfo = useSelector((state) => getUser(state))
     const data = JSON.parse(loggedInfo)
     const imageUrl = data?.image[0]?.value
     const emal = data?.email[0]?.value
+    const ApplicationId = data?.id;
+
+
+    const checkData = useMemo(() => {
+        return {
+            ApplicationId: ApplicationId,
+        }
+    }, [ApplicationId])
+
+
 
     const navigate = useNavigate()
 
-    const [open, setOpen] = React.useState(false);
+    const handlePageClick = (page) => {
+        if (page === "Vacancy List") {
+
+            if (Object.keys(personalData).length > 0) {
+                SetPageToShow(2)
+                setEditCount(0)
+                const fetchData = async () => {
+                    const result = await axioslogin.get('/Career/approvalget/all')
+                    const { success, data } = result.data
+
+                    if (success === 1 && data?.length > 0) {
+
+                        let vaccancy;
+                        vaccancy = data?.filter((val) => val?.announcement_status === 1);
+                        const groupedByDate = vaccancy.reduce((acc, val) => {
+                            const date = moment(new Date(val?.annouced_date)).format('DD/MM/YYYY HH: MM a');
+                            if (acc[date]) {
+                                acc[date]?.push(val);
+                            } else {
+                                acc[date] = [val];
+                            }
+                            return acc;
+                        }, {});
+                        let counter = 1;
+                        const arrangedData = Object.entries(groupedByDate).map(([date, values], index) => ({
+                            annouced_date: date,
+                            data: values.map((value, idx) => {
+                                const today = new Date();
+                                const annoucedDate = new Date(value?.annouced_date);
+                                const daysDifference = differenceInCalendarDays(today, annoucedDate);
+                                return {
+                                    ...value,
+                                    indexValue: counter++,
+                                    daysDifference: daysDifference
+                                };
+                            })
+                        }));
+
+                        // Fetch job descriptions
+                        const jobResult = await axioslogin.get('/Career/jobdesc');
+                        const { jobsuccess, jobdata } = jobResult.data;
+
+                        if (jobsuccess === 1 && jobdata?.length > 0) {
+                            // Create a mapping from desg_id to job descriptions
+                            const jobDescriptionsMap = jobdata.reduce((acc, job) => {
+                                if (!acc[job.desg_id]) {
+                                    acc[job.desg_id] = [];
+                                }
+                                acc[job.desg_id].push(job.job_desc);
+                                return acc;
+                            }, {});
+
+                            // Add job descriptions to arrangedData
+                            const updatedData = arrangedData.map(entry => ({
+                                ...entry,
+                                data: entry.data.map(item => ({
+                                    ...item,
+                                    job_descriptions: jobDescriptionsMap[item.desg_id] || []
+                                }))
+                            }));
+
+                            setVaccancyData(updatedData);
+                        } else {
+                            setVaccancyData(arrangedData);
+                        }
+                    } else {
+                        setVaccancyData([]);
+                    }
+
+                }
+                fetchData()
+            } else {
+                warningNofity("Insert the Portfolio Details")
+            }
+
+
+
+
+        } else if (page === "My Application") {
+            SetPageToShow(1)
+            setEditCount(0)
+            const fetchData = async () => {
+                const result = await axioslogin.post('/Career/appliedJob', checkData)
+                const { success, data } = result.data
+                if (success === 1 && data?.length > 0) {
+                    const result = await axioslogin.post('/Career/appliedJobdetails', checkData)
+                    const { success, dataJob } = result.data
+                    if (success === 1 && dataJob?.length > 0) {
+                        const data2Map = new Map(dataJob.map(item => [item.desg_id, item]));
+                        const mergedData = data.map(item1 => {
+                            const item2 = data2Map.get(item1.desg_slno);
+                            return {
+                                ...item1,
+                                ...(item2 || {})
+                            };
+                        });
+                        // Fetch job descriptions
+                        const jobResult = await axioslogin.get('/Career/jobdesc');
+                        const { jobsuccess, jobdata } = jobResult.data;
+
+                        if (jobsuccess === 1 && jobdata?.length > 0) {
+                            const jobDescMap = new Map();
+
+                            // Populate the map with arrays of job_desc for each desg_id
+                            jobdata.forEach(item => {
+                                if (!jobDescMap.has(item.desg_id)) {
+                                    jobDescMap.set(item.desg_id, []);
+                                }
+                                jobDescMap.get(item.desg_id).push(item.job_desc);
+                            });
+
+                            // Add job_desc array to mergedData
+                            const finalData = mergedData.map(item => ({
+                                ...item,
+                                job_desc: jobDescMap.get(item.desg_id) || []
+                            }));
+                            setJobData(finalData);
+                        } else {
+                            setJobData(mergedData);
+
+                        }
+                    }
+                    else {
+                        setJobData([]);
+                    }
+
+                } else {
+                    setJobData([]);
+                }
+
+            }
+            fetchData()
+        }
+        else if (page === "My Portfolio") {
+            SetPageToShow(0)
+            setEditCount(0)
+
+        } else {
+            SetPageToShow(0)
+        }
+
+    };
+
+
 
     const handleLogout = () => {
-        setOpen(true)
+        // setOpen(true)
         setTimeout(() => {
             localStorage.removeItem("token");
-            navigate("/CandidateLogin")
-            setOpen(false)
+            navigate("/Career")
+            // setOpen(false)
         }, 1000);
     }
-
-
     return (
-        // <Box sx={{ flexGrow: 0 }}>
-        <AppBar position="sticky" variant='elevation' color='inherit' sx={{ zIndex: 10 }} >
-            <CustBackDropWithState open={open} handleClose={setOpen} />
-            <Toolbar variant="dense" className='flex items-baseline' >
-                {/* <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-                        <MenuIcon />
-                    </IconButton> */}
-                <Box className='flex items-center ' >
-                    {/* <img src="https://travancoremedicity.com/wp-content/uploads/2024/01/Logo-black.svg" alt='Travancore' /> */}
-                    <img src={Logo} alt='Travancore' width={30} height={30} />
-                    <Typography level="h4" component="div" className='pt-2' >
+        <AppBar position="sticky" color='inherit'>
+            <Box width="100%" sx={{ ml: 2 }}>
+                <Toolbar disableGutters>
+                    {/* Logo section */}
+                    <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} >
+                        <img src={Logo} alt='Travancore' width={30} height={30} />
+                    </Box>
+
+                    <Typography
+                        level="h4"
+                        noWrap
+                        component="a"
+                        sx={{
+                            mr: 2,
+                            display: { xs: 'none', md: 'flex' },
+                            textDecoration: 'none',
+                        }}
+                    >
                         Travancore Medicity
                     </Typography>
-                </Box>
-                <Box className='flex flex-1 gap-3 ml-16 pt-2'  >
-                    <Box className='cursor-pointer' onClick={() => navigate('Registration')} >
-                        <Typography level="body-sm" fontWeight="lg" component="div" className='hover:text-[#7c51a1]' >
-                            Registration
-                        </Typography>
-                    </Box>
-                    <Box className='cursor-pointer' onClick={() => navigate('ApplicationFeePayment')} >
-                        <Typography level="body-sm" fontWeight="lg" component="div" className='hover:text-[#7c51a1]' >
-                            Application Fee Payment
-                        </Typography>
-                    </Box>
-                    <Box className='cursor-pointer' onClick={() => navigate('Application')}>
-                        <Typography level="body-sm" component="div" fontWeight="lg" className='hover:text-[#7c51a1]' >
-                            Application
-                        </Typography>
-                    </Box >
-                    <Box className='cursor-pointer' onClick={() => navigate('CourseSelection')}>
-                        <Typography level="body-sm" component="div" fontWeight="lg" className='hover:text-[#7c51a1]' >
-                            Course Selection
-                        </Typography>
-                    </Box>
-                    <Box className='cursor-pointer' onClick={() => navigate('ApplicationView')}>
-                        <Typography level="body-sm" component="div" fontWeight="lg" className='hover:text-[#7c51a1]' >
-                            Application View
-                        </Typography>
-                    </Box>
-                </Box>
-                <Box>
-                    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                        <Typography level="body-sm" component="div" fontWeight="lg" >{data?.name}</Typography>
-                        <Dropdown>
-                            <MenuButton
-                                slots={{ root: Avatar }}
-                                sx={{ borderRadius: 40 }}
-                            >
-                                <Avatar alt="Logged User Info" src={imageUrl} />
+
+
+                    {/* Responsive menu section */}
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, cursor: 'pointer', }}>
+                        <Dropdown >
+                            <MenuButton variant="plain">
+                                <MenuIcon />
                             </MenuButton>
-                            <Menu
-                                placement='left-end'
-                                size='sm'
-                                variant="outlined"
-                                invertedColors
-                                aria-labelledby="apps-menu-demo"
-                                sx={{
-                                    '--List-padding': '0.5rem',
-                                    '--ListItemDecorator-size': '3rem',
-                                    display: 'flex',
-                                    width: 300,
-                                    zIndex: 100,
-                                    gap: 1,
-                                    position: 'absolute',
-                                    m: 10
-                                }}
+                            <Menu sx={{ p: 1, }}>
+                                {pages.map((page) => (
+                                    <MenuItem key={page} onClick={() => handlePageClick(page)}>
+                                        <Typography textAlign="center" level="body-sm" fontWeight="lg" component="div" className='hover:text-[#7c51a1]' >
+                                            {page}
+                                        </Typography>
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </Dropdown>
+                    </Box>
+
+                    {/* Logo section for smaller screens */}
+
+                    <Box sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} >
+                        <img src={Logo} alt='Travancore' width={30} height={30} />
+                    </Box>
+
+                    <Typography
+                        noWrap
+                        component="a"
+                        href="#app-bar-with-responsive-menu"
+                        sx={{
+                            mr: 2,
+                            display: { xs: 'flex', md: 'none' },
+                            flexGrow: 1,
+                            fontWeight: 500,
+                            color: 'inherit',
+                            textDecoration: 'none',
+                        }}
+                    >
+                        TMCH
+                    </Typography>
+
+                    {/* Non-responsive menu section */}
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: "end", mr: 4, cursor: 'pointer', }}>
+                        {pages.map((page) => (
+                            <Box
+                                key={page}
+                                onClick={() => handlePageClick(page)}
+                                sx={{ display: 'block', gap: 1, color: 'inherit', ml: 3 }}
                             >
+                                <Typography level="body-sm" fontWeight="lg" component="div" className='hover:text-[#7c51a1]' >
+                                    {page}
+                                </Typography>
+
+                            </Box>
+                        ))}
+                    </Box>
+
+                    {/* User settings section */}
+                    <Box sx={{ flexGrow: 0, p: 1, mr: 3, }}>
+
+                        <Dropdown>
+                            <MenuButton variant="plain">
+                                <Avatar alt="User Avatar" src={imageUrl} />
+                            </MenuButton>
+                            <Menu>
                                 <MenuItem className=' w-[100%]' component={Box} >
-                                    <Box className="flex flex-1 justify-center items-center flex-col rounded-md" >
-                                        <Typography level="body-sm" component="div" fontWeight="lg" className='text-center py-3' >{emal}</Typography>
-                                        <Avatar sx={{ width: 100, height: 100 }} alt="Logged User Info" src={imageUrl} />
+                                    <Box className="flex flex-1 justify-center items-center flex-col rounded-md" sx={{}} >
+                                        <Avatar sx={{ "--Avatar-size": "150px", }} src={imageUrl} />
                                         <Typography
                                             level="title-md" component="div" fontWeight="lg" className='text-center py-3 '
                                             sx={{ color: '#555e7c' }}
                                         >{data?.name}</Typography>
+                                        <Typography level="body-sm" component="div" fontWeight="lg" className='text-center py-3' >{emal}</Typography>
                                     </Box>
                                 </MenuItem>
                                 <MenuItem
                                     onClick={handleLogout}
-                                    className='flex justify-center rounded-lg'
+                                    className=' rounded-lg text-center '
                                     component={Box}
                                 >
-                                    <LogoutIcon sx={{ color: '#555E7C' }} />
-                                    <Typography level="body-md" component="div" fontWeight="lg" sx={{ color: '#555E7C' }}  >Logout</Typography>
+                                    <Box className='flex justify-center  ' sx={{ width: '100%' }}>
+                                        <LogoutIcon sx={{ color: '#555E7C' }} />
+                                        <Typography level="body-md" component="div" fontWeight="lg" sx={{ color: '#555E7C' }}  >Logout</Typography>
+                                    </Box>
+
                                 </MenuItem>
                             </Menu>
                         </Dropdown>
                     </Box>
-                </Box>
-            </Toolbar>
-        </AppBar>
-        // </Box>
-    )
-}
+                </Toolbar>
+            </Box>
+        </AppBar >
+    );
+};
 
-export default CandidateHeader
+export default memo(CandidateHeader)

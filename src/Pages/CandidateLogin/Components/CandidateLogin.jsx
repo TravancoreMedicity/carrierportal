@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Button, Typography } from '@mui/joy'
+import { Box, Typography } from '@mui/joy'
 import React, { useEffect } from 'react'
 import Google from '../../../assets/Google.png'
 import { useDispatch } from 'react-redux'

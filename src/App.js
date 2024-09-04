@@ -17,7 +17,7 @@ import ProtectedRoute from './routes/ProtectedRoute';
 import { ToastContainer } from 'react-toastify';
 
 const RootLayout = lazy(() => import('./routes/RootLayout'));
-const Home = lazy(() => import('./Pages/Home/Home'));
+const Career = lazy(() => import('./Pages/Career/Career'));
 const Admission = lazy(() => import('./Pages/Admission/Admission'));
 const Courses = lazy(() => import('./Pages/Courses/Courses'));
 const Login = lazy(() => import('./Pages/Login/Login'));
@@ -31,6 +31,11 @@ const Registration = lazy(() => import('./Pages/CandidateLogin/Pages/Registratio
 const CourseSelection = lazy(() => import('./Pages/CandidateLogin/Pages/CourseSelection'));
 const ApplicationFeePayment = lazy(() => import('./Pages/CandidateLogin/Pages/ApplicationFeePayment'));
 const ApplicationView = lazy(() => import('./Pages/CandidateLogin/Pages/ApplicationView'));
+const CareerHome = lazy(() => import('./Pages/CandidateLogin/CareerHome'));
+
+
+// const JoySalutation = lazy(() => import('./Pages/Muicomponents/JoySalutation'));
+
 
 
 /**
@@ -45,26 +50,32 @@ function App() {
       path: '/',
       element: <RootLayout />,
       children: [
-        { path: '/Home', element: <Home /> },
-        { path: '/Admission', element: <Admission /> },
-        { path: '/Courses', element: <Courses /> },
-        { path: '/Login', element: <Login /> },
-        { path: '/CandidateLogin', element: <CandidateLogin /> },
-        { path: '/NewsAndEvents', element: <NewsAndEvents /> },
-        { path: '/AdminLogin', element: <EmployeeLogin /> },
+        {
+          path: '/Career', element: <Career />
+        },
+        { path: '/CareerHome', element: <CareerHome /> },
+        // { path: '/JoySalutation', element: <JoySalutation /> },
+        // { path: '/Admission', element: <Admission /> },
+        // { path: '/Courses', element: <Courses /> },
+        // { path: '/Login', element: <Login /> },
+        // { path: '/CandidateLogin', element: <CandidateLogin /> },
+        // { path: '/NewsAndEvents', element: <NewsAndEvents /> },
+        // { path: '/AdminLogin', element: <EmployeeLogin /> },
       ]
     },
     {
       element: <ProtectedRoute />,
       children: [
         {
-          path: '/CandidateHome', element: <CandidateHome />,
+          // path: '/Career', element: <Career />,
+          // path: '/CandidateHome', element: <CandidateHome />,
+
           children: [
-            { path: 'Application', element: <Application /> },
-            { path: 'Registration', element: <Registration /> },
-            { path: 'CourseSelection', element: <CourseSelection /> },
-            { path: 'ApplicationFeePayment', element: <ApplicationFeePayment /> },
-            { path: 'ApplicationView', element: <ApplicationView /> },
+            // { path: 'JoySalutation', element: <JoySalutation /> },
+            // { path: 'Registration', element: <Registration /> },
+            // { path: 'CourseSelection', element: <CourseSelection /> },
+            // { path: 'ApplicationFeePayment', element: <ApplicationFeePayment /> },
+            // { path: 'ApplicationView', element: <ApplicationView /> },
           ]
         },
       ]

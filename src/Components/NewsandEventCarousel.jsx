@@ -14,25 +14,35 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
     {
-        label: 'San Francisco – Oakland Bay Bridge, United States',
-        imgPath:
-            'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
+        label: 'Admission Procedure',
+        imgPath: [
+            'Government seats will be filled by LBS Centre, the government-approved agency by inviting applications from eligible candidates based on the Merit List prepared and observing all prevailing rules relating to communal reservation of seats.',
+            'Management Seats will be filled up by the College by inviting online applications from eligible candidates based on the Merit/ Rank List prepared. Candidates with higher ranks will be given priority in the allotment of seats. A separate Rank List will be prepared for each of the Courses. There will be no reservation of seats for SEBC and or SC/ST candidates under Management quota.',
+            'Applications for Management Seats can be submitted online through the college website www.travancoremedicity.com.along with an application fee of Rs.500/-.',
+            'A candidate needs to submit only one application form for applying for any or all three Courses by remitting a total fee of Rs 500/- only.',
+            'Application fee once remitted will not be refunded under any circumstances.',
+            'All the candidates admitted shall pay the fees fixed by the Government of Kerala / Office of the Admission Supervisory Committee / Fee Regulatory Committee and as approved or modified by the competent authorities. The prevailing rate of fee for each course also has been furnished in this Prospectus under a separate table.'
+        ]
     },
     {
-        label: 'Bird',
-        imgPath:
-            'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
+        label: 'Eligibility Criteria',
+        imgPath: [
+            'Should have passed the Higher Secondary examination conducted by the Board of Higher Secondary Education, Kerala, or an examination equivalent thereto as approved by Kerala University of Health Sciences (KUHS), Thrissur. Should have separate minimum pass marks for Physics, Chemistry and Biology and 50% marks in Physics, Chemistry and Biology put together.',
+            'The Vocational Higher Secondary Examination, Kerala, has been recognized as equivalent to the Higher Secondary Examination, Kerala.'
+        ]
     },
     {
-        label: 'Bali, Indonesia',
-        imgPath:
-            'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250',
-    },
-    {
-        label: 'Goč, Serbia',
-        imgPath:
-            'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-    },
+        label: 'How to Apply for Courses',
+        imgPath: [
+            'Candidate shall visit the official website www.travancoremedicity.com and click the link “Apply Online”.',
+            'There will be four stages for the submission of the application form and all stages are mandatory.',
+            'Candidates shall complete all the stages of submission as per the time schedule which will be notified through the website/media.',
+            'Stage 1  Enter the candidate details online and fill out the application form.',
+            'Stage 2  Candidates should upload their recent photograph, signature, SSLC & Plus two certificates. Certificates should be self-attested by the candidates.',
+            'Stage 3  Make payment for the application online.',
+            'Stage 4  On completion & submission of the application; please download/print the application/acknowledgement form for future reference.'
+        ]
+    }
 ];
 
 
@@ -71,30 +81,39 @@ const NewsandEventCarousel = () => {
                     bgcolor: 'background.default',
                 }}
             >
-                <Typography>{images[activeStep].label}</Typography>
+                <Typography variant='h6' >{images[activeStep].label}</Typography>
             </Paper>
             <AutoPlaySwipeableViews
                 axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                 index={activeStep}
                 onChangeIndex={handleStepChange}
                 enableMouseEvents
+                style={{ backgroundColor: 'Background' }}
             >
                 {images.map((step, index) => (
-                    <div key={step.label}>
+                    <div key={step.label} className='px-10' >
                         {Math.abs(activeStep - index) <= 2 ? (
                             <Box
                                 // component="img"
                                 sx={{
                                     height: 400,
-                                    bgcolor: 'background.paper',
+                                    bgcolor: 'Background.default',
                                     display: 'block',
                                     // maxWidth: 400,
-                                    overflow: 'hidden',
+                                    overflow: 'auto',
                                     width: '100%',
                                 }}
                             // src={step.imgPath}
                             // alt={step.label}
-                            />
+                            >
+                                {
+                                    step.imgPath.map((i, index) => (
+                                        <Typography key={index} sx={{ mt: 2, }}>
+                                            {i}
+                                        </Typography>
+                                    ))
+                                }
+                            </Box>
                         ) : null}
                     </div>
                 ))}

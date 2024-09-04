@@ -6,6 +6,7 @@ import { API_URL } from '../Constant/Static';
 // const accessToken = token();
 
 const axioslogin = axios.create({
+
     baseURL: API_URL,
     headers: {
         "Content-Type": 'application/json',
@@ -38,7 +39,7 @@ axioslogin.interceptors.response.use(function (response) {
                 <div className='flex justify-center'>
                     <button
                         className='bg-[#ed766a] text-white rounded-md p-[0.5] w-2/4 my-1'
-                        onClick={() => window.location.href = 'http://localhost:3000/CandidateLogin'}>
+                        onClick={() => window.location.href = 'https://localhost:5000/CandidateLogin'}>
                         Login
                     </button>
                 </div>

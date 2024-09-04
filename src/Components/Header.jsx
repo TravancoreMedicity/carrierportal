@@ -103,7 +103,7 @@ const Header = () => {
                     </Box>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, gap: 2, alignItems: 'center' }} >
-                        <Box sx={{ display: 'block' }} ><Link to="/Home" ><Typography className='hover:text-cyan-700 transition duration-700 ease-in-out' textColor='common.white' level='body-sm' >Home</Typography></Link></Box>
+                        <Box sx={{ display: 'block' }} ><Link to="/Career" ><Typography className='hover:text-cyan-700 transition duration-700 ease-in-out' textColor='common.white' level='body-sm' >Home</Typography></Link></Box>
                         {/* <Box sx={{ display: 'block' }} ><Link to="/Admission" ><Typography className='hover:text-cyan-700 transition duration-700 ease-in-out' textColor='common.white' level='body-ssm'>Admission</Typography></Link></Box> */}
                         {/* <Box sx={{ display: 'block' }} ><Link to="/NewsAndEvents" ><Typography className='hover:text-cyan-700 transition duration-700 ease-in-out' textColor='common.white' level='body-sm'>News & Events</Typography></Link></Box> */}
                         <Box sx={{ display: 'block' }} ><Link to="/Courses" ><Typography className='hover:text-cyan-700 transition duration-700 ease-in-out' textColor='common.white' level='body-sm'>Courses</Typography></Link></Box>
