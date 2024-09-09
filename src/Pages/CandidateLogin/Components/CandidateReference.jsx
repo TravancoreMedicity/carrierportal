@@ -34,21 +34,21 @@ const CandidateReference = ({ tableData }) => {
                                 <Box sx={{ display: 'flex', gap: 2, mt: 1, }}>
                                     <Box><ConnectWithoutContactIcon /></Box>
                                     <Box sx={{ mt: .5, display: 'flex', gap: 1 }}>
-                                        <Box><Typography level="title-md" sx={{ wordBreak: 'break-word', }}>{item?.name === null ? "not updated" : item?.name}</Typography></Box>
+                                        <Box><Typography level="title-md" sx={{ wordBreak: 'break-word', textTransform: 'capitalize' }}>{item?.name === null ? "not updated" : item?.name}</Typography></Box>
 
                                     </Box>
                                 </Box>
                                 <Box sx={{ display: 'flex', gap: 5 }}>
                                     <Box></Box>
-                                    <Box ><Typography level="body-sm" sx={{ wordBreak: 'break-word', }}> {item?.designation === null ? "not updated" : item?.designation}</Typography> </Box>
+                                    <Box ><Typography level="body-sm" sx={{ wordBreak: 'break-word', textTransform: 'capitalize' }}> {item?.designation === null ? "not updated" : item?.designation}</Typography> </Box>
                                 </Box>
                                 <Box sx={{ display: 'flex', gap: 5 }}>
                                     <Box></Box>
-                                    <Box ><Typography level="body-sm" sx={{ wordBreak: 'break-word', }}> {item?.number === null ? "not updated" : item?.number}</Typography> </Box>
+                                    <Box ><Typography level="body-sm" sx={{ wordBreak: 'break-word', textTransform: 'capitalize' }}> {item?.number === null ? "not updated" : item?.number}</Typography> </Box>
                                 </Box>
                                 <Box sx={{ display: 'flex', gap: 5 }}>
                                     <Box></Box>
-                                    <Box ><Typography level="body-sm" sx={{ wordBreak: 'break-word', }}> {item?.mail_id === null ? "not updated" : item?.mail_id}</Typography> </Box>
+                                    <Box ><Typography level="body-sm" sx={{ wordBreak: 'break-word', textTransform: 'capitalize' }}> {item?.mail_id === null ? "not updated" : item?.mail_id}</Typography> </Box>
                                 </Box>
                             </Box>
 

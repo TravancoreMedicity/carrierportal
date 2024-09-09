@@ -41,6 +41,9 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
     const [SpecilizationData, setSpecialization] = useState(0)
     const [UniData, setUniData] = useState(0)
     const [board, setBoard] = useState(0)
+    const [DisableRegion, setDisableRegion] = useState(true)
+    const [openBkDrop, setOpenBkDrop] = useState(false)
+
 
     const [applicationSlno, setApplicationno] = useState(0)
     const [bloodgrp, setBloodgrp] = useState(0)
@@ -172,6 +175,7 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
 
     const getRegion = useCallback(async () => {
         if (contPin !== null) {
+            setDisableRegion(false)
             const result = await axioslogin.get(`/common/region/bypin/${contPin}`)
             const { success, data } = result.data;
             if (success === 1) {
@@ -187,11 +191,16 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
         setformdata({ ...formdata, [e.target.name]: value })
     }, [formdata, setformdata]);
+
     //to open the main modal
     const handleOnClick = useCallback(async (event) => {
         event.preventDefault()
-        setIsModalOpen(true)
-    }, [setIsModalOpen])
+        if (Object.keys(edudata).length === 0) {
+            warningNofity("Enter The Education Details")
+        } else {
+            setIsModalOpen(true)
+        }
+    }, [setIsModalOpen, edudata])
 
 
     //to show the education name and show in the workexperience page
@@ -247,6 +256,7 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
             setIsModalOpen(false)
         }
         else {
+            setOpenBkDrop(true)
             const result = await axioslogin.post('/common/insertdata', postdata)
             const { success, message } = result.data
             if (success === 1) {
@@ -266,6 +276,8 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                 setGender(0)
                 setBloodgrp(0)
                 setCareerModalOpen(false)
+                setOpenBkDrop(false)
+
             } else {
                 warningNofity(message)
                 setIsModalOpen(false)
@@ -283,7 +295,7 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                 }}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', }}>
                         {/* <Typography level="h4" sx={{}}>CONTACT INFORMATION</Typography> */}
-                        <Typography sx={{}}>Please enter your contact information.</Typography>
+                        <Typography level="title-lg" sx={{}}>Enter Your Contact Information.</Typography>
                         <Box sx={{ display: 'flex', }}>
                             <Typography sx={{ mt: 3, }}>Title </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
@@ -348,7 +360,7 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                             />
                         </Box>
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>Reenter Email Address </Typography>
+                            <Typography sx={{ mt: 3, }}>Re-Enter Email Address </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <Box>
@@ -373,7 +385,7 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                         <Box>
                             <InputComponent
                                 // variant="plain"
-                                type="text"
+                                type="number"
                                 value={mobile}
                                 name="mobile"
                                 onchange={(e) => updateBoard(e)}
@@ -409,19 +421,39 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                                 size="md"
                             />
                             <Tooltip title="Click" followCursor placement='top' arrow >
+
                                 <IconButton sx={{ paddingY: 0.5, ml: 2 }}
                                     onClick={(e) => getRegion(e)}
                                 >
-                                    <ArrowCircleRightIcon />
+                                    <ArrowCircleRightIcon
+                                        color="primary"
+                                        sx={{
+                                            animation: 'move 1s ease infinite',
+                                            '@keyframes move': {
+                                                '0%': {
+                                                    transform: 'translateX(-10px)',
+                                                },
+                                                '50%': {
+                                                    transform: 'translateX(10px)',
+                                                },
+                                                '100%': {
+                                                    transform: 'translateX(-10px)',
+                                                },
+                                            },
+                                        }}
+                                    />
+
                                 </IconButton>
                             </Tooltip>
                         </Box>
+
                         <Box sx={{ display: 'flex', }}>
                             <Typography sx={{ mt: 3, }}>Region </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
+
                         <Box>
-                            <RegionJoy regValue={Region} getRegion={setRegion} pin={pin} />
+                            <RegionJoy regValue={Region} getRegion={setRegion} pin={pin} DisableRegion={DisableRegion} />
                         </Box>
                         <Box sx={{ display: 'flex', }}>
                             <Typography sx={{ mt: 3, }}>Religion </Typography>
@@ -436,7 +468,7 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                         </Box>
                         <Box>
                             <InputComponent
-                                // variant="plain"
+
                                 type="date"
                                 value={date}
                                 name="date"
@@ -507,6 +539,7 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                 setSelectedVacancies={setSelectedVacancies}
                 eduname={education1}
                 data={data}
+                openBkDrop={openBkDrop}
             />
         </Box>
     )

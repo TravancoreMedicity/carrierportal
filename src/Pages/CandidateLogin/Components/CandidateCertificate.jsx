@@ -57,19 +57,16 @@ const CandidateCertificate = ({ tableData }) => {
                                     const name = fileNameWithoutExtension.split('&')[0];
                                     const dateParts = fileNameWithoutExtension.split('&');
                                     const uploadedDate = dateParts[1];
-
                                     return (
                                         <tr key={index}>
                                             {/* <td>{slNo}</td> */}
                                             <td>{name}</td>
                                             <td>{uploadedDate}</td>
-
                                             <td>
                                                 <IconButton sx={{}} size='small' color='primary' onClick={() => EditData(filename)}>
                                                     <ImageSearchIcon />
                                                 </IconButton>
                                             </td>
-
                                         </tr>
                                     );
                                 })}

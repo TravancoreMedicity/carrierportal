@@ -3,6 +3,7 @@ import React, { memo, useCallback, useMemo, } from 'react'
 import InputComponent from '../../../Muicomponents/InputComponent'
 import moment from 'moment';
 import JoyCheckbox from '../../../Muicomponents/JoyCheckbox';
+import { warningNofity } from '../../../CommonCode/CommonFunc';
 
 
 const ExperienceModal = ({ setIsModalOpen, isModalOpen, Regionexp, setRegionexp, expdata, expdataset, experience, setexprience }) => {
@@ -26,46 +27,60 @@ const ExperienceModal = ({ setIsModalOpen, isModalOpen, Regionexp, setRegionexp,
 
     //adding  exp
     const addexpData = useCallback(() => {
-        const newdata = {
-            id: Math.ceil(Math.random() * 1000),
-            Employer: Employer,
-            expstartdate: expstartdate,
-            expenddate: expenddate,
-            Workingstatus: Workingstatus,
-            Responsibilities: Responsibilities,
-            jobexp: jobexp,
-            SupervisorName: SupervisorName,
-            Additionalinf: Additionalinf,
-            Other: Other,
-            Regionexp: Regionexp
+        if (Employer === '') {
+            warningNofity("Enter Company Name")
+        } else if (jobexp === "") {
+            warningNofity("Enter Job Title")
+        } else {
+            const newdata = {
+                id: Math.ceil(Math.random() * 1000),
+                Employer: Employer,
+                expstartdate: expstartdate,
+                expenddate: expenddate,
+                Workingstatus: Workingstatus,
+                Responsibilities: Responsibilities,
+                jobexp: jobexp,
+                SupervisorName: SupervisorName,
+                Additionalinf: Additionalinf,
+                Other: Other,
+                Regionexp: Regionexp
+            }
+            const newdatas = [...expdata, newdata]
+            expdataset(newdatas)
+            setexprience(defaultState)
+            setRegionexp(0)
+
         }
-        const newdatas = [...expdata, newdata]
-        expdataset(newdatas)
-        setexprience(defaultState)
-        setRegionexp(0)
-        // setPermnt_pin(0)
+
     }, [defaultState, Employer, expstartdate, expenddate, Workingstatus, Responsibilities, jobexp, SupervisorName, Additionalinf,
         Other, Regionexp, expdataset, setexprience, setRegionexp, expdata])
 
     const Datasave = useCallback(() => {
-        const newdata = {
-            id: Math.ceil(Math.random() * 1000),
-            Employer: Employer,
-            expstartdate: expstartdate,
-            expenddate: expenddate,
-            Workingstatus: Workingstatus,
-            Responsibilities: Responsibilities,
-            jobexp: jobexp,
-            SupervisorName: SupervisorName,
-            Additionalinf: Additionalinf,
-            Other: Other,
-            Regionexp: Regionexp
+        if (Employer === '') {
+            warningNofity("Enter Company Name")
+        } else if (jobexp === "") {
+            warningNofity("Enter Job Title")
+        } else {
+            const newdata = {
+                id: Math.ceil(Math.random() * 1000),
+                Employer: Employer,
+                expstartdate: expstartdate,
+                expenddate: expenddate,
+                Workingstatus: Workingstatus,
+                Responsibilities: Responsibilities,
+                jobexp: jobexp,
+                SupervisorName: SupervisorName,
+                Additionalinf: Additionalinf,
+                Other: Other,
+                Regionexp: Regionexp
+            }
+            const newdatas = [...expdata, newdata]
+            expdataset(newdatas)
+            setexprience(defaultState)
+            setRegionexp(0)
+            setIsModalOpen(false)
         }
-        const newdatas = [...expdata, newdata]
-        expdataset(newdatas)
-        setexprience(defaultState)
-        setRegionexp(0)
-        setIsModalOpen(false)
+
     }, [defaultState, Employer, expstartdate, expenddate, Workingstatus, Responsibilities, jobexp, SupervisorName, Additionalinf,
         Other, Regionexp, expdataset, setexprience, setRegionexp, setIsModalOpen, expdata])
     return (
@@ -102,7 +117,7 @@ const ExperienceModal = ({ setIsModalOpen, isModalOpen, Regionexp, setRegionexp,
                     <Box sx={{ height: window.innerHeight - 200, overflowX: "auto", '::-webkit-scrollbar': { display: "none" } }}>
 
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Employer Name
+                            <Typography sx={{ mt: 3, }}>Company Name / Institution Name
                                 <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                             </Typography>
                         </Box>
@@ -216,14 +231,14 @@ const ExperienceModal = ({ setIsModalOpen, isModalOpen, Regionexp, setRegionexp,
                             />
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Other Compensation
+                            <Typography sx={{ mt: 3, }}>Supervisor Condact Number
 
                             </Typography>
                         </Box>
                         <Box sx={{}}>
                             <InputComponent
                                 // variant="plain"
-                                type="text"
+                                type="Number"
                                 value={Other}
                                 name='Other'
                                 onchange={(e) => updateBoard(e)}

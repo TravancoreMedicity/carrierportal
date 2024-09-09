@@ -11,6 +11,7 @@ import WcIcon from '@mui/icons-material/Wc';
 const CandidateAbout = ({ personalData }) => {
     const empData = useMemo(() => personalData, [personalData]);
 
+
     return (
         <Box sx={{
             backgroundColor: 'slate.50',
@@ -38,7 +39,9 @@ const CandidateAbout = ({ personalData }) => {
                         }}>
                             <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
                                 <Box sx={{}}><PersonIcon /></Box>
-                                <Box sx={{ mt: .5 }}><Typography level="body-sm" sx={{ wordBreak: 'break-word', }}> {empData?.first_name === '' ? "Not Updated" : empData?.first_name} {empData?.middle_name === '' ? "" : empData?.middle_name} {empData?.last_name === '' ? "Not Updated" : empData?.last_name}</Typography>  </Box>
+                                <Box sx={{ mt: .5 }}>
+                                    <Typography level="body-sm" sx={{ wordBreak: 'break-word', textTransform: 'capitalize' }}> {empData?.first_name === '' ? "Not Updated" : empData?.first_name} {empData?.middle_name === '' ? "" : empData?.middle_name} {empData?.last_name === '' ? "" : empData?.last_name}</Typography>
+                                </Box>
                             </Box>
                             <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
                                 <Box> <EmailIcon /></Box>
@@ -51,7 +54,7 @@ const CandidateAbout = ({ personalData }) => {
                             </Box>
                             <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
                                 <Box>  <HomeIcon /></Box>
-                                <Box sx={{ mt: .5 }}><Typography level="body-sm" sx={{ wordBreak: 'break-word', }}> {empData?.address1 === '' ? "Not Updated" : empData?.address1},{empData?.address2 === '' ? "Not Updated" : empData?.address2}</Typography>  </Box>
+                                <Box sx={{ mt: .5 }}><Typography level="body-sm" sx={{ wordBreak: 'break-word', textTransform: 'capitalize' }}> {empData?.address1 === '' ? "Not Updated" : empData?.address1},{empData?.address2 === '' ? "Not Updated" : empData?.address2}</Typography>  </Box>
 
                             </Box>
                         </Box>

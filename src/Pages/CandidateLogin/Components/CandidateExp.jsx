@@ -27,27 +27,25 @@ const CandidateExp = ({ personalData }) => {
                         <Box key={index} sx={{ mt: 1, display: "flex", width: '100%' }}>
                             <Box sx={{
                                 width: "100%", borderTop: "1px solid #DFDFDF",
-                                // width: "20%", '@media screen and (max-width: 768px)': {
-                                //     width: "40%",
-                                // },
+
                             }}>
 
                                 <Box sx={{ display: 'flex', gap: 2, mt: 1, }}>
                                     <Box><WorkIcon /></Box>
                                     <Box sx={{ mt: .5, display: 'flex', gap: 1 }}>
-                                        <Box><Typography level="title-md" sx={{ wordBreak: 'break-word', }}> {exp?.jobexp}</Typography></Box>
+                                        <Box><Typography level="title-md" sx={{ wordBreak: 'break-word', textTransform: 'capitalize' }}> {exp?.jobexp}</Typography></Box>
                                         <Box>   <Typography level="body-sm" sx={{ wordBreak: 'break-word', }}>(  {moment(new Date(exp?.expstartdate)).format('DD-MM-YYYY')} -  {moment(new Date(exp?.expenddate)).format('DD-MM-YYYY')})</Typography></Box>
 
                                     </Box>
                                 </Box>
                                 <Box sx={{ display: 'flex', gap: 5 }}>
                                     <Box></Box>
-                                    <Box ><Typography level="body-sm" sx={{ wordBreak: 'break-word', }}> {exp?.Employer}</Typography> </Box>
+                                    <Box ><Typography level="body-sm" sx={{ wordBreak: 'break-word', textTransform: 'capitalize' }}> {exp?.Employer}</Typography> </Box>
                                 </Box>
 
                                 <Box sx={{ display: 'flex', gap: 5 }}>
                                     <Box></Box>
-                                    <Box><Typography level="body-sm" sx={{ wordBreak: 'break-word', }}> {exp?.Additionalinf}</Typography>  </Box>
+                                    <Box><Typography level="body-sm" sx={{ wordBreak: 'break-word', textTransform: 'capitalize' }}> {exp?.Additionalinf}</Typography>  </Box>
                                 </Box>
 
                             </Box>

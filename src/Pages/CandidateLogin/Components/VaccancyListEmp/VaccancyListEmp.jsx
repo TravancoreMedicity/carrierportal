@@ -109,8 +109,8 @@ const VaccancyListEmp = ({ vaccancyData, personalData, setcount }) => {
                                                                         Apply Before: {moment(new Date(currentItem?.required_date)).format('DD-MM-YYYY HH MM a')}
                                                                     </Typography>
                                                                 </Box>
-                                                                <Box sx={{ backgroundColor: isDesgIdInJobApplied ? '#F5FBF1' : '#FCC8D1' }}>
-                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word' }}>
+                                                                <Box sx={{}}>
+                                                                    <Typography color={isDesgIdInJobApplied ? 'success' : 'danger'} level="body-xs" sx={{ wordBreak: 'break-word', }}>
                                                                         Status: {isDesgIdInJobApplied === true ? "Applied" : "Not Applied"}
                                                                     </Typography>
                                                                 </Box>
@@ -220,8 +220,8 @@ const VaccancyListEmp = ({ vaccancyData, personalData, setcount }) => {
                                                                         Apply Before: {moment(new Date(currentItem?.required_date)).format('DD-MM-YYYY HH MM a')}
                                                                     </Typography>
                                                                 </Box>
-                                                                <Box sx={{ backgroundColor: isDesgIdInJobApplied ? '#F5FBF1' : '#FCC8D1' }}>
-                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word' }}>
+                                                                <Box sx={{}}>
+                                                                    <Typography color={isDesgIdInJobApplied ? 'success' : 'danger'} level="body-xs" sx={{ wordBreak: 'break-word' }}>
                                                                         Status: {isDesgIdInJobApplied === true ? "Applied" : "Not Applied"}
                                                                     </Typography>
                                                                 </Box>

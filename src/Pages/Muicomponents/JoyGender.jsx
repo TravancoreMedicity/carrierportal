@@ -16,7 +16,7 @@ const JoyGender = ({ value, setValue, disabled }) => {
             <Option value={0}>Select Gender</Option>
             <Option value="1">Male</Option>
             <Option value="2">Female</Option>
-            <Option value="3">Others</Option>
+            <Option value="3">TransGender</Option>
         </Select>
     )
 }

@@ -85,48 +85,6 @@ const CandidateCertificate = ({ ApplicationId }) => {
 
 
 
-    const handleUpload = useCallback(
-        async (event) => {
-            event.preventDefault()
-            if (value === 0) {
-                warningNofity('Please select the certificate')
-
-            } else {
-                if (!selectedFiles?.length) {
-                    warningNofity('Please select files to upload.')
-                    return
-                }
-                const formData = new FormData()
-                formData.append('em_id', ApplicationId)
-                formData.append('value', value)
-
-                for (const file of selectedFiles) {
-                    if (file.type.startsWith('image')) {
-                        const compressedFile = await handleImageUpload(file)
-                        formData.append('files', compressedFile, compressedFile.name)
-                    } else {
-                        formData.append('files', file, file.name)
-                    }
-                }
-                const result = await axioslogin.post('/upload/uploadmultipleCertificate', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
-                })
-                const { success, message } = result.data
-
-                if (success === 1) {
-                    setSelectedFiles([])
-                    setvalue(0)
-                    setCount(count + 1)
-                    succesNofity(message)
-                } else {
-                    warningNofity(message)
-                }
-            }
-        },
-        [selectedFiles, ApplicationId, handleImageUpload, count, value],
-    )
 
 
     const EditData = useCallback((filename) => {
@@ -134,6 +92,67 @@ const CandidateCertificate = ({ ApplicationId }) => {
         setIsModalOpen(true)
     }, [setIsModalOpen])
 
+    const handleUpload = useCallback(
+        async (event) => {
+            event.preventDefault();
+
+            if (value === 0) {
+                warningNofity('Please select the certificate');
+                return;
+            }
+
+            if (!selectedFiles?.length) {
+                warningNofity('Please select files to upload.');
+                return;
+            }
+
+            const allowedTypes = ['image/', 'application/pdf'];
+            const formData = new FormData();
+            formData.append('em_id', ApplicationId);
+            formData.append('value', value);
+
+            for (const file of selectedFiles) {
+                const fileType = file.type.split('/')[0];
+
+                if (allowedTypes.some(type => file.type.startsWith(type))) {
+                    if (file.type.startsWith('image')) {
+                        const compressedFile = await handleImageUpload(file);
+                        formData.append('files', compressedFile, compressedFile.name);
+                    } else {
+                        formData.append('files', file, file.name);
+                    }
+                } else {
+                    warningNofity('Unsupported file type ');
+                    setSelectedFiles([]);
+                    return;
+                }
+            }
+
+            try {
+                const result = await axioslogin.post('/upload/uploadmultipleCertificate', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+
+                const { success, message } = result.data;
+
+
+                if (success === 1) {
+                    setSelectedFiles([]);
+                    setvalue(0);
+                    setCount(count + 1);
+                    succesNofity(message);
+                } else {
+                    warningNofity(message);
+                }
+            } catch (error) {
+                warningNofity('Upload failed. Please try again.');
+                console.error('Upload error:', error);
+            }
+        },
+        [selectedFiles, ApplicationId, handleImageUpload, count, value],
+    );
 
 
     const DeleteItem = useCallback(async (file) => {

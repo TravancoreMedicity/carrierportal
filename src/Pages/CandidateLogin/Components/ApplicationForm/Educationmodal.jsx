@@ -7,6 +7,7 @@ import moment from 'moment';
 import JoyCheckbox from '../../../Muicomponents/JoyCheckbox';
 import InputComponent from '../../../Muicomponents/InputComponent';
 import axioslogin from '../../../../Axios/Axios';
+import { warningNofity } from '../../../CommonCode/CommonFunc';
 
 
 const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegionedu, seteducation, education_details, edu, course, setCourse, courseData,
@@ -69,57 +70,72 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
 
     //adding  edu
     const addeduData = useCallback(() => {
-        const newdata = {
-            id: Math.ceil(Math.random() * 1000),
-            schoolname: schoolname,
-            edustartdate: edustartdate,
-            eduenddate: eduenddate,
-            Graduated: Graduated,
-            AvgGrade: AvgGrade,
-            gpa: gpa,
-            DateAcquired: DateAcquired,
-            ProjectedDate: ProjectedDate,
-            Regionedu: Regionedu,
-            education: education,
-            course: course,
-            specialization: SpecilizationData,
-            university: UniData,
-            board: board,
+        if (schoolname === "") {
+            warningNofity("Enter School/College Name")
         }
-        const newdatas = [...edudata, newdata]
-        edudataset(newdatas)
-        seteducation_details(defaultState)
-        seteducation(0)
-        setRegionedu(0)
-        // setPermnt_pin(0)
+        else if (gpa === "") {
+            warningNofity("Enter  GPA / Percentage")
+
+        } else {
+            const newdata = {
+                id: Math.ceil(Math.random() * 1000),
+                schoolname: schoolname,
+                edustartdate: edustartdate,
+                eduenddate: eduenddate,
+                Graduated: Graduated,
+                AvgGrade: AvgGrade,
+                gpa: gpa,
+                DateAcquired: DateAcquired,
+                ProjectedDate: ProjectedDate,
+                Regionedu: Regionedu,
+                education: education,
+                course: course,
+                specialization: SpecilizationData,
+                university: UniData,
+                board: board,
+            }
+            const newdatas = [...edudata, newdata]
+            edudataset(newdatas)
+            seteducation_details(defaultState)
+            seteducation(0)
+            setRegionedu(0)
+        }
     }, [defaultState, AvgGrade, schoolname, edustartdate, eduenddate, Graduated, gpa, DateAcquired, ProjectedDate, Regionedu, education
         , edudataset, seteducation_details, seteducation, setRegionedu, edudata])
     //for saving
     const Datasave = useCallback(() => {
-        const newdata = {
-            id: Math.ceil(Math.random() * 1000),
-            schoolname: schoolname,
-            edustartdate: edustartdate,
-            eduenddate: eduenddate,
-            Graduated: Graduated,
-            AvgGrade: AvgGrade,
-            gpa: gpa,
-            DateAcquired: DateAcquired,
-            ProjectedDate: ProjectedDate,
-            Regionedu: Regionedu,
-            education: education,
-            course: course,
-            specialization: SpecilizationData,
-            university: UniData,
-            board: board,
+        if (schoolname === "") {
+            warningNofity("Enter School/College Name")
         }
-        const newdatas = [...edudata, newdata]
-        edudataset(newdatas)
-        seteducation_details(defaultState)
-        seteducation(0)
-        setRegionedu(0)
-        // setPermnt_pin(0)
-        setIsModalOpenedu(false)
+        else if (gpa === "") {
+            warningNofity("Enter  GPA / Percentage")
+
+        } else {
+            const newdata = {
+                id: Math.ceil(Math.random() * 1000),
+                schoolname: schoolname,
+                edustartdate: edustartdate,
+                eduenddate: eduenddate,
+                Graduated: Graduated,
+                AvgGrade: AvgGrade,
+                gpa: gpa,
+                DateAcquired: DateAcquired,
+                ProjectedDate: ProjectedDate,
+                Regionedu: Regionedu,
+                education: education,
+                course: course,
+                specialization: SpecilizationData,
+                university: UniData,
+                board: board,
+            }
+            const newdatas = [...edudata, newdata]
+            edudataset(newdatas)
+            seteducation_details(defaultState)
+            seteducation(0)
+            setRegionedu(0)
+            // setPermnt_pin(0)
+            setIsModalOpenedu(false)
+        }
     }, [defaultState, AvgGrade, schoolname, edustartdate, eduenddate, Graduated, gpa, DateAcquired, ProjectedDate, Regionedu, education
         , edudataset, seteducation_details, seteducation, setRegionedu, setIsModalOpenedu, edudata])
     return (
@@ -344,36 +360,7 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
                                 size="md"
                             />
                         </Box>
-                        <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Date Acquired
 
-                            </Typography>
-                        </Box>
-                        <Box sx={{}}>
-                            <InputComponent
-                                // variant="plain"
-                                type="date"
-                                value={DateAcquired}
-                                name="DateAcquired"
-                                onchange={(e) => updateBoard(e)}
-                                size="md"
-                            />
-                        </Box>
-                        <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Projected Completion Date
-
-                            </Typography>
-                        </Box>
-                        <Box sx={{}}>
-                            <InputComponent
-                                // variant="plain"
-                                type="date"
-                                value={ProjectedDate}
-                                name="ProjectedDate"
-                                onchange={(e) => updateBoard(e)}
-                                size="md"
-                            />
-                        </Box>
 
 
                     </Box>
