@@ -59,8 +59,7 @@ const MainModal = ({ isModalOpen, setIsModalOpen, formdata, education, handleOnS
                             {/* <CustmTypog title={'Your Information'} /> */}
                             <Box sx={{ mt: 1, borderTop: "1px solid #DFDFDF", }}>
                                 <Box sx={{
-                                    // backgroundColor: "red",
-                                    // width: '50%'
+
                                     width: "100%", '@media screen and (max-width: 768px)': {
                                         width: "100%",
                                     },
