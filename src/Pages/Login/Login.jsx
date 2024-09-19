@@ -5,6 +5,7 @@ import { login } from '../../Redux/LoginSlice'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useMediaQuery } from '@mui/material'
+import { Url } from '../../Constant/Static'
 
 const Login = ({ setIsModalOpen, isModalOpen }) => {
     const theme = useTheme();
@@ -18,8 +19,12 @@ const Login = ({ setIsModalOpen, isModalOpen }) => {
     const navigate = useNavigate()
 
     const googleRedirectToGoogle = () => {
-        window.location.href = 'https://localhost:5000/auth/google';
+        // window.location.href = 'https://localhost:5000/auth/google';
+        window.location.href = `${Url}/auth/google`;
+
     };
+
+
 
     useEffect(() => {
         const query = new URLSearchParams(window.location.search);

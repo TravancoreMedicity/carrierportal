@@ -22,7 +22,7 @@ const CandidateSkills = ({ tableData }) => {
             </Box>
             {tableData?.length > 0 ? (
                 <Box sx={{ mt: 1, borderTop: "1px solid #DFDFDF", }}>
-                    {tableData.map((item, index) => (
+                    {tableData?.map((item, index) => (
                         <Box key={index} sx={{ display: 'flex', gap: 2, mt: 1 }}>
                             <Box sx={{}}><ArrowRightIcon fontSize='small' /></Box>
                             <Box sx={{}}>

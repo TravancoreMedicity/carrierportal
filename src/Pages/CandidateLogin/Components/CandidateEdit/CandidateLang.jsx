@@ -1,4 +1,4 @@
-import { Box, IconButton, Tooltip, Typography } from '@mui/joy'
+import { Box, Button, IconButton, Tooltip, Typography } from '@mui/joy'
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import axioslogin from '../../../../Axios/Axios';
 import { succesNofity, warningNofity } from '../../../CommonCode/CommonFunc';
@@ -386,7 +386,7 @@ const CandidateLang = ({ ApplicationId }) => {
                 </Typography>
             </Box>
 
-            <Box sx={{ display: "flex", flexDirection: "column", mt: 1, gap: 1, }}>
+            <Box sx={{ display: "flex", flexDirection: "column", mt: 1, gap: 1, cursor: 'pointer', }}>
                 <Box sx={{ display: 'flex', gap: 2, }}>
                     <Box sx={{ width: "20%" }}>
                         <Typography >
@@ -739,7 +739,7 @@ const CandidateLang = ({ ApplicationId }) => {
             <Box sx={{ flex: 0, px: 0.5, display: 'flex', mt: 2 }} >
                 <Tooltip title="save" >
                     {langdata?.length > 0 ?
-                        <IconButton variant="outlined" size='sm' color='primary' onClick={SubmitFormData} sx={{
+                        <Button variant="outlined" size='sm' color='primary' onClick={SubmitFormData} sx={{
                             width: '10%',
                             '@media screen and (max-width: 768px)': {
                                 width: '30%'
@@ -747,11 +747,11 @@ const CandidateLang = ({ ApplicationId }) => {
                             },
                         }}>
                             Langauge Edit
-                        </IconButton>
+                        </Button>
                         :
-                        <IconButton variant="outlined" size='sm' color='primary' onClick={SubmitFormData} sx={{ width: '10%' }}>
+                        <Button variant="outlined" size='sm' color='primary' onClick={SubmitFormData} sx={{ width: '10%' }}>
                             Save
-                        </IconButton>
+                        </Button>
                     }
 
                 </Tooltip>

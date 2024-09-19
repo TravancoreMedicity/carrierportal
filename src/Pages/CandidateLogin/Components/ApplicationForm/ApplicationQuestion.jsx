@@ -280,7 +280,7 @@ const ApplicationQuestion = ({ setformdata, formdata, seteducation, Regionexp, s
             </Box>
             {relatives_status_yes === true ?
                 <>
-                    <Box sx={{}}>
+                    {/* <Box sx={{}}>
                         <Typography sx={{ mt: 3, }}>Employee E-mail Address
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Typography>
@@ -294,7 +294,7 @@ const ApplicationQuestion = ({ setformdata, formdata, seteducation, Regionexp, s
                             onchange={(e) => updateBoard(e)}
                             size="md"
                         />
-                    </Box>
+                    </Box> */}
                     <Box sx={{}}>
                         <Typography sx={{ mt: 3, }}>Employee Name
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>

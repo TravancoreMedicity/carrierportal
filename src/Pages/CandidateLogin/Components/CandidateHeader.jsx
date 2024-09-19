@@ -276,13 +276,13 @@ const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyD
                     </Box>
 
                     {/* User settings section */}
-                    <Box sx={{ flexGrow: 0, p: 1, mr: 3, }}>
+                    <Box sx={{ flexGrow: 0, p: 1, mr: 8, }}>
 
-                        <Dropdown>
+                        <Dropdown >
                             <MenuButton variant="plain">
                                 <Avatar alt="User Avatar" src={imageUrl} />
                             </MenuButton>
-                            <Menu>
+                            <Menu sx={{}}>
                                 <MenuItem className=' w-[100%]' component={Box} >
                                     <Box className="flex flex-1 justify-center items-center flex-col rounded-md" sx={{}} >
                                         <Avatar sx={{ "--Avatar-size": "150px", }} src={imageUrl} />
@@ -305,6 +305,9 @@ const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyD
 
                                 </MenuItem>
                             </Menu>
+
+
+
                         </Dropdown>
                     </Box>
                 </Toolbar>

@@ -1,7 +1,9 @@
 import { Option, Select } from '@mui/joy'
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 
-const RegionJoy = ({ regValue, getRegion, pin }) => {
+const RegionJoy = ({ regValue, getRegion, pin, DisableRegion }) => {
+
+
     // const emRegion = useSelector((state) => state?.getRegionList?.RegionList, _.isEqual)
     const [region, setRegion] = useState([{ reg_slno: 0, reg_name: 'Select Region' }])
     const regionList = useMemo(() => pin, [pin])
@@ -33,6 +35,7 @@ const RegionJoy = ({ regValue, getRegion, pin }) => {
             }}
             size='md'
             variant='outlined'
+            disabled={DisableRegion}
         >
             <Option disabled value={0}>  Select Region </Option>
             {
