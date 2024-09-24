@@ -39,7 +39,7 @@ const CandidateCertificate = ({ ApplicationId }) => {
 
                 // Construct URLs for each file using the file names
                 const fileUrls = data.map((fileName) => {
-                    return `http://192.168.22.5/Career/Certificate/${ApplicationId}/${fileName}`;
+                    return `http://192.168.10.88/NAS/Career/Certificate/${ApplicationId}/${fileName}`;
 
                 });
                 // setFiles(fileNames)
