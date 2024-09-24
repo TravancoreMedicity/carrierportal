@@ -115,7 +115,7 @@ const CandidateDashDetails = ({ emal, name, ApplicationId, personalData, count, 
             const { success, data } = result.data
             if (success === 1 && data?.length > 0) {
                 const fileUrls = data.map((fileName) => {
-                    return `http://192.168.22.5/Career/Resume/${ApplicationId}/${fileName}`;
+                    return `http://192.168.10.88/NAS/Career/Resume/${ApplicationId}/${fileName}`;
 
                 });
                 // setFiles(fileNames)
@@ -133,7 +133,7 @@ const CandidateDashDetails = ({ emal, name, ApplicationId, personalData, count, 
             const { success, data } = result.data
             if (success === 1 && data?.length > 0) {
                 const fileUrls = data.map((fileName) => {
-                    return `http://192.168.22.5/Career/Certificate/${ApplicationId}/${fileName}`;
+                    return `http://192.168.10.88/NAS/Career/Certificate/${ApplicationId}/${fileName}`;
 
                 });
                 // setFiles(fileNames)

@@ -36,7 +36,7 @@ const CandidateResume = ({ ApplicationId }) => {
 
                 // Construct URLs for each file using the file names
                 const fileUrls = data.map((fileName) => {
-                    return `http://192.168.22.5/Career/Resume/${ApplicationId}/${fileName}`;
+                    return `https://192.168.10.88/NAS/Career/Resume/${ApplicationId}/${fileName}`;
 
                 });
                 // setFiles(fileNames)

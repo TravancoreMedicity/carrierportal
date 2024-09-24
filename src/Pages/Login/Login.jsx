@@ -20,12 +20,8 @@ const Login = ({ setIsModalOpen, isModalOpen }) => {
 
     const googleRedirectToGoogle = () => {
         // window.location.href = 'https://localhost:5000/auth/google';
-        window.location.href = `${Url}/auth/google`;
-
+        window.location.href = `http://travancoremedicity.in:5003/auth/google`;
     };
-
-
-
     useEffect(() => {
         const query = new URLSearchParams(window.location.search);
         const token = query.get('usdsa');
@@ -74,6 +70,7 @@ const Login = ({ setIsModalOpen, isModalOpen }) => {
 
                             </Box>
                         </Box>
+
                         <Box sx={{ mt: 1 }}>
                             <Typography level='h4' >Sign up or sign in to Travancore Career  </Typography>
                         </Box>
