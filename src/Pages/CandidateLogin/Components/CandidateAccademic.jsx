@@ -3,6 +3,7 @@ import moment from 'moment';
 import React, { memo, useEffect, useState } from 'react';
 import SchoolIcon from '@mui/icons-material/School';
 import axioslogin from '../../../Axios/Axios';
+import { Paper } from '@mui/material';
 
 const CandidateAccademic = ({ personalData, ApplicationId }) => {
     const [edudata, setedudata] = useState([])
@@ -21,16 +22,17 @@ const CandidateAccademic = ({ personalData, ApplicationId }) => {
         fetchData()
     }, [])
     return (
-        <Box sx={{
-            backgroundColor: 'slate.50',
-            padding: 4,
-            borderRadius: 'md',
-            boxShadow: 'lg',
-            marginTop: 2,
-            '@media screen and (max-width: 768px)': {
-                padding: 1,
-            },
-        }}>
+        <Paper
+            variant="outlined" sx={{
+                // backgroundColor: 'slate.50',
+                padding: 3,
+                borderRadius: 'md',
+                // boxShadow: 'lg',
+
+                '@media screen and (max-width: 768px)': {
+                    padding: 1,
+                },
+            }}>
             <Box>
                 <Box>
                     <Typography sx={{}} level="body-md" >
@@ -102,7 +104,7 @@ const CandidateAccademic = ({ personalData, ApplicationId }) => {
                 )}
 
             </Box>
-        </Box>
+        </Paper>
     );
 }
 

@@ -1,19 +1,21 @@
 import { Box, Typography } from '@mui/joy'
 import React, { memo, } from 'react'
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import { Paper } from '@mui/material';
 
 const CandidateSkills = ({ tableData }) => {
     return (
-        <Box sx={{
-            backgroundColor: 'slate.50',
-            padding: 4,
-            borderRadius: 'md',
-            boxShadow: 'lg',
-            marginTop: 2,
-            '@media screen and (max-width: 768px)': {
-                padding: 1,
-            },
-        }}>
+        <Paper
+            variant="outlined" sx={{
+                // backgroundColor: 'slate.50',
+                padding: 3,
+                borderRadius: 'md',
+                // boxShadow: 'lg',
+                // marginTop: 2,
+                '@media screen and (max-width: 768px)': {
+                    padding: 1,
+                },
+            }}>
 
             <Box>
                 <Typography sx={{}} level="body-md" >
@@ -39,7 +41,7 @@ const CandidateSkills = ({ tableData }) => {
                 </Typography>
             )}
 
-        </Box>
+        </Paper>
     )
 }
 

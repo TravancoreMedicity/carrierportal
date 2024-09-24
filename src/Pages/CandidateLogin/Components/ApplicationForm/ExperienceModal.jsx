@@ -258,10 +258,11 @@ const ExperienceModal = ({ setIsModalOpen, isModalOpen, Regionexp, setRegionexp,
                             Add more
                         </Button>
                         <Button sx={{
+                            color: '#FF76CE',
                             p: 0, width: "15%", '@media screen and (max-width: 768px)': {
                                 width: "40%",
                             },
-                        }} size='sm' variant="outlined" color="primary" onClick={Datasave}>
+                        }} size='sm' variant="outlined" onClick={Datasave}>
                             Save
                         </Button>
                     </Box>

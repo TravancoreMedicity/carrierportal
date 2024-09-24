@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/joy'
+import { Paper } from '@mui/material';
 import React, { memo } from 'react'
 
 const CandidateLang = ({ tableData }) => {
@@ -16,16 +17,18 @@ const CandidateLang = ({ tableData }) => {
     const valuesTamil = [tamil_Poor, tamil_Exe, tamil_Nat, tamil_pro, tamil_Beg,]
 
     return (
-        <Box sx={{
-            backgroundColor: 'slate.50',
-            padding: 4,
-            borderRadius: 'md',
-            boxShadow: 'lg',
-            marginTop: 2,
-            '@media screen and (max-width: 768px)': {
-                padding: 1,
-            },
-        }}>
+        <Paper
+            variant="outlined"
+            sx={{
+                // backgroundColor: 'slate.50',
+                padding: 3,
+                borderRadius: 'md',
+                // boxShadow: 'lg',
+                // marginTop: 2,
+                '@media screen and (max-width: 768px)': {
+                    padding: 1,
+                },
+            }}>
             <Box>
                 <Box>
                     <Typography sx={{}} level="body-md" >
@@ -41,7 +44,7 @@ const CandidateLang = ({ tableData }) => {
                             },
                         }}>
                             <Box sx={{}}>
-                                <Typography sx={{}} level="body-md" >
+                                <Typography sx={{}} level="body-sm" >
                                     English
                                 </Typography>
                             </Box>
@@ -79,7 +82,7 @@ const CandidateLang = ({ tableData }) => {
                             },
                         }}>
                             <Box sx={{}}>
-                                <Typography sx={{}} level="body-md" >
+                                <Typography sx={{}} level="body-sm" >
                                     Malayalam
                                 </Typography>
                             </Box>
@@ -117,7 +120,7 @@ const CandidateLang = ({ tableData }) => {
                             },
                         }}>
                             <Box sx={{}}>
-                                <Typography sx={{}} level="body-md" >
+                                <Typography sx={{}} level="body-sm" >
                                     Hindi
                                 </Typography>
                             </Box>
@@ -155,7 +158,7 @@ const CandidateLang = ({ tableData }) => {
                             },
                         }}>
                             <Box sx={{}}>
-                                <Typography sx={{}} level="body-md" >
+                                <Typography sx={{}} level="body-sm" >
                                     Tamil
                                 </Typography>
                             </Box>
@@ -193,7 +196,7 @@ const CandidateLang = ({ tableData }) => {
                             },
                         }}>
                             <Box sx={{}}>
-                                <Typography sx={{}} level="body-md" >
+                                <Typography sx={{}} level="body-sm" >
                                     Arabic
                                 </Typography>
                             </Box>
@@ -234,7 +237,7 @@ const CandidateLang = ({ tableData }) => {
                     </Box>
                 }
             </Box>
-        </Box>
+        </Paper>
     )
 }
 

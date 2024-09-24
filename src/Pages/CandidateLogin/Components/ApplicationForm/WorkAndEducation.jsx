@@ -80,7 +80,7 @@ const WorkAndEducation = ({ formdata, setformdata, seteducation, Regionexp, setR
     return (
         <>
             <Box sx={{ display: 'flex', g: 1, mt: 2 }}>
-                <Box sx={{ width: "50%", border: 1, ":hover": { borderColor: 'red' } }}>
+                <Box sx={{ width: "50%", border: "1px solid  #FF76CE", ":hover": { borderColor: 'red' } }}>
                     <Tooltip title="Add Your Experience">
                         <Box sx={{ p: 1, cursor: 'pointer' }}
                             onClick={handleOnClickexp}
@@ -90,7 +90,7 @@ const WorkAndEducation = ({ formdata, setformdata, seteducation, Regionexp, setR
                     </Tooltip>
 
                 </Box>
-                <Box sx={{ ml: 1, width: "50%", border: 1, ":hover": { borderColor: 'red' } }}>
+                <Box sx={{ ml: 1, width: "50%", border: "1px solid  #FF76CE", ":hover": { borderColor: 'red' } }}>
                     <Tooltip title="Add Your Education">
                         <Box sx={{ p: 1, cursor: 'pointer', }}
                             onClick={handleOnClickedu}
@@ -187,7 +187,8 @@ const WorkAndEducation = ({ formdata, setformdata, seteducation, Regionexp, setR
                         variant="outlined"
                         component="label"
                         size="md"
-                        color="primary"
+                        // color="#FF76CE"
+                        sx={{ color: '#FF76CE' }}
                         onClick={handleOnClick}
                     >
                         Submit Application

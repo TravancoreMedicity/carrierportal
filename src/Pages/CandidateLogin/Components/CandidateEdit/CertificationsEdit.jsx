@@ -6,6 +6,7 @@ import axioslogin from '../../../../Axios/Axios';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
+import { Paper } from '@mui/material';
 
 
 const CertificationsEdit = ({ ApplicationId }) => {
@@ -108,16 +109,18 @@ const CertificationsEdit = ({ ApplicationId }) => {
     }, [count])
 
     return (
-        <Box sx={{
-            backgroundColor: 'slate.50',
-            padding: 4,
-            borderRadius: 'md',
-            boxShadow: 'lg',
-            marginTop: 2,
-            '@media screen and (max-width: 768px)': {
-                padding: 1,
-            },
-        }}>
+        <Paper
+            variant="outlined"
+            sx={{
+                // backgroundColor: 'slate.50',
+                padding: 4,
+                borderRadius: 'md',
+                // boxShadow: 'lg',
+                marginTop: 2,
+                '@media screen and (max-width: 768px)': {
+                    padding: 1,
+                },
+            }}>
             <Box>
                 <Typography level="body-md">Certification Details</Typography>
             </Box>
@@ -198,7 +201,7 @@ const CertificationsEdit = ({ ApplicationId }) => {
                     </tbody>
                 </Table>
             </Box>
-        </Box>
+        </Paper>
     )
 }
 

@@ -4,7 +4,7 @@ import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
 import { Box } from '@mui/joy';
-import { useMediaQuery } from '@mui/material';
+import { Paper, useMediaQuery } from '@mui/material';
 
 
 const CertificationsEdit = lazy(() => import('./CandidateEdit/CertificationsEdit'))
@@ -22,12 +22,14 @@ const CandidateDashEdit = ({ personalData, ApplicationId }) => {
 
     return (
         <Box>
-            <Box
+            <Paper
+                variant="outlined"
                 sx={{
-                    backgroundColor: 'slate.50',
+                    mt: 1,
+                    // backgroundColor: 'slate.50',
                     padding: 3,
                     borderRadius: 'md',
-                    boxShadow: 'lg',
+                    // boxShadow: 'lg',
                     '@media screen and (max-width: 768px)': {
                         padding: 1,
 
@@ -79,7 +81,7 @@ const CandidateDashEdit = ({ personalData, ApplicationId }) => {
 
 
                 </Tabs>
-            </Box>
+            </Paper>
         </Box>
     )
 }

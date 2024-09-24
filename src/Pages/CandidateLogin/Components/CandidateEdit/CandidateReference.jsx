@@ -6,6 +6,7 @@ import { succesNofity, warningNofity } from '../../../CommonCode/CommonFunc';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
+import { Paper } from '@mui/material';
 
 
 const CandidateReference = ({ ApplicationId }) => {
@@ -117,16 +118,18 @@ const CandidateReference = ({ ApplicationId }) => {
     }, [count])
 
     return (
-        <Box sx={{
-            backgroundColor: 'slate.50',
-            padding: 4,
-            borderRadius: 'md',
-            boxShadow: 'lg',
-            marginTop: 2,
-            '@media screen and (max-width: 768px)': {
-                padding: 1,
-            },
-        }}>
+        <Paper
+            variant="outlined"
+            sx={{
+                // backgroundColor: 'slate.50',
+                padding: 4,
+                borderRadius: 'md',
+                // boxShadow: 'lg',
+                marginTop: 2,
+                '@media screen and (max-width: 768px)': {
+                    padding: 1,
+                },
+            }}>
             <Box>
                 <Typography level="body-md">Referance Details</Typography>
             </Box>
@@ -235,7 +238,7 @@ const CandidateReference = ({ ApplicationId }) => {
                     </tbody>
                 </Table>
             </Box>
-        </Box>
+        </Paper>
 
     )
 }

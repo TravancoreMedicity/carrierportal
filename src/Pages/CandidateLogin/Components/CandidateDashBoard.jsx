@@ -2,6 +2,7 @@ import { Avatar, Box, Typography } from '@mui/joy'
 import React, { lazy, memo } from 'react'
 import { useSelector } from 'react-redux'
 import { getUser } from '../../../Redux/LoginSlice'
+import { Paper } from '@mui/material'
 
 
 const CandidateDashDetails = lazy(() => import('./CandidateDashDetails'))
@@ -18,6 +19,8 @@ const CandidateDashBoard = ({ personalData, count, setcount, SkillData, pageToSh
 
     return (
         <Box sx={{
+            // backgroundColor: 'red',
+
             display: 'flex',
             flexWrap: 'wrap',
             padding: .5,
@@ -28,14 +31,15 @@ const CandidateDashBoard = ({ personalData, count, setcount, SkillData, pageToSh
             },
         }}>
             {/* Left side box */}
-            <Box sx={{
+            <Paper sx={{
                 width: ['100%', '25%'],
                 display: 'flex',
                 flexDirection: 'column',
-                backgroundColor: 'slate.50',
+                // backgroundColor: 'slate.50',
                 padding: 4,
-                borderRadius: 'md',
-                boxShadow: 'lg',
+                // borderRadius: 'md',
+                // border: "1px solid #B7B7B7",
+                // boxShadow: 'lg',
                 marginBottom: [3, 0],
 
                 '@media screen and (max-width: 768px)': {
@@ -43,19 +47,23 @@ const CandidateDashBoard = ({ personalData, count, setcount, SkillData, pageToSh
                 },
             }}>
                 {/* Image box */}
-                <Box sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    flexDirection: 'column',
-                    borderRadius: 'md',
-                    backgroundColor: 'slate.50',
-                    padding: 4,
-                    boxShadow: 'lg',
-                    '@media screen and (max-width: 768px)': {
-                        padding: 1,
-                    },
-                }}>
+                <Paper
+                    variant="outlined"
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'column',
+                        borderRadius: 'md',
+                        // border: "1px solid #B7B7B7",
+
+                        // backgroundColor: 'slate.50',
+                        padding: 4,
+                        // boxShadow: 'lg',
+                        '@media screen and (max-width: 768px)': {
+                            padding: 1,
+                        },
+                    }}>
                     <Box sx={{
                         borderRadius: 'lg',
                         '@media screen and (max-width: 768px)': {
@@ -68,21 +76,24 @@ const CandidateDashBoard = ({ personalData, count, setcount, SkillData, pageToSh
                             },
                         }} />
                     </Box>
-                </Box>
+                </Paper>
 
                 {/* Description box */}
-                <Box sx={{
-                    backgroundColor: 'slate.50',
-                    padding: 4,
-                    borderRadius: 'md',
-                    boxShadow: 'lg',
-                    marginTop: 3,
-                    height: window.innerHeight - 460, overflowX: "auto",
-                    '@media screen and (max-width: 768px)': {
-                        padding: 1,
-                        height: window.innerHeight - 660,
-                    },
-                }}>
+                <Paper
+                    variant="outlined" sx={{
+                        // backgroundColor: 'slate.50',
+                        // border: "1px solid #B7B7B7",
+
+                        padding: 4,
+                        borderRadius: 'md',
+                        // boxShadow: 'lg',
+                        marginTop: 3,
+                        height: window.innerHeight - 460, overflowX: "auto",
+                        '@media screen and (max-width: 768px)': {
+                            padding: 1,
+                            height: window.innerHeight - 660,
+                        },
+                    }}>
                     <Box>
                         <Typography level='body-lg'>About</Typography>
                     </Box>
@@ -112,23 +123,28 @@ const CandidateDashBoard = ({ personalData, count, setcount, SkillData, pageToSh
                         </Typography>
                     )}
 
-                </Box>
-            </Box>
+                </Paper>
+            </Paper>
 
             {/* Right side box */}
-            <Box sx={{
-                width: ['100%', '75%'],
-                padding: 4,
-                borderRadius: 'md',
-                boxShadow: 'lg',
-                '@media screen and (max-width: 768px)': {
-                    padding: 0,
+            <Paper
+                variant="outlined"
+                sx={{
 
-                },
-            }}>
+                    width: ['100%', '75%'],
+                    padding: 4,
+                    borderRadius: 'md',
+                    // border: "1px solid #B7B7B7",
+
+                    // boxShadow: 'lg',
+                    '@media screen and (max-width: 768px)': {
+                        padding: 0,
+
+                    },
+                }}>
                 <CandidateDashDetails emal={emal} name={name} ApplicationId={ApplicationId} personalData={personalData} count={count} vaccancyData={vaccancyData}
                     setcount={setcount} pageToShow={pageToShow} SetPageToShow={SetPageToShow} jobData={jobData} setEditCount={setEditCount} EditCount={EditCount} />
-            </Box>
+            </Paper>
         </Box>
     )
 }

@@ -2,20 +2,23 @@ import { Box, Typography } from '@mui/joy'
 import moment from 'moment'
 import React, { memo } from 'react'
 import WorkIcon from '@mui/icons-material/Work';
+import { Paper } from '@mui/material';
 
 
 const CandidateExp = ({ personalData }) => {
     return (
-        <Box sx={{
-            backgroundColor: 'slate.50',
-            padding: 4,
-            borderRadius: 'md',
-            boxShadow: 'lg',
-            marginTop: 2,
-            '@media screen and (max-width: 768px)': {
-                padding: 1,
-            },
-        }}>
+        <Paper
+            variant="outlined"
+            sx={{
+                // backgroundColor: 'slate.50',
+                padding: 3,
+                borderRadius: 'md',
+                // boxShadow: 'lg',
+                // marginTop: 2,
+                '@media screen and (max-width: 768px)': {
+                    padding: 1,
+                },
+            }}>
             <Box>
                 <Box>
                     <Typography sx={{}} level="body-md" >
@@ -56,7 +59,7 @@ const CandidateExp = ({ personalData }) => {
                     <Typography level="body-sm">No experience details found.</Typography>
                 )}
             </Box>
-        </Box>
+        </Paper>
     )
 }
 

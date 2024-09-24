@@ -374,7 +374,7 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
                             Add more
                         </Button>
                         <Button sx={{
-                            p: 0, width: "15%",
+                            p: 0, width: "15%", color: '#FF76CE',
                             '@media screen and (max-width: 768px)': {
                                 width: "40%",
                             },

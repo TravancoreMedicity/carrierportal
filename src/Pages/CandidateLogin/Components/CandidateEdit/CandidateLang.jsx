@@ -4,6 +4,7 @@ import axioslogin from '../../../../Axios/Axios';
 import { succesNofity, warningNofity } from '../../../CommonCode/CommonFunc';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star'; // Import the filled star icon
+import { Paper } from '@mui/material';
 
 const CandidateLang = ({ ApplicationId }) => {
 
@@ -370,16 +371,18 @@ const CandidateLang = ({ ApplicationId }) => {
 
 
     return (
-        <Box sx={{
-            backgroundColor: 'slate.50',
-            padding: 4,
-            borderRadius: 'md',
-            boxShadow: 'lg',
-            marginTop: 2,
-            '@media screen and (max-width: 768px)': {
-                padding: 1,
-            },
-        }}>
+        <Paper
+            variant="outlined"
+            sx={{
+                // backgroundColor: 'slate.50',
+                padding: 4,
+                borderRadius: 'md',
+                // boxShadow: 'lg',
+                marginTop: 2,
+                '@media screen and (max-width: 768px)': {
+                    padding: 1,
+                },
+            }}>
             <Box sx={{ borderBottom: "1px solid #DFDFDF", }}>
                 <Typography sx={{}}  >
                     Langauges Known
@@ -739,8 +742,9 @@ const CandidateLang = ({ ApplicationId }) => {
             <Box sx={{ flex: 0, px: 0.5, display: 'flex', mt: 2 }} >
                 <Tooltip title="save" >
                     {langdata?.length > 0 ?
-                        <Button variant="outlined" size='sm' color='primary' onClick={SubmitFormData} sx={{
-                            width: '10%',
+                        <Button variant="outlined" size='sm' onClick={SubmitFormData} sx={{
+                            color: '#FF76CE',
+                            width: '15%',
                             '@media screen and (max-width: 768px)': {
                                 width: '30%'
 
@@ -749,7 +753,7 @@ const CandidateLang = ({ ApplicationId }) => {
                             Langauge Edit
                         </Button>
                         :
-                        <Button variant="outlined" size='sm' color='primary' onClick={SubmitFormData} sx={{ width: '10%' }}>
+                        <Button variant="outlined" size='sm' color='primary' onClick={SubmitFormData} sx={{ width: '10%', color: '#FF76CE', }}>
                             Save
                         </Button>
                     }
@@ -758,7 +762,7 @@ const CandidateLang = ({ ApplicationId }) => {
 
             </Box>
 
-        </Box>
+        </Paper>
     )
 }
 

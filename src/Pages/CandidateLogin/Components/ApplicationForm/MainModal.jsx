@@ -110,10 +110,11 @@ const MainModal = ({ isModalOpen, setIsModalOpen, formdata, education, handleOnS
                         <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
                             <Tooltip title="Save">
                                 <Button
+                                    sx={{ color: '#FF76CE' }}
                                     variant="outlined"
                                     component="label"
                                     size="md"
-                                    color="primary"
+                                    // color="primary"
                                     onClick={handleOnSave}
                                 >
                                     Submit Application
