@@ -1,19 +1,22 @@
 import { Box, Typography } from '@mui/joy'
 import React, { memo } from 'react'
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import { Paper } from '@mui/material';
 
 const CandidateCertification = ({ tableData }) => {
     return (
-        <Box sx={{
-            backgroundColor: 'slate.50',
-            padding: 4,
-            borderRadius: 'md',
-            boxShadow: 'lg',
-            marginTop: 2,
-            '@media screen and (max-width: 768px)': {
-                padding: 1,
-            },
-        }}>
+        <Paper
+            variant="outlined"
+            sx={{
+                // backgroundColor: 'slate.50',
+                padding: 3,
+                borderRadius: 'md',
+                // boxShadow: 'lg',
+                // marginTop: 2,
+                '@media screen and (max-width: 768px)': {
+                    padding: 1,
+                },
+            }}>
             <Box>
                 <Typography sx={{}} level="body-md" >
                     Certifications
@@ -46,7 +49,7 @@ const CandidateCertification = ({ tableData }) => {
                 <Typography level="body-sm">No  details found.</Typography>
             )}
 
-        </Box>
+        </Paper>
     )
 }
 

@@ -6,6 +6,7 @@ import axioslogin from '../../../../Axios/Axios';
 import imageCompression from 'browser-image-compression'
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Paper } from '@mui/material';
 
 
 const ViewModal = lazy(() => import('./ViewModal'))
@@ -151,16 +152,18 @@ const CandidateResume = ({ ApplicationId }) => {
     }, [count])
 
     return (
-        <Box sx={{
-            backgroundColor: 'slate.50',
-            padding: 4,
-            borderRadius: 'md',
-            boxShadow: 'lg',
-            marginTop: 2,
-            '@media screen and (max-width: 768px)': {
-                padding: 1,
-            },
-        }}>
+        <Paper
+            variant="outlined"
+            sx={{
+                // backgroundColor: 'slate.50',
+                padding: 4,
+                borderRadius: 'md',
+                // boxShadow: 'lg',
+                marginTop: 2,
+                '@media screen and (max-width: 768px)': {
+                    padding: 1,
+                },
+            }}>
             <Box sx={{}}>
 
                 <Typography sx={{}}  >
@@ -296,7 +299,7 @@ const CandidateResume = ({ ApplicationId }) => {
                 setIsModalOpen={setIsModalOpen}
                 file={file}
             />
-        </Box>
+        </Paper>
     )
 }
 

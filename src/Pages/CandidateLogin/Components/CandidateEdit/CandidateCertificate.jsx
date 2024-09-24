@@ -6,6 +6,7 @@ import imageCompression from 'browser-image-compression'
 import CloseSharpIcon from '@mui/icons-material/CloseSharp';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
+import { Paper } from '@mui/material'
 
 const ViewModalCert = lazy(() => import('./ViewModalCertificate'))
 
@@ -183,16 +184,18 @@ const CandidateCertificate = ({ ApplicationId }) => {
         return
     }, [setvalue])
     return (
-        <Box sx={{
-            backgroundColor: 'slate.50',
-            padding: 4,
-            borderRadius: 'md',
-            boxShadow: 'lg',
-            marginTop: 2,
-            '@media screen and (max-width: 768px)': {
-                padding: 1,
-            },
-        }}>
+        <Paper
+            variant="outlined"
+            sx={{
+                // backgroundColor: 'slate.50',
+                padding: 4,
+                borderRadius: 'md',
+                // boxShadow: 'lg',
+                marginTop: 2,
+                '@media screen and (max-width: 768px)': {
+                    padding: 1,
+                },
+            }}>
             <Box sx={{}}>
                 <Typography sx={{}}  >
                     Upload Certificate
@@ -347,7 +350,7 @@ const CandidateCertificate = ({ ApplicationId }) => {
                 setIsModalOpen={setIsModalOpen}
                 file={file}
             />
-        </Box>
+        </Paper>
     )
 }
 

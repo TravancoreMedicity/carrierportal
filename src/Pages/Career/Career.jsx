@@ -12,8 +12,8 @@ const Login = lazy(() => import('../Login/Login'))
 const Career = () => {
     const [data, setdata] = useState([])
     const [count, setcount] = useState(0)
-    const [Clinicalcount, setcountClinical] = useState(0)
-    const [NonClinicalcount, setcountNonClinical] = useState(0)
+    // const [Clinicalcount, setcountClinical] = useState(0)
+    // const [NonClinicalcount, setcountNonClinical] = useState(0)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [openBkDrop, setOpenBkDrop] = useState(true)
 
@@ -45,10 +45,10 @@ const Career = () => {
                 if (success === 1 && data?.length > 0) {
                     // setOpenBkDrop(false)
                     // Process announcement counts
-                    const clinicalCount = data?.filter(val => val.announcement_status === 1 && val.dept_type === 1);
-                    setcountClinical(clinicalCount?.length);
-                    const nonClinicalCount = data?.filter(val => val.announcement_status === 1 && val.dept_type !== 1);
-                    setcountNonClinical(nonClinicalCount?.length);
+                    // const clinicalCount = data?.filter(val => val.announcement_status === 1 && val.dept_type === 1);
+                    // setcountClinical(clinicalCount?.length);
+                    // const nonClinicalCount = data?.filter(val => val.announcement_status === 1 && val.dept_type !== 1);
+                    // setcountNonClinical(nonClinicalCount?.length);
 
                     // Filter based on count
                     let vaccancy;
@@ -160,44 +160,41 @@ const Career = () => {
             <Box className='flex flex-1 flex-col justify-items-center p-5 px-[5%]' >
 
                 <Box className="flex flex-1 flex-col justify-items-center bg-slate-50 p-4 rounded-lg shadow-lg bg-opacity-90" >
-                    <Typography sx={{ ml: 1, color: "#7F8487" }} level="h2">JOBS</Typography>
+                    <Typography sx={{ ml: 1, color: "#7F8487" }} level="h3">Vacancies Announced</Typography>
                     <Box sx={{ borderTop: '2px solid grey' }}>
-                        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
-                            <Box sx={{
-                                borderTopLeftRadius: 18, border: '1px solid white', borderBottomLeftRadius: 18, width: '200px', p: .5,
-                                backgroundColor: '#7F8487',
-                                cursor: 'pointer',
-                                transition: 'background-color 0.3s',
-                                '&:hover': {
-                                    backgroundColor: '#444444',
-                                    cursor: 'pointer'
-                                },
+                        <Box sx={{ display: 'flex', justifyContent: 'end', mt: 1, gap: 1 }}>
 
-                            }}>
-                                <Box sx={{ display: "flex", justifyContent: 'center', }} onClick={(e) => handleonclickClinical(e,)}>
-                                    <Badge size="sm" badgeContent={Clinicalcount} sx={{ textAlign: "center", width: '100px', display: "flex", justifyContent: 'center', }}>
-                                        <Typography sx={{ textAlign: "center", wordBreak: 'break-word', color: "#EEEEEE" }} level="body-lg">CLINICAL</Typography>
-                                    </Badge>
-                                </Box>
+                            <Box sx={{ display: "flex", justifyContent: 'center', }} onClick={(e) => handleonclickClinical(e,)}>
 
+                                <Typography sx={{
+                                    textAlign: "center", wordBreak: 'break-word',
+                                    transition: 'background-color 0.3s',
+                                    '&:hover': {
+
+                                        color: '#FF76CE',
+                                        cursor: 'pointer'
+                                    },
+                                }} level="body-xs">Clinical</Typography>
 
                             </Box>
+
                             <Box sx={{
-                                borderTopRightRadius: 18, border: '1px solid white', borderBottomRightRadius: 18, width: '200px', p: .5,
-                                backgroundColor: '#7F8487',
-                                cursor: 'pointer',
-                                transition: 'background-color 0.3s',
-                                '&:hover': {
-                                    backgroundColor: '#444444',
-                                    cursor: 'pointer'
-                                },
-                            }}>
-                                <Box sx={{ display: "flex", justifyContent: 'center' }} onClick={(e) => handleonclickNonClinical(e,)}>
-                                    <Badge size="sm" badgeContent={NonClinicalcount} sx={{ textAlign: "center", width: '150px', display: "flex", justifyContent: 'center', }}>
-                                        <Typography sx={{ textAlign: "center", wordBreak: 'break-word', color: "#EEEEEE" }} level="body-lg">NON-CLINICAL</Typography>
-                                    </Badge>
-                                </Box>
+                                display: "flex", justifyContent: 'center', cursor: 'pointer',
+
+                            }} onClick={(e) => handleonclickNonClinical(e,)}>
+
+                                <Typography sx={{
+                                    textAlign: "center", wordBreak: 'break-word',
+                                    transition: 'background-color 0.3s',
+                                    '&:hover': {
+
+                                        color: '#FF76CE',
+                                        cursor: 'pointer'
+                                    },
+                                }} level="body-xs">Non-Clinical</Typography>
+
                             </Box>
+
                         </Box>
 
 

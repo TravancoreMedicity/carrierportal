@@ -1,6 +1,7 @@
 import { Box, IconButton, Table, Typography } from '@mui/joy'
 import React, { lazy, memo, useCallback, useState } from 'react'
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
+import { Paper } from '@mui/material';
 
 
 const ViewModal = lazy(() => import('./CandidateEdit/ViewModal'))
@@ -14,16 +15,18 @@ const CandidateResume = ({ tableData }) => {
         setIsModalOpen(true)
     }, [])
     return (
-        <Box sx={{
-            backgroundColor: 'slate.50',
-            padding: 4,
-            borderRadius: 'md',
-            boxShadow: 'lg',
-            marginTop: 2,
-            '@media screen and (max-width: 768px)': {
-                padding: 1,
-            },
-        }}>
+        <Paper
+            variant="outlined"
+            sx={{
+                // backgroundColor: 'slate.50',
+                padding: 3,
+                borderRadius: 'md',
+                // boxShadow: 'lg',
+                // marginTop: 2,
+                '@media screen and (max-width: 768px)': {
+                    padding: 1,
+                },
+            }}>
             <Box>
                 <Box>
                     <Typography sx={{}} level="body-md" >
@@ -85,7 +88,7 @@ const CandidateResume = ({ tableData }) => {
                 setIsModalOpen={setIsModalOpen}
                 file={file}
             />
-        </Box>
+        </Paper>
     )
 }
 

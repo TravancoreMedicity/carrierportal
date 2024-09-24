@@ -6,6 +6,7 @@ import axioslogin from '../../../../Axios/Axios';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
+import { Paper } from '@mui/material';
 
 
 const CandidateSkills = ({ ApplicationId }) => {
@@ -104,16 +105,18 @@ const CandidateSkills = ({ ApplicationId }) => {
 
 
     return (
-        <Box sx={{
-            backgroundColor: 'slate.50',
-            padding: 4,
-            borderRadius: 'md',
-            boxShadow: 'lg',
-            marginTop: 2,
-            '@media screen and (max-width: 768px)': {
-                padding: 1,
-            },
-        }}>
+        <Paper
+            variant="outlined"
+            sx={{
+                // backgroundColor: 'slate.50',
+                padding: 4,
+                borderRadius: 'md',
+                // boxShadow: 'lg',
+                marginTop: 2,
+                '@media screen and (max-width: 768px)': {
+                    padding: 1,
+                },
+            }}>
             <Typography level="body-md">Add Your Skills</Typography>
 
             <Box sx={{ display: "flex", alignItems: "center", pb: 0.5 }} >
@@ -173,7 +176,7 @@ const CandidateSkills = ({ ApplicationId }) => {
                     </tbody>
                 </Table>
             </Box>
-        </Box>
+        </Paper>
     )
 }
 

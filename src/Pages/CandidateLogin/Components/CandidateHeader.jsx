@@ -198,7 +198,7 @@ const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyD
     }
     return (
         <AppBar position="sticky" color='inherit'>
-            <Box width="100%" sx={{ ml: 2 }}>
+            <Box width="99%" sx={{ ml: 2, }}>
                 <Toolbar disableGutters>
                     {/* Logo section */}
                     <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} >

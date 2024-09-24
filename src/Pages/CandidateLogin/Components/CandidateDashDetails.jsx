@@ -5,7 +5,7 @@ import Tab from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import React, { lazy, memo, useCallback, useMemo, useState } from 'react';
-import { useMediaQuery } from '@mui/material';
+import { Paper, useMediaQuery } from '@mui/material';
 import axioslogin from '../../../Axios/Axios';
 
 const CandidateAbout = lazy(() => import('./CandidateAbout'))
@@ -153,12 +153,15 @@ const CandidateDashDetails = ({ emal, name, ApplicationId, personalData, count, 
 
     return (
         <Box>
-            <Box
+            <Paper
+                variant="outlined"
                 sx={{
-                    backgroundColor: 'slate.50',
+                    // backgroundColor: 'slate.50',
+                    // border: "1px solid #B7B7B7",
+
                     padding: 4,
                     borderRadius: 'md',
-                    boxShadow: 'lg',
+                    // boxShadow: 'lg',
                     '@media screen and (max-width: 768px)': {
                         padding: 1,
 
@@ -200,18 +203,12 @@ const CandidateDashDetails = ({ emal, name, ApplicationId, personalData, count, 
                         :
                         ''
                     }
-                    {/* <Box
-                        onClick={(e) => handleChange(e)}
-                    >
-                        <Typography level='body-sm' sx={{ color: 'primary.main', cursor: 'pointer', }} className='hover:text-[#7c51a1]'>
-                            Add Portfolio
-                        </Typography>
-                    </Box> */}
+
                 </Box>
                 <Box sx={{ borderBottom: '1px solid #DFDFDF', marginTop: 1 }}>
                     <Typography level='body-sm'>{emal}</Typography>
                 </Box>
-            </Box>
+            </Paper>
             {/* {EditCount ===2 } */}
             <Box>
                 {pageToShow === 1 ?
@@ -223,12 +220,15 @@ const CandidateDashDetails = ({ emal, name, ApplicationId, personalData, count, 
                             <VaccancyListEmp vaccancyData={vaccancyData} personalData={personalData} setcount={setcount} />
                         </Box> :
                         pageToShow === 0 ?
-                            <Box
+                            <Paper
+                                variant="outlined"
                                 sx={{
-                                    backgroundColor: 'slate.50',
+                                    // backgroundColor: 'slate.50',
+                                    // border: "1px solid #AAAAAA",
+                                    mt: 1,
                                     padding: 3,
                                     borderRadius: 'md',
-                                    boxShadow: 'lg',
+                                    // boxShadow: 'lg',
                                     '@media screen and (max-width: 768px)': {
                                         padding: 1,
 
@@ -239,13 +239,16 @@ const CandidateDashDetails = ({ emal, name, ApplicationId, personalData, count, 
 
                                 <Tabs aria-label="Basic tabs" defaultValue={0}
                                     size="sm"
+                                    orientation="vertical"
                                     sx={{}}
                                     // value={tabIndex}
                                     onChange={handleTabChange}
                                 >
                                     <TabList disableUnderline tabFlex={1} sx={{
                                         display: 'flex',
-                                        flexDirection: isVerticalOrientation ? 'column' : 'row',
+                                        // flexDirection: isVerticalOrientation ? 'column' : 'row',
+                                        // flexDirection: 'column'
+
                                     }}>
                                         <Tab sx={{ borderRight: "1px solid #DFDFDF " }}>About</Tab>
                                         <Tab sx={{ borderRight: "1px solid #DFDFDF " }}>Academic</Tab>
@@ -293,7 +296,7 @@ const CandidateDashDetails = ({ emal, name, ApplicationId, personalData, count, 
                                     </TabPanel>
 
                                 </Tabs>
-                            </Box>
+                            </Paper>
                             : ""
                 }
 

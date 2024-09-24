@@ -53,7 +53,7 @@ const CareerHome = () => {
 
 
         <Box className='flex flex-1 flex-col justify-items-center  ' >
-            <Box className="flex flex-1 flex-col justify-items-center bg-slate-50 p-4  shadow-lg" sx={{
+            <Box className="flex flex-1 flex-col justify-items-center bg-slate-50 p-4 " sx={{
                 '@media screen and (max-width: 768px)': {
                     padding: 1,
 
