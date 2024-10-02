@@ -118,10 +118,11 @@ const CandidateReference = ({ ApplicationId }) => {
     }, [count])
 
     return (
-        <Paper
-            variant="outlined"
+        <Box
+
             sx={{
-                // backgroundColor: 'slate.50',
+                height: window.innerHeight - 400,
+                overflowX: 'scroll',
                 padding: 4,
                 borderRadius: 'md',
                 // boxShadow: 'lg',
@@ -184,7 +185,7 @@ const CandidateReference = ({ ApplicationId }) => {
             <Box sx={{ flex: 0, px: 0.5, display: 'flex', justifyContent: 'end', mt: 1 }} >
                 <Tooltip title="save" >
                     <IconButton variant="outlined" size='sm' color='primary' onClick={SubmitFormData}>
-                        <AddIcon />
+                        <AddIcon sx={{ color: "#FF76CE" }} />
                     </IconButton>
                 </Tooltip>
 
@@ -224,12 +225,12 @@ const CandidateReference = ({ ApplicationId }) => {
 
                                     <td>
                                         <IconButton sx={{}} size='small' color='primary' onClick={() => EditData(item)}>
-                                            <EditIcon />
+                                            <EditIcon sx={{ color: "#FF76CE" }} />
                                         </IconButton>
                                     </td>
                                     <td>
                                         <IconButton sx={{}} size='small' color='primary' onClick={() => DeleteItem(item)}>
-                                            <DeleteIcon />
+                                            <DeleteIcon sx={{ color: "#FF76CE" }} />
                                         </IconButton>
                                     </td>
                                 </tr>
@@ -238,7 +239,7 @@ const CandidateReference = ({ ApplicationId }) => {
                     </tbody>
                 </Table>
             </Box>
-        </Paper>
+        </Box>
 
     )
 }

@@ -16,7 +16,7 @@ const ApplicationQuestion = lazy(() => import('./ApplicationQuestion'))
 const MainModal = lazy(() => import('./MainModal'))
 
 
-const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount }) => {
+const ContactInformation = ({ ApplicationId, count, setcount, Setloginpage }) => {
 
 
     const [pin, setpin] = useState([]);
@@ -142,7 +142,9 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
             edudata: edudata,
             name: name, lname: lname, mname: mname, email: email, mobile: mobile, dob: date, permnt_pin: permnt_pin, criminal: criminal,
             obligation: obligation,
-            recruitment: recruitment, Health: Health, job: job, empemail: empemail, empname: empname,
+            recruitment: recruitment, Health: Health,
+            // job: job,
+            empemail: empemail, empname: empname,
             empno: empno,
             value: value,
             Religion: Religion,
@@ -218,6 +220,8 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
             const fetchData = async () => {
                 const result = await axioslogin.post('/common/eduname', qualification)
                 const { success, data1 } = result.data
+
+
                 if (success === 1 && data1?.length > 0) {
                     const newdata = [...eduname, ...data1]
                     seteduname(newdata)
@@ -275,18 +279,20 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                 setformdata(resetForm)
                 setGender(0)
                 setBloodgrp(0)
-                setCareerModalOpen(false)
+                // setCareerModalOpen(false)
                 setOpenBkDrop(false)
+                Setloginpage(2)
 
             } else {
                 warningNofity(message)
+                setOpenBkDrop(false)
                 setIsModalOpen(false)
             }
         }
 
-    }, [postdata, edudata, agreestatus, agreestatus_marketing, setIsModalOpen, resetForm, count, setcount, setCareerModalOpen])
+    }, [postdata, edudata, agreestatus, agreestatus_marketing, setIsModalOpen, resetForm, count, setcount])
     return (
-        <Box sx={{ display: 'flex', flex: 1, py: 0.5, height: window.innerHeight - 120 }} >
+        <Box sx={{ display: 'flex', flex: 1, height: window.innerHeight - 120, p: 2 }} >
             <Box sx={{ display: "flex", justifyContent: 'center', width: "100%", overflow: 'auto' }}>
                 <Box sx={{
                     width: "50%", '@media screen and (max-width: 768px)': {
@@ -295,16 +301,16 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                 }}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', }}>
                         {/* <Typography level="h4" sx={{}}>CONTACT INFORMATION</Typography> */}
-                        <Typography level="title-lg" sx={{}}>Enter Your Contact Information.</Typography>
+                        <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 20, fontWeight: 500, color: '#555555', }}>Enter Your Contact Information.</Typography>
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>Title </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Title </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <Box>
                             <JoySalutation value={value} setValue={setValue} />
                         </Box>
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>First Name </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>First Name </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <Box>
@@ -317,7 +323,7 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                             />
                         </Box>
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>Last Name </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Last Name </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <Box>
@@ -332,7 +338,7 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                             />
                         </Box>
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>Middle Name </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Middle Name </Typography>
 
                         </Box>
                         <Box>
@@ -346,7 +352,7 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                             />
                         </Box>
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>Email Address </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Email Address </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <Box>
@@ -360,7 +366,7 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                             />
                         </Box>
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>Re-Enter Email Address </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Re-Enter Email Address </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <Box>
@@ -376,10 +382,10 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
 
 
                         {email === '' ? <Typography sx={{}}></Typography> : email !== reemail ?
-                            <Typography sx={{ color: "red" }}>Please check the email your entered</Typography> : <Typography sx={{ color: 'green' }}>Correct</Typography>
+                            <Typography sx={{ color: "red", fontFamily: "Bahnschrift", }}>Please check the email your entered</Typography> : <Typography sx={{ color: 'green' }}>Correct</Typography>
                         }
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>Mobile Number </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Mobile Number </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <Box>
@@ -393,7 +399,7 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                             />
                         </Box>
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>About </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>About </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <Box>
@@ -406,9 +412,9 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                                 size="md"
                             />
                         </Box>
-                        <Typography level="h4" sx={{ mt: 3 }}>PERSONAL INFORMATION</Typography>
+                        <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", fontSize: 20, fontWeight: 500, color: '#555555', }}>PERSONAL INFORMATION</Typography>
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>Pincode </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Pincode </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <Box sx={{ display: 'flex' }}>
@@ -426,8 +432,9 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                                     onClick={(e) => getRegion(e)}
                                 >
                                     <ArrowCircleRightIcon
-                                        color="primary"
+                                        // color="#FF76CE"
                                         sx={{
+                                            color: "#FF76CE",
                                             animation: 'move 1s ease infinite',
                                             '@keyframes move': {
                                                 '0%': {
@@ -448,7 +455,7 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                         </Box>
 
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>Region </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Region </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
 
@@ -456,14 +463,14 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                             <RegionJoy regValue={Region} getRegion={setRegion} pin={pin} DisableRegion={DisableRegion} />
                         </Box>
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>Religion </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Religion </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <Box>
                             <JoyReligion value={Religion} setValue={setReligion} />
                         </Box>
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>Date of Birth </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Date of Birth </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <Box>
@@ -477,7 +484,7 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                             />
                         </Box>
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>Permanent Address </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Permanent Address </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <InputComponent
@@ -489,7 +496,7 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                             onchange={(e) => setaddressPermnt1(e.target.value)}
                         />
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>Permanent Address </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Permanent Address </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <InputComponent
@@ -501,21 +508,21 @@ const ContactInformation = ({ ApplicationId, setCareerModalOpen, count, setcount
                             onchange={(e) => setaddressPermnt2(e.target.value)}
                         />
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>Gender </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Gender </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <JoyGender
                             value={gender} setValue={setGender}
                         />
                         <Box sx={{ display: 'flex', }}>
-                            <Typography sx={{ mt: 3, }}>Blood Group </Typography>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Blood Group </Typography>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <JoyBloodGroup value={bloodgrp} setValue={setBloodgrp} />
 
 
-                        <Typography level="h4" sx={{ mt: 3, color: 'black' }}>APPLICATION QUESTIONS </Typography>
-                        <Typography sx={{}}>Please answer the following questions.</Typography>
+                        {/* <Typography level="h4" sx={{ mt: 3, color: 'black' }}>APPLICATION QUESTIONS </Typography>
+                        <Typography sx={{}}>Please answer the following questions.</Typography> */}
                         <ApplicationQuestion setformdata={setformdata} formdata={formdata} seteducation={seteducation}
                             Regionexp={Regionexp} setRegionexp={setRegionexp} Regionedu={Regionedu} education={education}
                             setRegionedu={setRegionedu} handleOnClick={handleOnClick} expdata={expdata} expdataset={expdataset}

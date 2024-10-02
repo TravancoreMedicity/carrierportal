@@ -44,73 +44,77 @@ const VaccancyListEmp = ({ vaccancyData, personalData, setcount }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     return (
-        <Box sx={{
-            backgroundColor: 'slate.50',
-            padding: 3,
-            borderRadius: 'md',
-            boxShadow: 'lg',
-            '@media screen and (max-width: 768px)': {
-                padding: 1,
+        <Box
+            sx={{
+                // backgroundColor: 'slate.50',
+                padding: 14,
+                mt: 1,
+                borderRadius: 'md',
+                // boxShadow: 'lg',
+                '@media screen and (max-width: 768px)': {
+                    padding: 1,
 
-            },
+                },
 
-        }}>
+            }}>
             {vaccancyData?.length > 0 ?
                 <Box sx={{
-                    height: window.innerHeight - 350, overflowX: "auto",
+                    // height: window.innerHeight - 350, overflowX: "auto",
                 }}>
+                    <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', }}>Vacancy List</Typography>
+
                     {vaccancyData?.map((item, index) => (
                         <Box key={index} sx={{}}>
                             <Box sx={{ mt: 2, borderBottom: '1px solid #DFDFDF', display: 'flex', justifyContent: 'center' }}>
                                 <Box sx={{ width: "75%" }}>
-                                    <Typography sx={{}} level="body-xs">POSTED ON: {item?.annouced_date}</Typography>
+                                    <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, color: '#555555', }} >POSTED ON: {item?.annouced_date}</Typography>
                                 </Box>
                             </Box>
 
                             {item?.data?.map((currentItem, idx) => {
 
-                                if (currentItem?.indexValue % 2 != 0) {
+                                if (currentItem?.indexValue % 2 !== 0) {
                                     const desgId = currentItem?.desg_id;
                                     const isDesgIdInJobApplied = personalData?.Job_applied?.includes(desgId);
                                     return (
 
                                         <Box key={idx} sx={{ display: 'flex', justifyContent: 'center' }}>
                                             {/* First Box */}
-                                            <Box sx={{ width: "80%", display: 'flex', justifyContent: 'space-around' }}>
-                                                <Box sx={{ mt: 2, width: '80%', cursor: 'pointer' }}>
-                                                    <Card sx={{ borderRadius: 15 }}>
+                                            <Box sx={{ width: "100%", display: 'flex', justifyContent: 'space-around' }}>
+                                                <Box sx={{ mt: 2, width: '100%', cursor: 'pointer' }}>
+                                                    <Card sx={{ borderRadius: 15, backgroundColor: '#FFFBF5' }}>
                                                         <Box sx={{}}>
                                                             <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                                                                <Typography level="body-sm">{currentItem?.desg_name}</Typography>
-                                                                <Typography level="body-xs">
+                                                                <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', }}>{currentItem?.desg_name}</Typography>
+                                                                <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, color: '#555555', }}>
                                                                     Posted On: {currentItem?.daysDifference === 0 ? "Today" : `${currentItem?.daysDifference} Day${currentItem?.daysDifference === 1 ? '' : 's'} ago`}
                                                                 </Typography>
                                                             </Box>
-                                                            <Typography level="body-xs">{currentItem?.experiencefrom}-{currentItem?.experienceto} Year Experience</Typography>
+                                                            <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, color: '#555555', }}>{currentItem?.experiencefrom}-{currentItem?.experienceto} Year Experience</Typography>
                                                         </Box>
 
                                                         <CardContent orientation="horizontal">
                                                             <Box sx={{ width: "100%" }}>
-                                                                <Typography level="body-xs" sx={{ wordBreak: 'break-word' }}>
+                                                                <Typography sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, color: '#555555', }}>
                                                                     {currentItem?.job_descriptions && currentItem?.job_descriptions[0] ? currentItem?.job_descriptions[0] : "Not Updated"}
                                                                 </Typography>
                                                                 <Box
                                                                 // onClick={(e) => handleonclick(e, currentItem)}
                                                                 >
-                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word', color: '#00A9FF' }}>
+                                                                    {/* <Typography level="body-xs" sx={{ wordBreak: 'break-word', color: '#00A9FF' }}>
                                                                         ...see more
-                                                                    </Typography>
+                                                                    </Typography> */}
                                                                 </Box>
                                                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1, flexWrap: 'wrap', }}>
-                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word' }}>
+                                                                    <Typography sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, color: '#555555', }}>
                                                                         JOB ID: {currentItem?.manpower_Request_slno}
                                                                     </Typography>
-                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word', color: '#FF76CE' }}>
+                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word', color: '#FF76CE', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400 }}>
                                                                         Apply Before: {moment(new Date(currentItem?.required_date)).format('DD-MM-YYYY HH MM a')}
                                                                     </Typography>
                                                                 </Box>
                                                                 <Box sx={{}}>
-                                                                    <Typography color={isDesgIdInJobApplied ? 'success' : 'danger'} level="body-xs" sx={{ wordBreak: 'break-word', }}>
+                                                                    <Typography color={isDesgIdInJobApplied ? 'success' : 'danger'} level="body-xs" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, }}>
                                                                         Status: {isDesgIdInJobApplied === true ? "Applied" : "Not Applied"}
                                                                     </Typography>
                                                                 </Box>
@@ -118,35 +122,37 @@ const VaccancyListEmp = ({ vaccancyData, personalData, setcount }) => {
                                                         </CardContent>
                                                     </Card>
                                                 </Box>
-                                                {isDesgIdInJobApplied === false ?
-                                                    <Box
-                                                        sx={{
-                                                            mt: 2,
-                                                            display: 'flex',
-                                                            alignItems: 'center',
-                                                            cursor: 'pointer',
+                                                {
+                                                    isDesgIdInJobApplied === false ?
+                                                        <Box
+                                                            sx={{
+                                                                mt: 2,
+                                                                display: 'flex',
+                                                                alignItems: 'center',
+                                                                cursor: 'pointer',
 
-                                                        }}
-                                                        onClick={(e) => handleonclick(e, currentItem)}
-                                                    >
-                                                        {!isMobile && (
-                                                            <Box>
-                                                                <Typography level="body-sm" sx={{ ml: 1 }} >APPLY NOW</Typography>
+                                                            }}
+                                                            onClick={(e) => handleonclick(e, currentItem)}
+                                                        >
+                                                            {!isMobile && (
+                                                                <Box>
+                                                                    <Typography level="body-sm" sx={{ ml: 1, fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, color: '#555555', }} >APPLY NOW</Typography>
+                                                                </Box>
+                                                            )}
+                                                            <Box sx={{
+                                                                ml: 2,
+                                                                mb: .7,
+
+                                                                '&:hover > svg': {
+                                                                    transform: 'translateX(10px)',
+                                                                    transition: 'transform 0.5s ease',
+                                                                },
+                                                            }}>
+                                                                <ArrowForwardIosIcon fontSize='small' sx={{ color: '#FF76CE', transition: 'transform 0.5s ease' }} />
                                                             </Box>
-                                                        )}
-                                                        <Box sx={{
-                                                            ml: 2,
-                                                            mb: .7,
-
-                                                            '&:hover > svg': {
-                                                                transform: 'translateX(10px)',
-                                                                transition: 'transform 0.5s ease',
-                                                            },
-                                                        }}>
-                                                            <ArrowForwardIosIcon fontSize='small' sx={{ color: '#FF76CE', transition: 'transform 0.5s ease' }} />
                                                         </Box>
-                                                    </Box>
-                                                    : ""}
+                                                        : ""
+                                                }
 
                                             </Box>
                                         </Box>
@@ -156,9 +162,9 @@ const VaccancyListEmp = ({ vaccancyData, personalData, setcount }) => {
                                     const isDesgIdInJobApplied = personalData?.Job_applied.includes(desgId);
                                     // Render the second box in the pair
                                     return (
-                                        <Box key={idx} sx={{ display: 'flex', justifyContent: 'center' }}>
+                                        <Box key={idx} sx={{ display: 'flex', justifyContent: 'center', }}>
                                             {/* Second Box */}
-                                            <Box sx={{ width: "80%", display: 'flex', justifyContent: 'space-around' }}>
+                                            <Box sx={{ width: "100%", display: 'flex', justifyContent: 'space-around', }}>
                                                 {isDesgIdInJobApplied === false ?
                                                     <Box
                                                         sx={{
@@ -181,47 +187,45 @@ const VaccancyListEmp = ({ vaccancyData, personalData, setcount }) => {
                                                         <Box sx={{ ml: 1 }}>
                                                             {!isMobile && (
                                                                 <Box>
-                                                                    <Typography sx={{ ml: 1 }} level="body-sm">APPLY NOW</Typography>
+                                                                    <Typography sx={{ ml: 1, fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, color: '#555555', }} >APPLY NOW</Typography>
                                                                 </Box>
                                                             )}
                                                         </Box>
                                                     </Box>
                                                     : ''}
 
-                                                <Box sx={{ mt: 2, width: '80%', cursor: 'pointer' }}>
-                                                    <Card sx={{ borderRadius: 15 }}>
+                                                <Box sx={{ mt: 2, width: '100%', cursor: 'pointer' }}>
+                                                    <Card sx={{ borderRadius: 15, backgroundColor: '#FFFBF5' }}>
                                                         <Box sx={{}}>
                                                             <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                                                                <Typography level="body-sm">{currentItem?.desg_name}</Typography>
-                                                                <Typography level="body-xs">
+                                                                <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', }}>{currentItem?.desg_name}</Typography>
+                                                                <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, color: '#555555', }}>
                                                                     Posted On: {currentItem?.daysDifference === 0 ? "Today" : `${currentItem?.daysDifference} Day${currentItem?.daysDifference === 1 ? '' : 's'} ago`}
                                                                 </Typography>
                                                             </Box>
-                                                            <Typography level="body-xs">{currentItem?.experiencefrom}-{currentItem?.experienceto} Year Experience</Typography>
+                                                            <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, color: '#555555', }}>{currentItem?.experiencefrom}-{currentItem?.experienceto} Year Experience</Typography>
                                                         </Box>
 
                                                         <CardContent orientation="horizontal">
                                                             <Box sx={{ width: "100%" }}>
-                                                                <Typography level="body-xs" sx={{ wordBreak: 'break-word' }}>
+                                                                <Typography sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, color: '#555555', }}>
                                                                     {currentItem?.job_descriptions && currentItem.job_descriptions[0] ? currentItem.job_descriptions[0] : "Not Updated"}
                                                                 </Typography>
                                                                 <Box
                                                                 // onClick={(e) => handleonclick(e, currentItem)}
                                                                 >
-                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word', color: '#00A9FF', }}>
-                                                                        ...see more
-                                                                    </Typography>
+
                                                                 </Box>
                                                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1, flexWrap: 'wrap' }}>
-                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word' }}>
+                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, color: '#555555', }}>
                                                                         JOB ID: {currentItem?.manpower_Request_slno}
                                                                     </Typography>
-                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word', color: '#FF76CE' }}>
+                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word', color: '#FF76CE', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, }}>
                                                                         Apply Before: {moment(new Date(currentItem?.required_date)).format('DD-MM-YYYY HH MM a')}
                                                                     </Typography>
                                                                 </Box>
                                                                 <Box sx={{}}>
-                                                                    <Typography color={isDesgIdInJobApplied ? 'success' : 'danger'} level="body-xs" sx={{ wordBreak: 'break-word' }}>
+                                                                    <Typography color={isDesgIdInJobApplied ? 'success' : 'danger'} level="body-xs" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, }}>
                                                                         Status: {isDesgIdInJobApplied === true ? "Applied" : "Not Applied"}
                                                                     </Typography>
                                                                 </Box>
@@ -235,8 +239,9 @@ const VaccancyListEmp = ({ vaccancyData, personalData, setcount }) => {
                                 }
                             })}
                         </Box>
-                    ))}
-                </Box> : "No Data Found"
+                    ))
+                    }
+                </Box > : "No Data Found"
             }
 
             <JobModal
@@ -246,7 +251,7 @@ const VaccancyListEmp = ({ vaccancyData, personalData, setcount }) => {
                 personalData={personalData}
                 setcount={setcount}
             />
-        </Box>
+        </Box >
     )
 }
 

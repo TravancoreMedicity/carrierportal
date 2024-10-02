@@ -38,7 +38,7 @@ const JobModal = ({ isModalOpen, setIsModalOpen, SelectedData, personalData, set
                         '@media screen and (max-width: 768px)': {
                             width: "80%",
                         },
-                        bgcolor: 'white',
+                        backgroundColor: '#FFFBF5',
                         boxShadow: 24,
                         p: 3,
                         borderRadius: 10,
@@ -56,17 +56,17 @@ const JobModal = ({ isModalOpen, setIsModalOpen, SelectedData, personalData, set
                     />
                     <Box>
                         <Box sx={{ backgroundColor: "lightblue" }}>
-                            <Typography level="body-lg" sx={{ textAlign: 'center' }}>Apply Now</Typography>
+                            <Typography level="body-lg" sx={{ textAlign: 'center', fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', }}>Apply Now</Typography>
                         </Box>
                         <Box sx={{ mt: 1 }}>
-                            <Typography level="body-sm" sx={{}}>Job Position</Typography>
+                            <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 24, fontWeight: 400, color: '#555555', }}>Job Position</Typography>
                         </Box>
                         <Box sx={{ mt: 1 }}>
-                            <Typography level="body-xs" sx={{ textTransform: 'capitalize' }}>{SelectedData?.desg_name?.toLowerCase()}</Typography>
+                            <Typography level="body-xs" sx={{ textTransform: 'capitalize', fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', }}>{SelectedData?.desg_name?.toLowerCase()}</Typography>
                         </Box>
 
                         <Box sx={{}}>
-                            <Typography level="body-xs" sx={{}}>Experience :({SelectedData?.experiencefrom}-{SelectedData?.experienceto})</Typography>
+                            <Typography level="body-xs" sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', }}>Experience :({SelectedData?.experiencefrom}-{SelectedData?.experienceto})</Typography>
                         </Box>
 
 
@@ -79,7 +79,7 @@ const JobModal = ({ isModalOpen, setIsModalOpen, SelectedData, personalData, set
                                 component="label"
                                 size="md"
                                 color="primary"
-                                sx={{ width: '100%' }}
+                                sx={{ width: '100%', fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', }}
                                 onClick={handleOnSave}
                             >
 

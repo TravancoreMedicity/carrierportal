@@ -152,7 +152,8 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
                             width: "80%",
                         },
                         bgcolor: 'white',
-                        boxShadow: 24,
+                        // boxShadow: 24,
+                        backgroundColor: '#FFFBF5',
                         p: 3,
                         borderRadius: 10,
                         // border: 1
@@ -167,12 +168,12 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
                             bgcolor: 'background.body',
                         }}
                     />
-                    <Typography level='body-lg'>Add your Educational Information</Typography>
+                    <Typography sx={{ fontFamily: "Bahnschrift", color: '#555555', }}>Add your Educational Information</Typography>
                     {/* <CustmTypog title={'Add your Educational Information'} /> */}
                     <Box sx={{ height: window.innerHeight - 200, overflowX: "auto", '::-webkit-scrollbar': { display: "none" } }}>
 
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Education
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Education
                                 <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                             </Typography>
                         </Box>
@@ -193,7 +194,7 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
 
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Course
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Course
                                 <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                             </Typography>
                         </Box>
@@ -214,7 +215,7 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
 
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Specialization
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Specialization
                                 <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                             </Typography>
                         </Box>
@@ -235,7 +236,7 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
 
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>University
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>University
                                 <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                             </Typography>
                         </Box>
@@ -256,7 +257,7 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
 
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Board
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Board
                                 <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                             </Typography>
                         </Box>
@@ -277,7 +278,7 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
 
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>School Name
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>School Name
                                 <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                             </Typography>
                         </Box>
@@ -292,7 +293,7 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
                             />
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Start Date
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Start Date
                                 <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                             </Typography>
                         </Box>
@@ -307,7 +308,7 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
                             />
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>End Date
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>End Date
                                 <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                             </Typography>
                         </Box>
@@ -332,7 +333,7 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
 
 
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Average Grade
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Average Grade
                             </Typography>
                         </Box>
                         <Box sx={{}}>
@@ -346,7 +347,7 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
                             />
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>GPA
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>GPA
 
                             </Typography>
                         </Box>
@@ -373,8 +374,9 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
                         }} size='sm' variant="outlined" color="success" onClick={addeduData} >
                             Add more
                         </Button>
+
                         <Button sx={{
-                            p: 0, width: "15%", color: '#FF76CE',
+                            p: 0, width: "15%", color: '#555555',
                             '@media screen and (max-width: 768px)': {
                                 width: "40%",
                             },

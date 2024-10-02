@@ -9,6 +9,7 @@ import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 const Vacancylistinf = ({ vacancydata, selectedVacancies, setSelectedVacancies }) => {
 
 
+
     const handleCheckboxChange = (desgId, isChecked) => {
         if (isChecked) {
             setSelectedVacancies([...selectedVacancies, desgId]);
@@ -19,7 +20,7 @@ const Vacancylistinf = ({ vacancydata, selectedVacancies, setSelectedVacancies }
     };
     return (
         <Box>
-            <Box sx={{ backgroundColor: "lightblue" }}>
+            <Box sx={{ backgroundColor: "#fcd2f5" }}>
                 <Typography level="body-lg" sx={{ textAlign: 'center' }}>Job Vacancy </Typography>
             </Box>
             <>

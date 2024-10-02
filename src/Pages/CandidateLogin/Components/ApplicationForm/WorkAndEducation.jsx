@@ -80,23 +80,23 @@ const WorkAndEducation = ({ formdata, setformdata, seteducation, Regionexp, setR
     return (
         <>
             <Box sx={{ display: 'flex', g: 1, mt: 2 }}>
-                <Box sx={{ width: "50%", border: "1px solid  #FF76CE", ":hover": { borderColor: 'red' } }}>
+                <Box sx={{ width: "50%", border: "1px solid  #555555", }}>
                     <Tooltip title="Add Your Experience">
                         <Box sx={{ p: 1, cursor: 'pointer' }}
                             onClick={handleOnClickexp}
                         >
-                            <Typography sx={{ mt: 3, textAlign: 'center', p: 0, m: 0 }}>ADD EXPERIENCE </Typography>
+                            <Typography sx={{ mt: 3, textAlign: 'center', p: 0, m: 0, fontFamily: "Bahnschrift", color: '#555555', }}>ADD EXPERIENCE </Typography>
                         </Box>
                     </Tooltip>
 
                 </Box>
-                <Box sx={{ ml: 1, width: "50%", border: "1px solid  #FF76CE", ":hover": { borderColor: 'red' } }}>
+                <Box sx={{ ml: 1, width: "50%", border: "1px solid  #555555", }}>
                     <Tooltip title="Add Your Education">
                         <Box sx={{ p: 1, cursor: 'pointer', }}
                             onClick={handleOnClickedu}
                         >
 
-                            <Typography sx={{ mt: 3, textAlign: 'center', p: 0, m: 0 }}>ADD EDUCATION </Typography>
+                            <Typography sx={{ mt: 3, textAlign: 'center', p: 0, m: 0, fontFamily: "Bahnschrift", color: '#555555', }}>ADD EDUCATION </Typography>
                         </Box>
                     </Tooltip>
 
@@ -116,13 +116,13 @@ const WorkAndEducation = ({ formdata, setformdata, seteducation, Regionexp, setR
                                         <Box sx={{ display: 'flex', gap: 2, mt: 1, }}>
                                             <Box><WorkIcon /></Box>
                                             <Box sx={{ mt: .5, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1 }}>
-                                                <Box><Typography level="title-md" sx={{ wordBreak: 'break-word', }}> {val?.jobexp}</Typography></Box>
-                                                <Box>   <Typography level="body-sm" sx={{ wordBreak: 'break-word', }}>(  {moment(new Date(val?.expstartdate)).format('DD-MM-YYYY')} -  {moment(new Date(val?.expenddate)).format('DD-MM-YYYY')})</Typography></Box>
+                                                <Box><Typography level="title-md" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", color: '#555555', }}> {val?.jobexp}</Typography></Box>
+                                                <Box>   <Typography level="body-sm" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", color: '#555555', }}>(  {moment(new Date(val?.expstartdate)).format('DD-MM-YYYY')} -  {moment(new Date(val?.expenddate)).format('DD-MM-YYYY')})</Typography></Box>
                                             </Box>
                                         </Box>
                                         <Box sx={{ display: 'flex', gap: 5 }}>
                                             <Box></Box>
-                                            <Box ><Typography level="body-sm" sx={{ wordBreak: 'break-word', }}> {val?.Employer}</Typography> </Box>
+                                            <Box ><Typography level="body-sm" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", color: '#555555', }}> {val?.Employer}</Typography> </Box>
                                         </Box>
                                     </Box>
 
@@ -147,14 +147,14 @@ const WorkAndEducation = ({ formdata, setformdata, seteducation, Regionexp, setR
                                         <Box sx={{ display: 'flex', gap: 2, mt: 1, }}>
                                             <Box><WorkIcon /></Box>
                                             <Box sx={{ mt: .5, display: 'flex', gap: 1, flexDirection: { xs: 'column', sm: 'row' } }}>
-                                                <Box><Typography level="title-md" sx={{ wordBreak: 'break-word', }}> {correspondingEduName?.edu_desc}</Typography></Box>
-                                                <Box>   <Typography level="body-sm" sx={{ wordBreak: 'break-word', }}>(  {moment(new Date(val?.edustartdate)).format('DD-MM-YYYY')} -  {moment(new Date(val?.eduenddate)).format('DD-MM-YYYY')})</Typography></Box>
+                                                <Box><Typography level="title-md" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", color: '#555555', }}> {correspondingEduName?.edu_desc}</Typography></Box>
+                                                <Box>   <Typography level="body-sm" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", color: '#555555', }}>(  {moment(new Date(val?.edustartdate)).format('DD-MM-YYYY')} -  {moment(new Date(val?.eduenddate)).format('DD-MM-YYYY')})</Typography></Box>
 
                                             </Box>
                                         </Box>
                                         <Box sx={{ display: 'flex', gap: 5 }}>
                                             <Box></Box>
-                                            <Box ><Typography level="body-sm" sx={{ wordBreak: 'break-word', }}> {val?.schoolname}</Typography> </Box>
+                                            <Box ><Typography level="body-sm" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", color: '#555555', }}> {val?.schoolname}</Typography> </Box>
                                         </Box>
                                     </Box>
                                 </Box>
@@ -181,19 +181,23 @@ const WorkAndEducation = ({ formdata, setformdata, seteducation, Regionexp, setR
                     onchange={(e) => updateBoard(e)}
                 />
             </Box>
-            <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
-                <Tooltip title="View">
-                    <Button
-                        variant="outlined"
-                        component="label"
-                        size="md"
-                        // color="#FF76CE"
-                        sx={{ color: '#FF76CE' }}
-                        onClick={handleOnClick}
-                    >
-                        Submit Application
+            <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end', gap: 1, }}>
+                <Tooltip title="Save">
+                    <Box sx={{ border: "1px solid #555555" }}>
+                        <Button
+                            variant="plain"
+                            component="label"
+                            size="md"
+                            // color="neutral"
 
-                    </Button>
+                            sx={{ color: '#555555', hover: 'none' }}
+                            onClick={handleOnClick}
+                        >
+                            Submit Application
+
+                        </Button>
+                    </Box>
+
                 </Tooltip>
             </Box>
             <ExperienceModal

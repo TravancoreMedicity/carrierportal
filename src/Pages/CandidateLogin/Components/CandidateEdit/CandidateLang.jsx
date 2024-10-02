@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Tooltip, Typography } from '@mui/joy'
+import { Box, Button, Tooltip, Typography } from '@mui/joy'
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import axioslogin from '../../../../Axios/Axios';
 import { succesNofity, warningNofity } from '../../../CommonCode/CommonFunc';
@@ -374,7 +374,7 @@ const CandidateLang = ({ ApplicationId }) => {
         <Paper
             variant="outlined"
             sx={{
-                // backgroundColor: 'slate.50',
+                height: window.innerHeight - 400,
                 padding: 4,
                 borderRadius: 'md',
                 // boxShadow: 'lg',

@@ -41,9 +41,29 @@ const Login = ({ setIsModalOpen, isModalOpen }) => {
                 aria-describedby="modal-desc"
                 open={isModalOpen}
                 onClose={onClose}
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                sx={{
+                    display: 'flex', justifyContent: 'center', alignItems: 'center',
+                    // backgroundColor: 'red'
+                }}
             >
-                <ModalDialog size='sm' sx={{ width: '25%' }}>
+                <ModalDialog size='sm'
+                    layout="center"
+                    sx={{
+                        // backgroundColor: 'red',
+                        width: '25%',
+                        animation: isModalOpen ? 'fadeInScale 0.1s ease forwards' : 'none',
+                        '@keyframes fadeInScale': {
+                            '0%': {
+                                opacity: 0,
+                                transform: 'scale(1.2)',
+                            },
+                            // '100%': {
+                            //     opacity: 1,
+                            //     // transform: 'scale(1)',
+                            // },
+                        },
+
+                    }}>
                     <ModalClose
                         variant="outlined"
                         sx={{

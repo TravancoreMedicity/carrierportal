@@ -16,13 +16,14 @@ const { differenceInCalendarDays } = require('date-fns');
 const pages = [
     'My Application',
     'My Portfolio',
+    'Contact Us',
     'Vacancy List',
 
 ];
 
 // const settings = ['Settings', 'Profile', 'Logout'];
 
-const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyData, personalData }) => {
+const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyData, personalData, profilePic }) => {
 
 
 
@@ -115,72 +116,90 @@ const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyD
                 }
                 fetchData()
             } else {
-                warningNofity("Insert the Portfolio Details")
+                warningNofity("Complete the Portfolio")
             }
 
-
-
-
         } else if (page === "My Application") {
+
             SetPageToShow(1)
             setEditCount(0)
-            const fetchData = async () => {
-                const result = await axioslogin.post('/Career/appliedJob', checkData)
-                const { success, data } = result.data
-                if (success === 1 && data?.length > 0) {
-                    const result = await axioslogin.post('/Career/appliedJobdetails', checkData)
-                    const { success, dataJob } = result.data
-                    if (success === 1 && dataJob?.length > 0) {
-                        const data2Map = new Map(dataJob.map(item => [item.desg_id, item]));
-                        const mergedData = data.map(item1 => {
-                            const item2 = data2Map.get(item1.desg_slno);
-                            return {
-                                ...item1,
-                                ...(item2 || {})
-                            };
-                        });
-                        // Fetch job descriptions
-                        const jobResult = await axioslogin.get('/Career/jobdesc');
-                        const { jobsuccess, jobdata } = jobResult.data;
+            if (Object.keys(personalData).length > 0) {
+                const fetchData = async () => {
+                    const result = await axioslogin.post('/Career/appliedJob', checkData)
+                    const { success, data } = result.data
+                    if (success === 1 && data?.length > 0) {
+                        const result = await axioslogin.post('/Career/appliedJobdetails', checkData)
+                        const { success, dataJob } = result.data
 
-                        if (jobsuccess === 1 && jobdata?.length > 0) {
-                            const jobDescMap = new Map();
-
-                            // Populate the map with arrays of job_desc for each desg_id
-                            jobdata.forEach(item => {
-                                if (!jobDescMap.has(item.desg_id)) {
-                                    jobDescMap.set(item.desg_id, []);
-                                }
-                                jobDescMap.get(item.desg_id).push(item.job_desc);
+                        if (success === 1 && dataJob?.length > 0) {
+                            const data2Map = new Map(dataJob.map(item => [item.desg_id, item]));
+                            const mergedData = data.map(item1 => {
+                                const item2 = data2Map.get(item1.desg_slno);
+                                return {
+                                    ...item1,
+                                    ...(item2 || {})
+                                };
                             });
+                            // Fetch job descriptions
+                            const jobResult = await axioslogin.get('/Career/jobdesc');
+                            const { jobsuccess, jobdata } = jobResult.data;
 
-                            // Add job_desc array to mergedData
-                            const finalData = mergedData.map(item => ({
-                                ...item,
-                                job_desc: jobDescMap.get(item.desg_id) || []
-                            }));
-                            setJobData(finalData);
-                        } else {
-                            setJobData(mergedData);
 
+                            if (jobsuccess === 1 && jobdata?.length > 0) {
+                                const jobDescMap = new Map();
+
+                                // Populate the map with arrays of job_desc for each desg_id
+                                jobdata.forEach(item => {
+                                    if (!jobDescMap.has(item.desg_id)) {
+                                        jobDescMap.set(item.desg_id, []);
+                                    }
+                                    jobDescMap.get(item.desg_id).push(item.job_desc);
+                                });
+
+                                // Add job_desc array to mergedData
+                                const finalData = mergedData.map(item => ({
+                                    ...item,
+                                    job_desc: jobDescMap.get(item.desg_id) || []
+                                }));
+                                setJobData(finalData);
+
+
+                            } else {
+                                setJobData(mergedData);
+
+                            }
                         }
-                    }
-                    else {
+                        else {
+                            setJobData([]);
+                        }
+
+                    } else {
                         setJobData([]);
                     }
 
-                } else {
-                    setJobData([]);
                 }
-
+                fetchData()
+            } else {
+                warningNofity("Complete the Portfolio")
             }
-            fetchData()
         }
         else if (page === "My Portfolio") {
-            SetPageToShow(0)
-            setEditCount(0)
+            if (Object.keys(personalData).length > 0) {
+                SetPageToShow(0)
+                setEditCount(0)
+            } else {
+                warningNofity("Complete the Portfolio")
+            }
+        } else if (page === "Contact Us") {
+            if (Object.keys(personalData).length > 0) {
+                SetPageToShow(3)
+                setEditCount(0)
+            } else {
+                warningNofity("Complete the Portfolio")
+            }
+        }
 
-        } else {
+        else {
             SetPageToShow(0)
         }
 
@@ -197,7 +216,7 @@ const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyD
         }, 1000);
     }
     return (
-        <AppBar position="sticky" color='inherit'>
+        <AppBar position="sticky" color='inherit' elevation={0} sx={{ backgroundColor: '#FFFBF5' }}>
             <Box width="99%" sx={{ ml: 2, }}>
                 <Toolbar disableGutters>
                     {/* Logo section */}
@@ -206,13 +225,17 @@ const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyD
                     </Box>
 
                     <Typography
-                        level="h4"
+                        // level="h4"
                         noWrap
                         component="a"
                         sx={{
                             mr: 2,
+                            mt: 2,
                             display: { xs: 'none', md: 'flex' },
                             textDecoration: 'none',
+                            fontFamily: "Bahnschrift",
+                            fontWeight: 500,
+                            fontSize: 26
                         }}
                     >
                         Travancore Medicity
@@ -228,7 +251,9 @@ const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyD
                             <Menu sx={{ p: 1, }}>
                                 {pages.map((page) => (
                                     <MenuItem key={page} onClick={() => handlePageClick(page)}>
-                                        <Typography textAlign="center" level="body-sm" fontWeight="lg" component="div" className='hover:text-[#7c51a1]' >
+                                        <Typography textAlign="center" level="body-sm" fontWeight="lg" component="div" className='hover:text-[#7c51a1]'
+                                            sx={{ fontFamily: "Bahnschrift", }}
+                                        >
                                             {page}
                                         </Typography>
                                     </MenuItem>
@@ -249,25 +274,29 @@ const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyD
                         href="#app-bar-with-responsive-menu"
                         sx={{
                             mr: 2,
+                            mt: 2,
                             display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
                             fontWeight: 500,
                             color: 'inherit',
                             textDecoration: 'none',
+                            fontFamily: "Bahnschrift",
                         }}
                     >
                         TMCH
                     </Typography>
 
                     {/* Non-responsive menu section */}
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: "end", mr: 4, cursor: 'pointer', }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, mr: 4, cursor: 'pointer', mt: 2 }}>
                         {pages.map((page) => (
                             <Box
                                 key={page}
                                 onClick={() => handlePageClick(page)}
                                 sx={{ display: 'block', gap: 1, color: 'inherit', ml: 3 }}
                             >
-                                <Typography level="body-sm" fontWeight="lg" component="div" className='hover:text-[#7c51a1]' >
+                                <Typography level="body-sm" fontWeight="lg" component="div" className='hover:text-[#7c51a1]'
+                                    sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 500, color: '#555555' }}
+                                >
                                     {page}
                                 </Typography>
 
@@ -276,21 +305,50 @@ const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyD
                     </Box>
 
                     {/* User settings section */}
-                    <Box sx={{ flexGrow: 0, p: 1, mr: 8, }}>
+                    <Box sx={{
+                        flexGrow: 0, p: 1, mr: 7, mt: 1,
+                        '@media screen and (max-width: 768px)': {
+                            mr: 1,
+
+                        },
+                    }}>
 
                         <Dropdown >
-                            <MenuButton variant="plain">
-                                <Avatar alt="User Avatar" src={imageUrl} />
+                            <MenuButton variant="plain" sx={{
+                                border: "1px solid #555555", borderRadius: 20,
+
+                            }}>
+                                <Typography sx={{
+                                    fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 500, color: '#555555',
+                                    '@media screen and (max-width: 768px)': {
+                                        mr: 1,
+                                        fontSize: 15, fontWeight: 500, p: 0, m: 0
+                                    },
+                                }}>
+                                    Sign out
+                                </Typography>
+
+
+                                {/* {profilePic === '' ?
+                                    <Avatar alt="User Avatar" src={imageUrl} />
+                                    :
+                                    <Avatar alt="User Avatar" src={profilePic} />
+                                } */}
+
                             </MenuButton>
-                            <Menu sx={{}}>
+                            <Menu sx={{ backgroundColor: '#FFFBF5' }}>
                                 <MenuItem className=' w-[100%]' component={Box} >
                                     <Box className="flex flex-1 justify-center items-center flex-col rounded-md" sx={{}} >
-                                        <Avatar sx={{ "--Avatar-size": "150px", }} src={imageUrl} />
+                                        {profilePic === '' ?
+                                            <Avatar sx={{ "--Avatar-size": "100px", }} alt="User Avatar" src={imageUrl} />
+                                            :
+                                            <Avatar sx={{ "--Avatar-size": "100px", }} alt="User Avatar" src={profilePic} />
+                                        }
                                         <Typography
-                                            level="title-md" component="div" fontWeight="lg" className='text-center py-3 '
-                                            sx={{ color: '#555e7c' }}
+                                            className='text-center  '
+                                            sx={{ color: '#555555', fontFamily: "Bahnschrift", fontSize: 26, fontWeight: 500, }}
                                         >{data?.name}</Typography>
-                                        <Typography level="body-sm" component="div" fontWeight="lg" className='text-center py-3' >{emal}</Typography>
+                                        <Typography level="body-sm" className='text-center ' sx={{ color: '#555555', fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 500, }}>{emal}</Typography>
                                     </Box>
                                 </MenuItem>
                                 <MenuItem
@@ -299,8 +357,8 @@ const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyD
                                     component={Box}
                                 >
                                     <Box className='flex justify-center  ' sx={{ width: '100%' }}>
-                                        <LogoutIcon sx={{ color: '#555E7C' }} />
-                                        <Typography level="body-md" component="div" fontWeight="lg" sx={{ color: '#555E7C' }}  >Logout</Typography>
+                                        <LogoutIcon sx={{ color: '#FF76CE' }} />
+                                        <Typography level="body-md" component="div" fontWeight="lg" sx={{ color: '#FF76CE' }}  >Sign Out</Typography>
                                     </Box>
 
                                 </MenuItem>

@@ -184,11 +184,10 @@ const CandidateCertificate = ({ ApplicationId }) => {
         return
     }, [setvalue])
     return (
-        <Paper
-            variant="outlined"
+        <Box
+
             sx={{
-                // backgroundColor: 'slate.50',
-                padding: 4,
+
                 borderRadius: 'md',
                 // boxShadow: 'lg',
                 marginTop: 2,
@@ -283,7 +282,7 @@ const CandidateCertificate = ({ ApplicationId }) => {
                             >
                                 <Tooltip title="Close">
                                     <Box sx={{ p: 0 }} aria-label="Close" onClick={() => handleRemoveFile(index)}>
-                                        <CloseSharpIcon fontSize='small' />
+                                        <CloseSharpIcon fontSize='small' sx={{ color: "#FF76CE" }} />
                                     </Box>
                                 </Tooltip>
                             </Box>
@@ -292,7 +291,7 @@ const CandidateCertificate = ({ ApplicationId }) => {
                 </Box>
             </Box>
             <Box sx={{ mt: 2 }}>
-                <Button variant="outlined" color="success" size='sm' onClick={handleUpload} sx={{ width: '100%' }}>
+                <Button variant="outlined" size='sm' onClick={handleUpload} sx={{ width: '100%', color: "#FF76CE" }}>
                     Upload Your File
                 </Button>
             </Box>
@@ -329,12 +328,12 @@ const CandidateCertificate = ({ ApplicationId }) => {
 
                                     <td>
                                         <IconButton sx={{}} size='small' color='primary' onClick={() => EditData(filename)}>
-                                            <ImageSearchIcon />
+                                            <ImageSearchIcon sx={{ color: "#FF76CE" }} />
                                         </IconButton>
                                     </td>
                                     <td>
                                         <IconButton sx={{}} size='small' color='primary' onClick={() => DeleteItem(fileNamePart)} >
-                                            <DeleteIcon />
+                                            <DeleteIcon sx={{ color: "#FF76CE" }} />
                                         </IconButton>
                                     </td>
                                 </tr>
@@ -350,7 +349,7 @@ const CandidateCertificate = ({ ApplicationId }) => {
                 setIsModalOpen={setIsModalOpen}
                 file={file}
             />
-        </Paper>
+        </Box>
     )
 }
 

@@ -31,10 +31,10 @@ const MainModal = ({ isModalOpen, setIsModalOpen, formdata, education, handleOnS
                             width: "80%",
                         },
                         bgcolor: 'white',
-                        boxShadow: 24,
-                        p: 3,
+                        // boxShadow: 24,
+                        p: 2,
                         borderRadius: 10,
-
+                        backgroundColor: '#FFFBF5',
                     }}
                 ><ModalClose
                         variant="outlined"
@@ -110,7 +110,7 @@ const MainModal = ({ isModalOpen, setIsModalOpen, formdata, education, handleOnS
                         <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
                             <Tooltip title="Save">
                                 <Button
-                                    sx={{ color: '#FF76CE' }}
+                                    sx={{ color: '#555555' }}
                                     variant="outlined"
                                     component="label"
                                     size="md"
