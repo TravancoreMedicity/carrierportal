@@ -3,7 +3,7 @@ import moment from 'moment';
 import React, { memo, useEffect, useState } from 'react';
 import SchoolIcon from '@mui/icons-material/School';
 import axioslogin from '../../../Axios/Axios';
-import { Paper } from '@mui/material';
+
 
 const CandidateAccademic = ({ personalData, ApplicationId }) => {
     const [edudata, setedudata] = useState([])
@@ -22,10 +22,13 @@ const CandidateAccademic = ({ personalData, ApplicationId }) => {
         fetchData()
     }, [])
     return (
-        <Paper
+        <Box
             variant="outlined" sx={{
+                ml: 1,
+                // height: window.innerHeight - 356,
                 // backgroundColor: 'slate.50',
-                padding: 3,
+                // padding: 3,
+                overflowX: 'scroll',
                 borderRadius: 'md',
                 // boxShadow: 'lg',
 
@@ -34,31 +37,25 @@ const CandidateAccademic = ({ personalData, ApplicationId }) => {
                 },
             }}>
             <Box>
-                <Box>
-                    <Typography sx={{}} level="body-md" >
-                        Qualification Information
-                    </Typography>
-                </Box>
+
 
                 {edudata && edudata.length > 0 ? (
                     edudata?.map((education, index) => (
 
                         <Box key={index} sx={{ mt: 1, display: "flex", }}>
                             <Box sx={{
-                                width: "100%", borderTop: "1px solid #DFDFDF",
-                                // width: "20%", '@media screen and (max-width: 768px)': {
-                                //     width: "40%",
-                                // },
+
                             }}>
                                 <Box sx={{ display: 'flex', gap: 2 }}>
-                                    <Box>  <SchoolIcon /></Box>
+                                    <Box sx={{ mt: 1 }}>  <SchoolIcon sx={{ color: '#555555' }} /></Box>
                                     <Box sx={{ mt: .5, display: 'flex', gap: 1, }}>
                                         <Box>
-                                            <Typography level="title-md" sx={{ wordBreak: 'break-word' }}>  {education?.edu_desc}</Typography>
+                                            <Typography level="title-md" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 22, fontWeight: 450, color: '#555555' }}>  {education?.edu_desc}</Typography>
                                         </Box>
-                                        <Box>
-                                            <Typography level="body-xs" sx={{ wordBreak: 'break-word' }}>
-                                                (  {moment(new Date(education?.edustartdate)).format('DD-MM-YYYY')}  - {moment(new Date(education?.eduenddate)).format('DD-MM-YYYY')})
+                                        <Box sx={{ mt: 1 }}>
+
+                                            <Typography level="body-xs" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 14, fontWeight: 350, color: '#555555' }}>
+                                                {moment(new Date(education?.edustartdate)).format('DD-MM-YYYY')}  - {moment(new Date(education?.eduenddate)).format('DD-MM-YYYY')}
                                             </Typography>
                                         </Box>
 
@@ -70,7 +67,7 @@ const CandidateAccademic = ({ personalData, ApplicationId }) => {
                                     <Box sx={{ display: 'flex', gap: 5 }}>
                                         <Box></Box>
                                         <Box>
-                                            <Typography level="body-xs" sx={{ wordBreak: 'break-word' }}>
+                                            <Typography level="body-xs" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 14, fontWeight: 350, color: '#555555' }}>
                                                 {education?.cour_desc} ({education?.unver_name})
                                             </Typography>
                                         </Box>
@@ -80,19 +77,21 @@ const CandidateAccademic = ({ personalData, ApplicationId }) => {
                                 {education?.spec_desc === null ? "" :
                                     <Box sx={{ display: 'flex', gap: 5, }}>
                                         <Box></Box>
-                                        <Box><Typography level="body-xs" sx={{ wordBreak: 'break-word' }}> {education?.spec_desc}</Typography> </Box>
+                                        <Box><Typography level="body-xs" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 14, fontWeight: 350, color: '#555555' }}> {education?.spec_desc}</Typography> </Box>
                                     </Box>
                                 }
                                 {education?.board_name === null ? "" :
                                     <Box sx={{ display: 'flex', gap: 5, }}>
                                         <Box></Box>
-                                        <Box><Typography level="body-xs" sx={{ wordBreak: 'break-word' }}> {education?.board_name}</Typography> </Box>
+                                        <Box><Typography level="body-xs" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 14, fontWeight: 350, color: '#555555' }}> {education?.board_name}</Typography> </Box>
                                     </Box>
                                 }
 
                                 <Box sx={{ display: 'flex', gap: 5, }}>
                                     <Box></Box>
-                                    <Box><Typography level="body-xs" sx={{ wordBreak: 'break-word' }}> {education?.AvgGrade}%</Typography> </Box>
+                                    <Box>
+                                        <Typography level="body-xs" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 14, fontWeight: 350, color: '#555555' }}> {education?.AvgGrade}%</Typography>
+                                    </Box>
 
                                 </Box>
 
@@ -100,11 +99,11 @@ const CandidateAccademic = ({ personalData, ApplicationId }) => {
                         </Box>
                     ))
                 ) : (
-                    <Typography level="body-sm">No education details found.</Typography>
+                    <Typography level="body-sm" sx={{ fontFamily: "Bahnschrift", fontSize: 15, fontWeight: 350, color: '#555555' }}>No education details found.</Typography>
                 )}
 
             </Box>
-        </Paper>
+        </Box>
     );
 }
 

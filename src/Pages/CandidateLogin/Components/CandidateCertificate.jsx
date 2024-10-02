@@ -20,12 +20,15 @@ const CandidateCertificate = ({ tableData }) => {
             variant="outlined" sx={{
                 // backgroundColor: 'slate.50',
                 padding: 3,
+                overflowX: 'scroll',
                 borderRadius: 'md',
                 // boxShadow: 'lg',
                 // marginTop: 2,
                 '@media screen and (max-width: 768px)': {
                     padding: 1,
                 },
+                ml: 1,
+                height: window.innerHeight - 356,
             }}>
             <Box>
                 <Box>
@@ -66,7 +69,7 @@ const CandidateCertificate = ({ tableData }) => {
                                             <td>{uploadedDate}</td>
                                             <td>
                                                 <IconButton sx={{}} size='small' color='primary' onClick={() => EditData(filename)}>
-                                                    <ImageSearchIcon />
+                                                    <ImageSearchIcon sx={{ color: '#FF76CE' }} />
                                                 </IconButton>
                                             </td>
                                         </tr>

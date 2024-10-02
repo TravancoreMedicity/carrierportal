@@ -97,10 +97,10 @@ const ExperienceModal = ({ setIsModalOpen, isModalOpen, Regionexp, setRegionexp,
                             width: "80%",
                         },
                         bgcolor: 'white',
-                        boxShadow: 24,
+                        // boxShadow: 24,
                         p: 3,
                         borderRadius: 10,
-
+                        backgroundColor: '#FFFBF5'
                     }}
                 ><ModalClose
                         variant="outlined"
@@ -112,12 +112,12 @@ const ExperienceModal = ({ setIsModalOpen, isModalOpen, Regionexp, setRegionexp,
                             bgcolor: 'background.body',
                         }}
                     />
-                    <Typography level='body-lg'>Add your Experience Information</Typography>
+                    <Typography sx={{ fontFamily: "Bahnschrift", color: '#555555', }}>Add your Experience Information</Typography>
 
                     <Box sx={{ height: window.innerHeight - 200, overflowX: "auto", '::-webkit-scrollbar': { display: "none" } }}>
 
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Company Name / Institution Name
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Company Name / Institution Name
                                 <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                             </Typography>
                         </Box>
@@ -132,7 +132,7 @@ const ExperienceModal = ({ setIsModalOpen, isModalOpen, Regionexp, setRegionexp,
                             />
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Job Title
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Job Title
                                 <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                             </Typography>
                         </Box>
@@ -147,7 +147,7 @@ const ExperienceModal = ({ setIsModalOpen, isModalOpen, Regionexp, setRegionexp,
                             />
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Start Date
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Start Date
                                 <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                             </Typography>
                         </Box>
@@ -162,7 +162,7 @@ const ExperienceModal = ({ setIsModalOpen, isModalOpen, Regionexp, setRegionexp,
                             />
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>End Date
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>End Date
                                 <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                             </Typography>
                         </Box>
@@ -187,7 +187,7 @@ const ExperienceModal = ({ setIsModalOpen, isModalOpen, Regionexp, setRegionexp,
 
 
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Responsibilities
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Responsibilities
                             </Typography>
                         </Box>
                         <Box sx={{}}>
@@ -201,7 +201,7 @@ const ExperienceModal = ({ setIsModalOpen, isModalOpen, Regionexp, setRegionexp,
                             />
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Supervisor Name
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Supervisor Name
 
                             </Typography>
                         </Box>
@@ -216,7 +216,7 @@ const ExperienceModal = ({ setIsModalOpen, isModalOpen, Regionexp, setRegionexp,
                             />
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Additional Information
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Additional Information
 
                             </Typography>
                         </Box>
@@ -231,7 +231,7 @@ const ExperienceModal = ({ setIsModalOpen, isModalOpen, Regionexp, setRegionexp,
                             />
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, }}>Supervisor Condact Number
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Supervisor Condact Number
 
                             </Typography>
                         </Box>
@@ -258,7 +258,7 @@ const ExperienceModal = ({ setIsModalOpen, isModalOpen, Regionexp, setRegionexp,
                             Add more
                         </Button>
                         <Button sx={{
-                            color: '#FF76CE',
+                            color: '#555555',
                             p: 0, width: "15%", '@media screen and (max-width: 768px)': {
                                 width: "40%",
                             },

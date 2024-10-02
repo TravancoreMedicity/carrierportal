@@ -1,8 +1,31 @@
 import { Box, Typography } from '@mui/joy'
-import { Paper } from '@mui/material';
-import React, { memo } from 'react'
+import React, { memo, useEffect, useMemo, useState } from 'react'
+import axioslogin from '../../../Axios/Axios';
 
-const CandidateLang = ({ tableData }) => {
+const CandidateLang = ({ ApplicationId }) => {
+
+    const [tableData, setTableData] = useState([])
+
+    const checkData = useMemo(() => {
+        return {
+            ApplicationId: ApplicationId,
+        }
+    }, [ApplicationId])
+    //FOR GETTING THE EMPLOYE DETAILS
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axioslogin.post('/career/lang/get', checkData)
+            const { success, data } = result.data
+            if (success === 1 && data?.length > 0) {
+                setTableData(data[0])
+            }
+            else {
+                setTableData([])
+            }
+        }
+        fetchData()
+    }, [])
 
     const { malayalam_Poor, malayalam_Exe, malayalam_Nat, malayalam_pro, malayalam_Beg, english_Poor, english_Exe, english_Nat, english_pro, english_Beg,
         hindi_Poor, hindi_Exe, hindi_Nat, hindi_pro, hindi_Beg, tamil_Poor, tamil_Exe, tamil_Nat, tamil_pro, tamil_Beg, arabic_Poor, arabic_Exe, arabic_Nat,
@@ -17,11 +40,14 @@ const CandidateLang = ({ tableData }) => {
     const valuesTamil = [tamil_Poor, tamil_Exe, tamil_Nat, tamil_pro, tamil_Beg,]
 
     return (
-        <Paper
+        <Box
             variant="outlined"
             sx={{
-                // backgroundColor: 'slate.50',
-                padding: 3,
+                ml: 1,
+                mt: 1,
+                // height: window.innerHeight - 356,
+                overflowX: 'scroll',
+                // padding: 3,
                 borderRadius: 'md',
                 // boxShadow: 'lg',
                 // marginTop: 2,
@@ -30,13 +56,9 @@ const CandidateLang = ({ tableData }) => {
                 },
             }}>
             <Box>
-                <Box>
-                    <Typography sx={{}} level="body-md" >
-                        Langauges Known
-                    </Typography>
-                </Box>
+
                 {tableData != null ?
-                    <Box sx={{ borderTop: "1px solid #DFDFDF", }}>
+                    <Box sx={{}}>
                         <Box sx={{
                             display: "flex", justifyContent: 'space-between', mt: 1, width: '30%',
                             '@media screen and (max-width: 768px)': {
@@ -48,16 +70,17 @@ const CandidateLang = ({ tableData }) => {
                                     English
                                 </Typography>
                             </Box>
-                            <Box sx={{ display: 'flex' }}>
+                            <Box sx={{ display: 'flex', }}>
                                 {values
                                     ?.sort((a, b) => (b === 1) - (a === 1))
                                     .map((value, index) => (
                                         <Box
                                             key={index}
                                             sx={{
+
                                                 borderRadius: '50%',
                                                 padding: '3px',
-                                                backgroundColor: value === 1 ? '#5AB2FF' : 'lightGray',
+                                                backgroundColor: value === 1 ? '#FF76CE' : 'lightGray',
                                                 width: '20px',
                                                 height: '20px',
                                                 display: 'flex',
@@ -86,7 +109,7 @@ const CandidateLang = ({ tableData }) => {
                                     Malayalam
                                 </Typography>
                             </Box>
-                            <Box sx={{ display: 'flex' }}>
+                            <Box sx={{ display: 'flex', }}>
                                 {valuesmalayalam
                                     ?.sort((a, b) => (b === 1) - (a === 1))
                                     .map((value, index) => (
@@ -95,7 +118,7 @@ const CandidateLang = ({ tableData }) => {
                                             sx={{
                                                 borderRadius: '50%',
                                                 padding: '3px',
-                                                backgroundColor: value === 1 ? '#5AB2FF' : 'lightGray',
+                                                backgroundColor: value === 1 ? '#FF76CE' : 'lightGray',
                                                 width: '20px',
                                                 height: '20px',
                                                 display: 'flex',
@@ -133,7 +156,7 @@ const CandidateLang = ({ tableData }) => {
                                             sx={{
                                                 borderRadius: '50%',
                                                 padding: '3px',
-                                                backgroundColor: value === 1 ? '#5AB2FF' : 'lightGray',
+                                                backgroundColor: value === 1 ? '#FF76CE' : 'lightGray',
                                                 width: '20px',
                                                 height: '20px',
                                                 display: 'flex',
@@ -171,7 +194,7 @@ const CandidateLang = ({ tableData }) => {
                                             sx={{
                                                 borderRadius: '50%',
                                                 padding: '3px',
-                                                backgroundColor: value === 1 ? '#5AB2FF' : 'lightGray',
+                                                backgroundColor: value === 1 ? '#FF76CE' : 'lightGray',
                                                 width: '20px',
                                                 height: '20px',
                                                 display: 'flex',
@@ -210,7 +233,7 @@ const CandidateLang = ({ tableData }) => {
                                             sx={{
                                                 borderRadius: '50%',
                                                 padding: '3px',
-                                                backgroundColor: value === 1 ? '#5AB2FF' : 'lightGray',
+                                                backgroundColor: value === 1 ? '#FF76CE' : 'lightGray',
                                                 width: '20px',
                                                 height: '20px',
                                                 display: 'flex',
@@ -237,7 +260,7 @@ const CandidateLang = ({ tableData }) => {
                     </Box>
                 }
             </Box>
-        </Paper>
+        </Box>
     )
 }
 

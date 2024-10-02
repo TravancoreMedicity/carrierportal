@@ -1,4 +1,4 @@
-import { Badge, Box, Typography } from '@mui/joy'
+import { Box, Typography } from '@mui/joy'
 import React, { lazy, memo, useCallback, useEffect, useState } from 'react'
 import axioslogin from '../../Axios/Axios';
 import moment from 'moment/moment';
@@ -17,12 +17,25 @@ const Career = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [openBkDrop, setOpenBkDrop] = useState(true)
 
+
     const handleonclickClinical = useCallback(async (e,) => {
-        setcount(1)
-    }, []);
+        if (count === 1) {
+            setOpenBkDrop(false)
+        } else {
+            setOpenBkDrop(true)
+            setcount(1)
+        }
+
+    }, [count]);
     const handleonclickNonClinical = useCallback(async (e,) => {
-        setcount(2)
-    }, []);
+        if (count === 2) {
+            setOpenBkDrop(false)
+        } else {
+            setOpenBkDrop(true)
+            setcount(2)
+        }
+
+    }, [count]);
 
     const handleChange = useCallback(async (e) => {
         setIsModalOpen(true)
@@ -31,7 +44,7 @@ const Career = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setOpenBkDrop(false); // Close after 5 seconds
+            setOpenBkDrop(false);
             fetchData();
         }, 1000);
 
@@ -53,8 +66,10 @@ const Career = () => {
                     // Filter based on count
                     let vaccancy;
                     if (count === 1) {
+
                         vaccancy = data?.filter(val => val?.announcement_status === 1 && val?.dept_type === 1);
                     } else if (count === 2) {
+
                         vaccancy = data?.filter(val => val?.announcement_status === 1 && val?.dept_type !== 1);
                     } else {
                         vaccancy = data?.filter(val => val?.announcement_status === 1);

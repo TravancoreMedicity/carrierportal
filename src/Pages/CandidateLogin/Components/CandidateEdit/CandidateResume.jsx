@@ -155,7 +155,8 @@ const CandidateResume = ({ ApplicationId }) => {
         <Paper
             variant="outlined"
             sx={{
-                // backgroundColor: 'slate.50',
+                height: window.innerHeight - 400,
+                overflowX: 'scroll',
                 padding: 4,
                 borderRadius: 'md',
                 // boxShadow: 'lg',
@@ -245,8 +246,8 @@ const CandidateResume = ({ ApplicationId }) => {
                     ))}
                 </Box>
             </Box>
-            <Box sx={{ width: '100%', mt: 2 }}>
-                <Button variant="outlined" color="success" size='sm' onClick={handleUpload} sx={{ width: "100%" }}>
+            <Box sx={{ width: '100%', mt: 2, color: '#FF76CE' }}>
+                <Button variant="outlined" size='sm' onClick={handleUpload} sx={{ width: "100%", color: "#FF76CE" }}>
                     Upload Your File
                 </Button>
             </Box>
@@ -279,12 +280,12 @@ const CandidateResume = ({ ApplicationId }) => {
                                     <td>{uploadedDate}</td>
                                     <td>
                                         <IconButton sx={{}} size='small' color='primary' onClick={() => EditData(filename)}>
-                                            <ImageSearchIcon />
+                                            <ImageSearchIcon sx={{ color: "#FF76CE" }} />
                                         </IconButton>
                                     </td>
                                     <td>
                                         <IconButton sx={{}} size='small' color='primary' onClick={() => DeleteItem(fileNamePart)} >
-                                            <DeleteIcon />
+                                            <DeleteIcon sx={{ color: "#FF76CE" }} />
                                         </IconButton>
                                     </td>
                                 </tr>

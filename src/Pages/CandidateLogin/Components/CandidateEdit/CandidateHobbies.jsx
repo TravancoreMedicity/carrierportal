@@ -100,11 +100,12 @@ const CandidateHobbies = ({ ApplicationId }) => {
         }
     }, [postdata, count])
     return (
-        <Paper
+        <Box
             variant="outlined"
             sx={{
-                // backgroundColor: 'slate.50',
+                height: window.innerHeight - 400,
                 padding: 4,
+                overflowX: 'scroll',
                 borderRadius: 'md',
                 // boxShadow: 'lg',
                 marginTop: 2,
@@ -129,7 +130,7 @@ const CandidateHobbies = ({ ApplicationId }) => {
                 </Box>
                 <Box sx={{ flex: 0, px: 0.5 }} >
                     <IconButton variant="outlined" size='sm' color='primary' onClick={SubmitFormData}>
-                        <AddIcon />
+                        <AddIcon sx={{ color: "#FF76CE" }} />
                     </IconButton>
                 </Box>
             </Box>
@@ -158,12 +159,12 @@ const CandidateHobbies = ({ ApplicationId }) => {
                                     <td>{item?.hobbies === null ? "not updated" : item?.hobbies}</td>
                                     <td>
                                         <IconButton sx={{}} size='small' color='primary' onClick={() => EditData(item)}>
-                                            <EditIcon />
+                                            <EditIcon sx={{ color: "#FF76CE" }} />
                                         </IconButton>
                                     </td>
                                     <td>
                                         <IconButton sx={{}} size='small' color='primary' onClick={() => DeleteItem(item)}>
-                                            <DeleteIcon />
+                                            <DeleteIcon sx={{ color: "#FF76CE" }} />
                                         </IconButton>
                                     </td>
                                 </tr>
@@ -173,7 +174,7 @@ const CandidateHobbies = ({ ApplicationId }) => {
 
                 </Table>
             </Box>
-        </Paper>
+        </Box>
     )
 }
 

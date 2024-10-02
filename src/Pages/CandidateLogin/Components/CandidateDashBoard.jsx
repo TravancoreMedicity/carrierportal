@@ -1,13 +1,14 @@
 import { Avatar, Box, Typography } from '@mui/joy'
-import React, { lazy, memo } from 'react'
+import React, { lazy, memo, } from 'react'
 import { useSelector } from 'react-redux'
 import { getUser } from '../../../Redux/LoginSlice'
-import { Paper } from '@mui/material'
+
+
 
 
 const CandidateDashDetails = lazy(() => import('./CandidateDashDetails'))
 
-const CandidateDashBoard = ({ personalData, count, setcount, SkillData, pageToShow, SetPageToShow, jobData, setEditCount, EditCount, vaccancyData }) => {
+const CandidateDashBoard = ({ personalData, count, setcount, pageToShow, SetPageToShow, jobData, setEditCount, EditCount, vaccancyData, profilePic }) => {
 
     const loggedInfo = useSelector((state) => getUser(state))
     const data = JSON.parse(loggedInfo)
@@ -17,118 +18,119 @@ const CandidateDashBoard = ({ personalData, count, setcount, SkillData, pageToSh
     const ApplicationId = data?.id;
 
 
+
     return (
         <Box sx={{
-            // backgroundColor: 'red',
-
             display: 'flex',
+            backgroundColor: '#FFFBF5',
             flexWrap: 'wrap',
             padding: .5,
-            height: window.innerHeight - 100, overflowX: "auto",
+            height: window.innerHeight - 90, overflowX: "auto",
             '@media screen and (max-width: 768px)': {
                 display: 'block',
 
             },
         }}>
             {/* Left side box */}
-            <Paper sx={{
-                width: ['100%', '25%'],
-                display: 'flex',
-                flexDirection: 'column',
-                // backgroundColor: 'slate.50',
-                padding: 4,
-                // borderRadius: 'md',
-                // border: "1px solid #B7B7B7",
-                // boxShadow: 'lg',
-                marginBottom: [3, 0],
+            <Box
 
-                '@media screen and (max-width: 768px)': {
-                    padding: 1,
-                },
-            }}>
+                sx={{
+                    width: ['100%', '25%'],
+                    display: 'flex',
+                    flexDirection: 'column',
+                    padding: 4,
+                    marginBottom: [3, 0],
+
+                    '@media screen and (max-width: 768px)': {
+                        padding: 1,
+                    },
+                }}>
                 {/* Image box */}
-                <Paper
-                    variant="outlined"
+                <Box
+
                     sx={{
                         display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
+                        // justifyContent: 'center',
+                        alignItems: 'end',
                         flexDirection: 'column',
                         borderRadius: 'md',
-                        // border: "1px solid #B7B7B7",
 
-                        // backgroundColor: 'slate.50',
-                        padding: 4,
+                        // padding: 4,
                         // boxShadow: 'lg',
                         '@media screen and (max-width: 768px)': {
                             padding: 1,
+                            alignItems: 'center',
+
                         },
                     }}>
                     <Box sx={{
-                        borderRadius: 'lg',
-                        '@media screen and (max-width: 768px)': {
-                            // width: 150,
-                        },
                     }}>
-                        <Avatar src={imageUrl} sx={{
-                            "--Avatar-size": "200px", '@media screen and (max-width: 768px)': {
-                                "--Avatar-size": "100px"
+                        {profilePic === '' ?
+                            <Avatar src={imageUrl} sx={{
+
+                                width: '250px',
+                                height: '250px',
+                                borderRadius: '50px', // Set border radius here
+                                '@media screen and (max-width: 768px)': {
+                                    width: '150px',
+                                    height: '150px',
+                                    borderRadius: '10px',
+                                    mr: 2
+                                },
+                            }} />
+                            :
+                            <Avatar
+                                src={profilePic}
+                                sx={{
+                                    width: '250px',
+                                    height: '250px',
+                                    borderRadius: '50px', // Set border radius here
+                                    '@media screen and (max-width: 768px)': {
+                                        width: '150px',
+                                        height: '150px',
+                                        borderRadius: '10px',
+                                        mr: 2
+                                    },
+                                }}
+                            />
+
+                        }
+
+
+
+                        <Box sx={{
+                            mt: 1,
+                            '@media screen and (max-width: 768px)': {
+                                // padding: 1,
+                                // alignItems: 'center',
                             },
-                        }} />
-                    </Box>
-                </Paper>
-
-                {/* Description box */}
-                <Paper
-                    variant="outlined" sx={{
-                        // backgroundColor: 'slate.50',
-                        // border: "1px solid #B7B7B7",
-
-                        padding: 4,
-                        borderRadius: 'md',
-                        // boxShadow: 'lg',
-                        marginTop: 3,
-                        height: window.innerHeight - 460, overflowX: "auto",
-                        '@media screen and (max-width: 768px)': {
-                            padding: 1,
-                            height: window.innerHeight - 660,
-                        },
-                    }}>
-                    <Box>
-                        <Typography level='body-lg'>About</Typography>
-                    </Box>
-                    <Box sx={{ borderTop: '1px solid #DFDFDF', mt: 1 }}>
-                        <Box sx={{ mt: 1 }}>
-                            <Typography level='body-xs'>{personalData?.length !== 0 ? personalData?.About : "Not Updated"}</Typography>
+                        }}>
+                            <Typography
+                                sx={{ fontFamily: "Bahnschrift", fontSize: 33, fontWeight: 500, color: '#555555', p: 0, m: 0, }}
+                            >{name}
+                            </Typography>
+                            <Typography
+                                sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', p: 0, m: 0 }}
+                            >{personalData?.length !== 0 ? personalData?.address2 : "Not Updated"}
+                            </Typography>
+                            <Typography
+                                sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', p: 0, m: 0 }}
+                            >{emal}
+                            </Typography>
+                            <Typography
+                                sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', p: 0, m: 0, }}
+                            >{personalData?.length !== 0 ? personalData?.mobile_num : "Not Updated"}
+                            </Typography>
                         </Box>
                     </Box>
+                </Box>
 
-                    <Box sx={{ mt: 1 }}>
-                        <Typography level='body-lg'>Skills</Typography>
-                    </Box>
 
-                    {SkillData?.length > 0 ? (
-                        <Box sx={{ mt: 1, borderTop: "1px solid #DFDFDF", }}>
-                            {SkillData.map((item, index) => (
-                                <Box key={index} sx={{ display: 'flex', gap: 2, mt: 1 }}>
-                                    <Typography level='body-sm' sx={{ wordBreak: 'break-word' }}>
-                                        {item?.skills_desc === null ? "not updated" : item?.skills_desc}
-                                    </Typography>
-                                </Box>
-                            ))}
-                        </Box>
-                    ) : (
-                        <Typography level='body-xs'>
-                            Not Updated
-                        </Typography>
-                    )}
-
-                </Paper>
-            </Paper>
+            </Box>
 
             {/* Right side box */}
-            <Paper
-                variant="outlined"
+            <Box
+
                 sx={{
 
                     width: ['100%', '75%'],
@@ -144,7 +146,7 @@ const CandidateDashBoard = ({ personalData, count, setcount, SkillData, pageToSh
                 }}>
                 <CandidateDashDetails emal={emal} name={name} ApplicationId={ApplicationId} personalData={personalData} count={count} vaccancyData={vaccancyData}
                     setcount={setcount} pageToShow={pageToShow} SetPageToShow={SetPageToShow} jobData={jobData} setEditCount={setEditCount} EditCount={EditCount} />
-            </Paper>
+            </Box>
         </Box>
     )
 }

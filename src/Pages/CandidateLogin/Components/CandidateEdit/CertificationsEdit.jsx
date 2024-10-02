@@ -109,11 +109,12 @@ const CertificationsEdit = ({ ApplicationId }) => {
     }, [count])
 
     return (
-        <Paper
-            variant="outlined"
+        <Box
+
             sx={{
-                // backgroundColor: 'slate.50',
+                height: window.innerHeight - 400,
                 padding: 4,
+                overflowX: 'scroll',
                 borderRadius: 'md',
                 // boxShadow: 'lg',
                 marginTop: 2,
@@ -153,7 +154,7 @@ const CertificationsEdit = ({ ApplicationId }) => {
             <Box sx={{ flex: 0, px: 0.5, display: 'flex', justifyContent: 'end', mt: 1 }} >
                 <Tooltip title="save" >
                     <IconButton variant="outlined" size='sm' color='primary' onClick={SubmitFormData}>
-                        <AddIcon />
+                        <AddIcon sx={{ color: "#FF76CE" }} />
                     </IconButton>
                 </Tooltip>
 
@@ -187,12 +188,12 @@ const CertificationsEdit = ({ ApplicationId }) => {
                                     <td> <Typography sx={{ wordBreak: 'break-word', }}>{item?.courseName === null ? "not updated" : item?.courseName}</Typography></td>
                                     <td>
                                         <IconButton sx={{}} size='small' color='primary' onClick={() => EditData(item)}>
-                                            <EditIcon />
+                                            <EditIcon sx={{ color: "#FF76CE" }} />
                                         </IconButton>
                                     </td>
                                     <td>
                                         <IconButton sx={{}} size='small' color='primary' onClick={() => DeleteItem(item)}>
-                                            <DeleteIcon />
+                                            <DeleteIcon sx={{ color: "#FF76CE" }} />
                                         </IconButton>
                                     </td>
                                 </tr>
@@ -201,7 +202,7 @@ const CertificationsEdit = ({ ApplicationId }) => {
                     </tbody>
                 </Table>
             </Box>
-        </Paper>
+        </Box>
     )
 }
 

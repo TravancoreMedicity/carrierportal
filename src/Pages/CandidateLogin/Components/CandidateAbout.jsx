@@ -17,6 +17,9 @@ const CandidateAbout = ({ personalData }) => {
         <Paper
             variant="outlined"
             sx={{
+                ml: 1,
+                height: window.innerHeight - 356,
+                overflowX: 'scroll',
                 // backgroundColor: 'slate.50',
                 padding: 3,
                 borderRadius: 'md',
@@ -40,22 +43,22 @@ const CandidateAbout = ({ personalData }) => {
                             },
                         }}>
                             <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-                                <Box sx={{}}><PersonIcon /></Box>
+                                <Box sx={{}}><PersonIcon sx={{ color: "#FF76CE" }} /></Box>
                                 <Box sx={{ mt: .5 }}>
                                     <Typography level="body-sm" sx={{ wordBreak: 'break-word', textTransform: 'capitalize' }}> {empData?.first_name === '' ? "Not Updated" : empData?.first_name} {empData?.middle_name === '' ? "" : empData?.middle_name} {empData?.last_name === '' ? "" : empData?.last_name}</Typography>
                                 </Box>
                             </Box>
                             <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-                                <Box> <EmailIcon /></Box>
+                                <Box> <EmailIcon sx={{ color: "#FF76CE" }} /></Box>
                                 <Box sx={{ mt: .5 }}><Box> <Typography level="body-sm" sx={{ wordBreak: 'break-word' }}> {empData?.email === '' ? "Not Updated" : empData?.email}</Typography> </Box></Box>
 
                             </Box>
                             <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-                                <Box><PhoneIcon /></Box>
+                                <Box><PhoneIcon sx={{ color: "#FF76CE" }} /></Box>
                                 <Box sx={{ mt: .5 }}><Typography level="body-sm" sx={{ wordBreak: 'break-word' }}> {empData?.mobile_num === '' ? "Not Updated" : empData?.mobile_num}</Typography>  </Box>
                             </Box>
                             <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-                                <Box>  <HomeIcon /></Box>
+                                <Box>  <HomeIcon sx={{ color: "#FF76CE" }} /></Box>
                                 <Box sx={{ mt: .5 }}><Typography level="body-sm" sx={{ wordBreak: 'break-word', textTransform: 'capitalize' }}> {empData?.address1 === '' ? "Not Updated" : empData?.address1},{empData?.address2 === '' ? "Not Updated" : empData?.address2}</Typography>  </Box>
 
                             </Box>
@@ -80,11 +83,11 @@ const CandidateAbout = ({ personalData }) => {
                             },
                         }}>
                             <Box level="body-sm" sx={{ display: 'flex', gap: 2, mt: 1 }} >
-                                <Box><CalendarMonthIcon /></Box>
+                                <Box><CalendarMonthIcon sx={{ color: "#FF76CE" }} /></Box>
                                 <Box sx={{ mt: .5 }}> <Typography level="body-sm" sx={{ wordBreak: 'break-word' }}> {moment(new Date(empData?.dob)).format('DD-MM-YYYY')}</Typography> </Box>
                             </Box>
                             <Box level="body-sm" sx={{ display: 'flex', gap: 2, mt: 1 }}>
-                                <Box><WcIcon /></Box>
+                                <Box><WcIcon sx={{ color: "#FF76CE" }} /></Box>
                                 <Box sx={{ mt: .5 }}> <Typography level="body-sm" sx={{ wordBreak: 'break-word' }}> {empData?.gender === 1 ? "Male" : empData?.gender === 2 ? "FeMale" : empData?.gender === 3 ? "Other" : 'Not Updated'}</Typography> </Box>
 
                             </Box>
