@@ -31,25 +31,23 @@ const CandidateHobbies = ({ ApplicationId, count, setcount }) => {
         <Box
 
             sx={{
-                // overflowX: 'scroll',
-                // padding: 3,
+
                 borderRadius: 'md',
-                // boxShadow: 'lg',
-                // marginTop: 2,
+
                 '@media screen and (max-width: 768px)': {
                     padding: 1,
                 },
                 ml: 1,
-                // height: window.innerHeight - 356,
+
             }}>
 
             {tableData?.length > 0 ? (
                 <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                     {tableData.map((item, index) => (
                         <Box key={index} sx={{
-                            width: '15%', textAlign: 'center',
+                            minWidth: '15%', textAlign: 'center',
                             '@media screen and (max-width: 768px)': {
-                                width: '30%',
+                                minWidth: '30%',
 
                             },
                         }} >
@@ -71,7 +69,7 @@ const CandidateHobbies = ({ ApplicationId, count, setcount }) => {
                     ))}
                 </Box>
             ) : (
-                <Typography variant="body1">
+                <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 15, fontWeight: 350, color: '#555555', }}>
                     No Data Found
                 </Typography>
             )

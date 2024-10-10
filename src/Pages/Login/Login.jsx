@@ -49,7 +49,7 @@ const Login = ({ setIsModalOpen, isModalOpen }) => {
                 <ModalDialog size='sm'
                     layout="center"
                     sx={{
-                        // backgroundColor: 'red',
+                        backgroundColor: '#FFFBF5',
                         width: '25%',
                         animation: isModalOpen ? 'fadeInScale 0.1s ease forwards' : 'none',
                         '@keyframes fadeInScale': {
@@ -74,9 +74,9 @@ const Login = ({ setIsModalOpen, isModalOpen }) => {
                             bgcolor: 'background.body',
                         }}
                     />
-                    <Box className="flex flex-1 flex-col justify-items-center bg-slate-50 p-4 rounded-lg bg-opacity-90" sx={{}} >
+                    <Box className="flex flex-1 flex-col justify-items-center  p-4 rounded-lg bg-opacity-90" sx={{}} >
                         {/* <Box sx={{ display: "flex", flexDirection: 'column', alignItems: 'center' }}> */}
-                        <Box sx={{ width: "100%", display: 'flex', p: 1 }} className="shadow-lg">
+                        {/* <Box sx={{ width: "100%", display: 'flex', p: 1 }} className="shadow-lg">
                             <Box className="flex  items-center space-x-2  " >
                                 <Box className="flex" sx={{}} >
                                     <img
@@ -86,21 +86,22 @@ const Login = ({ setIsModalOpen, isModalOpen }) => {
                                         height={35}
                                     />
                                 </Box>
-                                <Typography level='body-lg' >Sign in with Google</Typography>
+                                <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 22, fontWeight: 400, }}>Sign in with Google</Typography>
 
                             </Box>
-                        </Box>
+                        </Box> */}
 
                         <Box sx={{ mt: 1 }}>
-                            <Typography level='h4' >Sign up or sign in to Travancore Career  </Typography>
+                            <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 21, fontWeight: 500, }} >Sign up or sign in to Travancore Career  </Typography>
                         </Box>
                         <Box sx={{ mt: 1, }}>
-                            <Typography level='body-sm' >To Continue,Google will share your name, email, address, and profile picture with Travancore Career .  </Typography>
+                            <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 300, color: '#555555', }} >To Continue,Google will share your name, email, address, and profile picture with Travancore Career .  </Typography>
                         </Box>
                         {/* for responsive */}
                         {isMobile ? (<Box
                             className="flex cursor-pointer items-center   border  bg-gradient-to-r "
                             onClick={googleRedirectToGoogle} sx={{
+                                borderRadius: 20,
                                 mt: 3, gap: .5, '&:hover': {
                                     border: '1px solid #F70776',
 
@@ -120,7 +121,9 @@ const Login = ({ setIsModalOpen, isModalOpen }) => {
                         ) : (
                             <Box
                                 className="flex cursor-pointer items-center space-x-2 px-10  border  bg-gradient-to-r "
+
                                 onClick={googleRedirectToGoogle} sx={{
+                                    borderRadius: 20,
                                     mt: 3, justifyContent: 'center', '&:hover': {
                                         border: '1px solid #F70776',
 
@@ -135,7 +138,7 @@ const Login = ({ setIsModalOpen, isModalOpen }) => {
                                         height={45}
                                     />
                                 </Box>
-                                <Typography level='h4' >Sign in with Google</Typography>
+                                <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 22, fontWeight: 400, }} >Sign in with Google</Typography>
                             </Box>)}
 
                         {/* </Box> */}

@@ -220,7 +220,8 @@ const CertificateModal = ({ setCareerModalOpenCertificate, isModalOpenCertificat
                         <Box
 
                             sx={{
-
+                                height: window.innerHeight - 450, overflowX: "auto", '::-webkit-scrollbar': { display: "none" },
+                                p: 1,
                                 borderRadius: 'md',
                                 // boxShadow: 'lg',
                                 marginTop: 2,

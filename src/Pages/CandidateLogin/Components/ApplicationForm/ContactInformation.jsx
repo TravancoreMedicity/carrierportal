@@ -1,5 +1,5 @@
 import React, { lazy, useCallback, useEffect, useMemo, useState } from 'react'
-import { Box, IconButton, Tooltip, Typography, } from '@mui/joy'
+import { Box, IconButton, Textarea, Tooltip, Typography, } from '@mui/joy'
 import InputComponent from '../../../Muicomponents/InputComponent'
 import JoySalutation from '../../../Muicomponents/JoySalutation'
 import RegionJoy from '../../../Muicomponents/RegionJoy'
@@ -10,6 +10,8 @@ import JoyGender from '../../../Muicomponents/JoyGender'
 import JoyBloodGroup from '../../../Muicomponents/JoyBloodGroup'
 import moment from 'moment'
 import { succesNofity, warningNofity } from '../../../CommonCode/CommonFunc'
+import DistrictSelection from '../../../Muicomponents/DistrictSelection'
+import CustomBackDrop from '../../../Muicomponents/CustomBackDrop'
 
 
 const ApplicationQuestion = lazy(() => import('./ApplicationQuestion'))
@@ -32,6 +34,9 @@ const ContactInformation = ({ ApplicationId, count, setcount, Setloginpage }) =>
     const [Regionexp, setRegionexp] = useState(0);
     const [Regionedu, setRegionedu] = useState(0);
     const [Religion, setReligion] = useState(0);
+    const [State, setState] = useState(0);
+
+
     const [Region, setRegion] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [addressPermnt1, setaddressPermnt1] = useState('')
@@ -136,6 +141,8 @@ const ContactInformation = ({ ApplicationId, count, setcount, Setloginpage }) =>
         vaccinated_statusno, vaccinated_statuspar, agreestatus_marketing, reemail,
         agreestatus, name, lname, mname, email, mobile, date, permnt_pin, criminal, obligation,
         recruitment, Health, job, empemail, empname, empno, About } = formdata;
+
+
     const postdata = useMemo(() => {
         return {
             expdata: expdata,
@@ -164,13 +171,13 @@ const ContactInformation = ({ ApplicationId, count, setcount, Setloginpage }) =>
             addressPermnt2: addressPermnt2,
             gender: gender,
             bloodgrp: bloodgrp,
-            About: About
-
+            About: About,
+            State: State
         }
     }, [status_yes, vaccinated_statusyes, Health_statusyes, criminal_statusyes, obligation_status_yes, recruitment_status_yes, addressPermnt1, addressPermnt2, About,
         relatives_status_yes, agreestatus, agreestatus_marketing, applicationSlno, expdata, edudata, value, Religion, criminal_statusno, gender, bloodgrp,
         Region, date, email, mobile, criminal, Health, Health_statusno, vaccinated_statuspar, mname, lname, name, permnt_pin, obligation_status_no, ApplicationId,
-        relatives_status_no, recruitment_status_no, vaccinated_statusno, status_no, empno, recruitment, job, empemail, empname, obligation, selectedVacancies
+        relatives_status_no, recruitment_status_no, vaccinated_statusno, status_no, empno, recruitment, job, empemail, empname, obligation, selectedVacancies, State
     ])
 
     const contPin = useMemo(() => permnt_pin, [permnt_pin])
@@ -194,59 +201,100 @@ const ContactInformation = ({ ApplicationId, count, setcount, Setloginpage }) =>
         setformdata({ ...formdata, [e.target.name]: value })
     }, [formdata, setformdata]);
 
-    //to open the main modal
+    // to open the main modal
+    // const handleOnClick = useCallback(async (event) => {
+    //     event.preventDefault()
+    //     if (Object.keys(edudata).length === 0) {
+    //         warningNofity("Enter The Education Details")
+    //     } else {
+    //         setIsModalOpen(true)
+    //     }
+    // }, [setIsModalOpen, edudata])
+
+
     const handleOnClick = useCallback(async (event) => {
         event.preventDefault()
-        if (Object.keys(edudata).length === 0) {
-            warningNofity("Enter The Education Details")
+        if (agreestatus === false && agreestatus_marketing === false) {
+            warningNofity("Please Tick the Agreement ")
+            setIsModalOpen(false)
         } else {
-            setIsModalOpen(true)
+
+            setOpenBkDrop(true)
+            const result = await axioslogin.post('/common/insertdata', postdata)
+            const { success, message } = result.data
+            if (success === 1) {
+                setcount(count + 1)
+                succesNofity(message)
+                setIsModalOpen(false)
+                expdataset([])
+                edudataset([])
+                setValue(0)
+                setRegionexp(0)
+                setRegionedu(0)
+                setReligion(0)
+                setRegion(0)
+                setaddressPermnt1('')
+                setaddressPermnt2('')
+                setformdata(resetForm)
+                setGender(0)
+                setBloodgrp(0)
+                // setCareerModalOpen(false)
+                setOpenBkDrop(false)
+                Setloginpage(2)
+                setState(0)
+            } else {
+                warningNofity(message)
+                setOpenBkDrop(false)
+                setIsModalOpen(false)
+            }
         }
-    }, [setIsModalOpen, edudata])
+
+    }, [postdata, edudata, agreestatus, agreestatus_marketing, setIsModalOpen, resetForm, count, setcount])
+
+
+
 
 
     //to show the education name and show in the workexperience page
-    const qualification = useMemo(() => {
-        return {
-            education: education
-        }
-    }, [education])
+    // const qualification = useMemo(() => {
+    //     return {
+    //         education: education
+    //     }
+    // }, [education])
 
     const education1 = useMemo(() => eduname, [eduname])
-    useEffect(() => {
-        if (education === null || education === 0) {
-            setdata([])
-        } else {
-            const fetchData = async () => {
-                const result = await axioslogin.post('/common/eduname', qualification)
-                const { success, data1 } = result.data
+    // useEffect(() => {
+    //     if (education === null || education === 0) {
+    //         setdata([])
+    //     } else {
+    //         const fetchData = async () => {
+    //             const result = await axioslogin.post('/common/eduname', qualification)
+    //             const { success, data1 } = result.data
+    //             if (success === 1 && data1?.length > 0) {
+    //                 const newdata = [...eduname, ...data1]
+    //                 seteduname(newdata)
+    //                 const result = await axioslogin.post('/common/list', qualification)
+    //                 const { success, data } = result.data
+    //                 if (success === 1 && data?.length > 0) {
+    //                     const newdatas = [...vacancydata, ...data]
+    //                     const keys = ['desg_id'];
+    //                     const filteredData = newdatas.filter((value, index, self) =>
+    //                         self.findIndex(v => keys.every(k => v[k] === value[k])) === index
+    //                     );
 
+    //                     setvacancydata(filteredData)
 
-                if (success === 1 && data1?.length > 0) {
-                    const newdata = [...eduname, ...data1]
-                    seteduname(newdata)
-                    const result = await axioslogin.post('/common/list', qualification)
-                    const { success, data } = result.data
-                    if (success === 1 && data?.length > 0) {
-                        const newdatas = [...vacancydata, ...data]
-                        const keys = ['desg_id'];
-                        const filteredData = newdatas.filter((value, index, self) =>
-                            self.findIndex(v => keys.every(k => v[k] === value[k])) === index
-                        );
+    //                 } else {
+    //                     setvacancydata([])
+    //                 }
+    //             } else {
+    //                 seteduname([])
+    //             }
+    //         }
+    //         fetchData()
+    //     }
 
-                        setvacancydata(filteredData)
-
-                    } else {
-                        setvacancydata([])
-                    }
-                } else {
-                    seteduname([])
-                }
-            }
-            fetchData()
-        }
-
-    }, [setdata, qualification, education, setvacancydata,])
+    // }, [setdata, qualification, education, setvacancydata,])
 
 
     //to save the all details in the application form
@@ -276,6 +324,7 @@ const ContactInformation = ({ ApplicationId, count, setcount, Setloginpage }) =>
                 setRegion(0)
                 setaddressPermnt1('')
                 setaddressPermnt2('')
+                setState(0)
                 setformdata(resetForm)
                 setGender(0)
                 setBloodgrp(0)
@@ -299,6 +348,8 @@ const ContactInformation = ({ ApplicationId, count, setcount, Setloginpage }) =>
                         width: "80%",
                     },
                 }}>
+                    <CustomBackDrop open={openBkDrop} text="Please wait !. " />
+
                     <Box sx={{ display: 'flex', flexDirection: 'column', }}>
                         {/* <Typography level="h4" sx={{}}>CONTACT INFORMATION</Typography> */}
                         <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 20, fontWeight: 500, color: '#555555', }}>Enter Your Contact Information.</Typography>
@@ -403,13 +454,25 @@ const ContactInformation = ({ ApplicationId, count, setcount, Setloginpage }) =>
                             <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                         </Box>
                         <Box>
-                            <InputComponent
+                            {/* <InputComponent
                                 // variant="plain"
                                 type="text"
                                 value={About}
                                 name="About"
                                 onchange={(e) => updateBoard(e)}
                                 size="md"
+                            /> */}
+
+
+                            <Textarea
+                                // variant="plain"
+                                placeholder={"Aboutme"}
+                                type="text"
+                                value={About}
+                                name="About"
+                                onChange={(e) => updateBoard(e)}
+                                size="md"
+                                minRows={2}
                             />
                         </Box>
                         <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", fontSize: 20, fontWeight: 500, color: '#555555', }}>PERSONAL INFORMATION</Typography>
@@ -468,6 +531,13 @@ const ContactInformation = ({ ApplicationId, count, setcount, Setloginpage }) =>
                         </Box>
                         <Box>
                             <JoyReligion value={Religion} setValue={setReligion} />
+                        </Box>
+                        <Box sx={{ display: 'flex', }}>
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>State </Typography>
+                            <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
+                        </Box>
+                        <Box>
+                            <DistrictSelection value={State} setValue={setState} />
                         </Box>
                         <Box sx={{ display: 'flex', }}>
                             <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Date of Birth </Typography>

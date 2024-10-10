@@ -158,7 +158,8 @@ const ReferenceModal = ({ isModalOpenReference, setCareerModalOpenReference, App
                         <Box
 
                             sx={{
-
+                                p: 1,
+                                height: window.innerHeight - 450, overflowX: "auto", '::-webkit-scrollbar': { display: "none" },
                                 borderRadius: 'md',
                                 // boxShadow: 'lg',
                                 marginTop: 2,
@@ -197,7 +198,7 @@ const ReferenceModal = ({ isModalOpenReference, setCareerModalOpenReference, App
                                 <InputComponent
                                     // variant="plain"
                                     placeholder={"Condact number"}
-                                    type="text"
+                                    type='number'
                                     value={number}
                                     name="number"
                                     onchange={(e) => SetNumber(e.target.value)}

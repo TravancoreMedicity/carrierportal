@@ -23,14 +23,14 @@ const pages = [
 
 // const settings = ['Settings', 'Profile', 'Logout'];
 
-const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyData, personalData, profilePic }) => {
+const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyData, personalData }) => {
 
 
 
     const loggedInfo = useSelector((state) => getUser(state))
     const data = JSON.parse(loggedInfo)
-    const imageUrl = data?.image[0]?.value
-    const emal = data?.email[0]?.value
+    // const imageUrl = data?.image[0]?.value
+    // const emal = data?.email[0]?.value
     const ApplicationId = data?.id;
 
 
@@ -314,7 +314,7 @@ const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyD
                     }}>
 
                         <Dropdown >
-                            <MenuButton variant="plain" sx={{
+                            <MenuButton onClick={handleLogout} variant="plain" sx={{
                                 border: "1px solid #555555", borderRadius: 20,
 
                             }}>
@@ -336,7 +336,7 @@ const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyD
                                 } */}
 
                             </MenuButton>
-                            <Menu sx={{ backgroundColor: '#FFFBF5' }}>
+                            {/* <Menu sx={{ backgroundColor: '#FFFBF5' }}>
                                 <MenuItem className=' w-[100%]' component={Box} >
                                     <Box className="flex flex-1 justify-center items-center flex-col rounded-md" sx={{}} >
                                         {profilePic === '' ?
@@ -362,7 +362,7 @@ const CandidateHeader = ({ SetPageToShow, setJobData, setEditCount, setVaccancyD
                                     </Box>
 
                                 </MenuItem>
-                            </Menu>
+                            </Menu> */}
 
 
 

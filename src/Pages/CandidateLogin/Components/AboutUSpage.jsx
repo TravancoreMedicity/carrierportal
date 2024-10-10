@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/joy'
 import React, { memo } from 'react'
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import CallIcon from '@mui/icons-material/Call';
+import Logo from "../../../assets/MEDICITY LOGO.png"
 
 const AboutUSpage = () => {
     return (
@@ -81,6 +82,9 @@ const AboutUSpage = () => {
                 </Box>
 
 
+            </Box>
+            <Box sx={{ mt: 1 }} >
+                <img src={Logo} alt='Travancore' width={120} height={120} />
             </Box>
         </Box>
     )
