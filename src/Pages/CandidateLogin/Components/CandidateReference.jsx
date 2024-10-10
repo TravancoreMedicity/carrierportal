@@ -93,7 +93,7 @@ const CandidateReference = ({ ApplicationId, count, setcount }) => {
                         </Box>
                     ))
                 ) : (
-                    <Typography level="body-sm">No  details found.</Typography>
+                    <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 15, fontWeight: 350, color: '#555555', }}>No  details found.</Typography>
                 )}
 
             </Box>

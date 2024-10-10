@@ -82,7 +82,7 @@ const CandidateResume = ({ ApplicationId, count, setcount }) => {
                                 </Box>
                             </Box>
                         </Box>
-                        <Box sx={{ display: 'flex', mt: 1, gap: 2 }}>
+                        <Box sx={{ display: 'flex', mt: 1, gap: 2, cursor: 'pointer' }}>
                             {tableData?.map((filename, index) => {
                                 const parts = filename?.split('/');
                                 const fileNamePart = parts[parts.length - 1];

@@ -10,7 +10,7 @@ export const succesNofity = (message) => toast.success(message, {
     draggable: true,
     progress: undefined,
     transition: Flip,
-    theme: "colored"
+    // theme: "colored"
 });
 
 export const errorNofity = (message) => toast.error(message, {
@@ -22,7 +22,7 @@ export const errorNofity = (message) => toast.error(message, {
     draggable: true,
     progress: undefined,
     transition: Flip,
-    theme: "colored"
+    // theme: "colored"
 });
 
 export const warningNofity = (message) => toast.warning(message, {
@@ -34,7 +34,7 @@ export const warningNofity = (message) => toast.warning(message, {
     draggable: true,
     progress: undefined,
     transition: Flip,
-    theme: "colored"
+    // theme: "colored"
 });
 
 export const infoNofity = (message) => toast.info(message, {
@@ -46,5 +46,5 @@ export const infoNofity = (message) => toast.info(message, {
     draggable: true,
     progress: undefined,
     transition: Flip,
-    theme: "colored"
+    // theme: "colored"
 });

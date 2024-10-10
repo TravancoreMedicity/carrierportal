@@ -106,12 +106,16 @@ const CandidateDashBoard = ({ personalData, count, setcount, pageToShow, SetPage
                             },
                         }}>
                             <Typography
-                                sx={{ fontFamily: "Bahnschrift", fontSize: 33, fontWeight: 500, color: '#555555', p: 0, m: 0, }}
-                            >{name}
+                                sx={{ fontFamily: "Bahnschrift", fontSize: 33, fontWeight: 500, color: '#555555', p: 0, m: 0, textTransform: "capitalize" }}
+                            >
+                                {personalData?.length !== 0
+                                    ? (personalData.last_name ? personalData.first_name + ' ' + personalData.last_name : personalData.first_name)
+                                    : "Not Updated"}
+
                             </Typography>
                             <Typography
-                                sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', p: 0, m: 0 }}
-                            >{personalData?.length !== 0 ? personalData?.address2 : "Not Updated"}
+                                sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', p: 0, m: 0, textTransform: "capitalize" }}
+                            >{personalData?.length !== 0 ? personalData?.dist_name.toLowerCase() : "Not Updated"}
                             </Typography>
                             <Typography
                                 sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', p: 0, m: 0 }}
@@ -119,7 +123,7 @@ const CandidateDashBoard = ({ personalData, count, setcount, pageToShow, SetPage
                             </Typography>
                             <Typography
                                 sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', p: 0, m: 0, }}
-                            >{personalData?.length !== 0 ? personalData?.mobile_num : "Not Updated"}
+                            >+91 {personalData?.length !== 0 ? personalData?.mobile_num : "Not Updated"}
                             </Typography>
                         </Box>
                     </Box>

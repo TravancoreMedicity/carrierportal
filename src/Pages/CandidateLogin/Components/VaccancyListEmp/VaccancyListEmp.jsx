@@ -21,7 +21,7 @@ const VaccancyListEmp = ({ vaccancyData, personalData, setcount }) => {
     const handleonclick = useCallback(async (e, currentItem) => {
         SetSelectedData(currentItem);
         const desgId = currentItem?.desg_id;
-        if (personalData !== null) {
+        if (personalData?.Education_details.length > 0) {
             const isDesgIdInJobApplied = personalData?.Job_applied.includes(desgId);
             if (isDesgIdInJobApplied === true) {
                 warningNofity("You Have Already Applied For This Job")
@@ -81,7 +81,7 @@ const VaccancyListEmp = ({ vaccancyData, personalData, setcount }) => {
                                         <Box key={idx} sx={{ display: 'flex', justifyContent: 'center' }}>
                                             {/* First Box */}
                                             <Box sx={{ width: "100%", display: 'flex', justifyContent: 'space-around' }}>
-                                                <Box sx={{ mt: 2, width: '100%', cursor: 'pointer' }}>
+                                                <Box sx={{ mt: 2, width: '88%', cursor: 'pointer' }}>
                                                     <Card sx={{ borderRadius: 15, backgroundColor: '#FFFBF5' }}>
                                                         <Box sx={{}}>
                                                             <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
@@ -194,7 +194,7 @@ const VaccancyListEmp = ({ vaccancyData, personalData, setcount }) => {
                                                     </Box>
                                                     : ''}
 
-                                                <Box sx={{ mt: 2, width: '100%', cursor: 'pointer' }}>
+                                                <Box sx={{ mt: 2, width: '88%', cursor: 'pointer' }}>
                                                     <Card sx={{ borderRadius: 15, backgroundColor: '#FFFBF5' }}>
                                                         <Box sx={{}}>
                                                             <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>

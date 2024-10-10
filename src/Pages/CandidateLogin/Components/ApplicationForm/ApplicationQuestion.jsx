@@ -11,8 +11,8 @@ const ApplicationQuestion = ({ setformdata, formdata, seteducation, Regionexp, s
     return (
         <>
 
-            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", fontSize: 20, fontWeight: 500, color: '#555555', }}>WORK AND EDUCATION HISTORY</Typography>
-            <Typography sx={{ fontFamily: "Bahnschrift", color: '#555555', }}>Please enter details about your work experience and education.</Typography>
+            {/* <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", fontSize: 20, fontWeight: 500, color: '#555555', }}>WORK AND EDUCATION HISTORY</Typography>
+            <Typography sx={{ fontFamily: "Bahnschrift", color: '#555555', }}>Please enter details about your work experience and education.</Typography> */}
             <WorkAndEducation
                 setformdata={setformdata} formdata={formdata} seteducation={seteducation} Regionexp={Regionexp} course={course} setCourse={setCourse}
                 setRegionexp={setRegionexp} Regionedu={Regionedu} setRegionedu={setRegionedu} handleOnClick={handleOnClick} eduname={eduname}

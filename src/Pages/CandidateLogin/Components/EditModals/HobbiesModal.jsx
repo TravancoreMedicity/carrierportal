@@ -144,8 +144,8 @@ const HobbiesModal = ({ setCareerModalOpenHobbies, isModalOpenHobbies, Applicati
                         <Box
                             variant="outlined"
                             sx={{
-
-
+                                p: 1,
+                                height: window.innerHeight - 450, overflowX: "auto", '::-webkit-scrollbar': { display: "none" },
                                 borderRadius: 'md',
                                 // boxShadow: 'lg',
                                 marginTop: 2,
@@ -196,7 +196,7 @@ const HobbiesModal = ({ setCareerModalOpenHobbies, isModalOpenHobbies, Applicati
                                             return (
                                                 <tr key={index}>
                                                     <td>{slNo}</td>
-                                                    <td>{item?.hobbies === null ? "not updated" : item?.hobbies}</td>
+                                                    <td style={{ wordBreak: 'break-word' }}>{item?.hobbies === null ? "not updated" : item?.hobbies}</td>
                                                     <td>
                                                         <IconButton sx={{}} size='small' color='primary' onClick={() => EditData(item)}>
                                                             <EditIcon sx={{ color: "#555555" }} />

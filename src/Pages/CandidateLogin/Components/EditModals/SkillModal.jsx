@@ -145,7 +145,8 @@ const SkillModal = ({ setCareerModalOpenSkill, isModalOpenskill, ApplicationId, 
                         <Box
 
                             sx={{
-
+                                p: 1,
+                                height: window.innerHeight - 450, overflowX: "auto", '::-webkit-scrollbar': { display: "none" },
                                 borderRadius: 'md',
                                 // boxShadow: 'lg',
                                 marginTop: 2,
@@ -183,7 +184,7 @@ const SkillModal = ({ setCareerModalOpenSkill, isModalOpenskill, ApplicationId, 
                                     <thead>
                                         <tr>
                                             <th >Sl no</th>
-                                            <th style={{ width: '40%' }}>Skills</th>
+                                            <th style={{ width: '40%', }}>Skills</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
@@ -195,7 +196,7 @@ const SkillModal = ({ setCareerModalOpenSkill, isModalOpenskill, ApplicationId, 
                                             return (
                                                 <tr key={index}>
                                                     <td>{slNo}</td>
-                                                    <td>{item?.skills_desc === null ? "not updated" : item?.skills_desc}</td>
+                                                    <td style={{ wordBreak: 'break-word' }}>{item?.skills_desc === null ? "not updated" : item?.skills_desc}</td>
                                                     <td>
                                                         <IconButton sx={{}} size='small' color='primary' onClick={() => EditData(item)}>
                                                             <EditIcon sx={{ color: "#555555" }} />

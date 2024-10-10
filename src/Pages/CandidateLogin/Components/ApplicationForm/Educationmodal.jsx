@@ -278,7 +278,7 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
 
                         </Box>
                         <Box sx={{}}>
-                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>School Name
+                            <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>School / University Name
                                 <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                             </Typography>
                         </Box>
@@ -339,11 +339,12 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
                         <Box sx={{}}>
                             <InputComponent
                                 // variant="plain"
-                                type="text"
+                                type="number"
                                 value={AvgGrade}
                                 name="AvgGrade"
                                 onchange={(e) => updateBoard(e)}
                                 size="md"
+
                             />
                         </Box>
                         <Box sx={{}}>
@@ -354,7 +355,7 @@ const Educationmodal = ({ setIsModalOpenedu, isModalOpenedu, Regionedu, setRegio
                         <Box sx={{}}>
                             <InputComponent
                                 // variant="plain"
-                                type="text"
+                                type="number"
                                 value={gpa}
                                 name="gpa"
                                 onchange={(e) => updateBoard(e)}

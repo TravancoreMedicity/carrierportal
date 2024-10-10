@@ -79,7 +79,7 @@ const WorkAndEducation = ({ formdata, setformdata, seteducation, Regionexp, setR
     }, [])
     return (
         <>
-            <Box sx={{ display: 'flex', g: 1, mt: 2 }}>
+            {/* <Box sx={{ display: 'flex', g: 1, mt: 2 }}>
                 <Box sx={{ width: "50%", border: "1px solid  #555555", }}>
                     <Tooltip title="Add Your Experience">
                         <Box sx={{ p: 1, cursor: 'pointer' }}
@@ -101,8 +101,8 @@ const WorkAndEducation = ({ formdata, setformdata, seteducation, Regionexp, setR
                     </Tooltip>
 
                 </Box>
-            </Box>
-            <Box sx={{ display: 'flex', g: 1, mt: 2 }}>
+            </Box> */}
+            {/* <Box sx={{ display: 'flex', g: 1, mt: 2 }}>
                 <Box sx={{ width: "50%", display: 'flex', flexDirection: 'column' }} >
                     {
                         expdata?.map((val, index) => {
@@ -163,7 +163,7 @@ const WorkAndEducation = ({ formdata, setformdata, seteducation, Regionexp, setR
                         })
                     }
                 </Box>
-            </Box>
+            </Box> */}
             <Box sx={{ mt: 3 }}>
                 <JoyCheckbox
                     label='I hereby declare that the details mentioned above are correct.'

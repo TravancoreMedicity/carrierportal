@@ -141,7 +141,7 @@ const AboutModal = ({ setCareerModalOpenAbout, isModalOpenAbout, ApplicationId, 
                             bgcolor: 'background.body',
                         }}
                     />
-                    <Box>
+                    <Box sx={{ p: 1, height: window.innerHeight - 450, overflowX: "auto", '::-webkit-scrollbar': { display: "none" }, }}>
                         <Box sx={{ display: 'flex', gap: 1 }}>
                             <Typography level="body-md" sx={{ fontFamily: "Bahnschrift", fontSize: 20, fontWeight: 350, color: '#555555', }}>About </Typography>
                             <EditIcon sx={{ color: "#555555" }} />
@@ -226,7 +226,7 @@ const AboutModal = ({ setCareerModalOpenAbout, isModalOpenAbout, ApplicationId, 
                             </Box>
                             <Box sx={{ display: 'flex', mt: 1 }}>
                                 <Box sx={{
-                                    width: '50%',
+                                    width: '10%',
                                 }}>
                                     <Tooltip title="Upload Image">
                                         <IconButton size='sm' sx={{
@@ -257,7 +257,7 @@ const AboutModal = ({ setCareerModalOpenAbout, isModalOpenAbout, ApplicationId, 
 
 
                                 <Box sx={{
-                                    width: '50%',
+                                    width: '10%',
                                 }} onClick={handleUpload}>
                                     <Tooltip title="Save Image">
                                         <IconButton size='sm' sx={{
