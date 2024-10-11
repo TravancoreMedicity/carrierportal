@@ -10,7 +10,25 @@ import DeleteIcon from '@mui/icons-material/Delete';
 // import AddIcon from '@mui/icons-material/Add';
 import moment from 'moment';
 import JoyCheckbox from '../../../Muicomponents/JoyCheckbox';
+import AddIcon from '@mui/icons-material/Add';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { useSpring, animated } from '@react-spring/web';
+import { Backdrop } from '@mui/material';
 
+
+const Fade = React.forwardRef((props, ref) => {
+    const { in: open, children, ownerState, ...other } = props
+    const style = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: open ? 1 : 0 },
+    });
+
+    return (
+        <animated.div ref={ref} style={style} {...other}>
+            {children}
+        </animated.div>
+    );
+});
 
 const ExperienceModal = ({ setCareerModalOpenexp, isModalOpenexp, ApplicationId, setcount, count, personalData }) => {
 
@@ -181,6 +199,13 @@ const ExperienceModal = ({ setCareerModalOpenexp, isModalOpenexp, ApplicationId,
                 aria-describedby="modal-desc"
                 open={isModalOpenexp}
                 onClose={onClose}
+                // closeAfterTransition
+                slots={{ backdrop: Backdrop }}
+                slotProps={{
+                    backdrop: {
+                        TransitionComponent: Fade,
+                    },
+                }}
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
                 <ModalDialog size='sm' sx={{
@@ -202,12 +227,12 @@ const ExperienceModal = ({ setCareerModalOpenexp, isModalOpenexp, ApplicationId,
                     />
                     <Box sx={{ p: 1 }}>
 
-                        <Typography sx={{ fontFamily: "Bahnschrift", color: '#555555', }}>Add your Experience Information</Typography>
+                        <Typography sx={{ fontFamily: "Bahnschrift", color: '#555555', fontSize: 18, fontWeight: 400, }}>Add your Experience Information</Typography>
 
-                        <Box sx={{ height: window.innerHeight - 350, overflowX: "auto", '::-webkit-scrollbar': { display: "none" } }}>
+                        <Box sx={{ height: window.innerHeight - 250, overflowX: "auto", '::-webkit-scrollbar': { display: "none" } }}>
 
                             <Box sx={{}}>
-                                <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Company Name / Institution Name
+                                <Typography sx={{ mt: 2, fontFamily: "Bahnschrift", color: '#555555', fontSize: { xs: 15 }, fontWeight: 500, opacity: 0.6, }}>Company Name / Institution Name
                                     <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                                 </Typography>
                             </Box>
@@ -219,10 +244,15 @@ const ExperienceModal = ({ setCareerModalOpenexp, isModalOpenexp, ApplicationId,
                                     name="Employer"
                                     onchange={(e) => updateBoard(e)}
                                     size="md"
+                                    style={{
+                                        width: '100%',
+                                        '--Input-focusedThickness': '0.02rem',
+                                        '--Input-focusedHighlight': '#6e7782',
+                                    }}
                                 />
                             </Box>
                             <Box sx={{}}>
-                                <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Job Title
+                                <Typography sx={{ mt: 1, fontFamily: "Bahnschrift", color: '#555555', fontSize: { xs: 15 }, fontWeight: 500, opacity: 0.6, }}>Job Title
                                     <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                                 </Typography>
                             </Box>
@@ -234,10 +264,15 @@ const ExperienceModal = ({ setCareerModalOpenexp, isModalOpenexp, ApplicationId,
                                     name="jobexp"
                                     onchange={(e) => updateBoard(e)}
                                     size="md"
+                                    style={{
+                                        width: '100%',
+                                        '--Input-focusedThickness': '0.02rem',
+                                        '--Input-focusedHighlight': '#6e7782',
+                                    }}
                                 />
                             </Box>
                             <Box sx={{}}>
-                                <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Start Date
+                                <Typography sx={{ mt: 1, fontFamily: "Bahnschrift", color: '#555555', fontSize: { xs: 15 }, fontWeight: 500, opacity: 0.6, }}>Start Date
                                     <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                                 </Typography>
                             </Box>
@@ -249,10 +284,16 @@ const ExperienceModal = ({ setCareerModalOpenexp, isModalOpenexp, ApplicationId,
                                     name="expstartdate"
                                     onchange={(e) => updateBoard(e)}
                                     size="md"
+                                    style={{
+                                        width: '100%',
+                                        '--Input-focusedThickness': '0.02rem',
+                                        '--Input-focusedHighlight': '#6e7782',
+                                        fontFamily: "Bahnschrift", fontSize: { xs: 15 }, fontWeight: 400,
+                                    }}
                                 />
                             </Box>
                             <Box sx={{}}>
-                                <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>End Date
+                                <Typography sx={{ mt: 1, fontFamily: "Bahnschrift", color: '#555555', fontSize: { xs: 15 }, fontWeight: 500, opacity: 0.6, }}>End Date
                                     <Typography sx={{ mt: 3, color: 'red' }}>* </Typography>
                                 </Typography>
                             </Box>
@@ -264,10 +305,17 @@ const ExperienceModal = ({ setCareerModalOpenexp, isModalOpenexp, ApplicationId,
                                     name="expenddate"
                                     onchange={(e) => updateBoard(e)}
                                     size="md"
+                                    style={{
+                                        width: '100%',
+                                        '--Input-focusedThickness': '0.02rem',
+                                        '--Input-focusedHighlight': '#6e7782',
+                                        fontFamily: "Bahnschrift", fontSize: { xs: 15 }, fontWeight: 400,
+                                    }}
                                 />
                             </Box>
-                            <Box sx={{ mt: 3 }}>
+                            <Box sx={{ mt: 1 }}>
                                 <JoyCheckbox
+                                    size="sm"
                                     label='Currently Working'
                                     name="Workingstatus"
                                     checked={Workingstatus}
@@ -277,7 +325,7 @@ const ExperienceModal = ({ setCareerModalOpenexp, isModalOpenexp, ApplicationId,
 
 
                             <Box sx={{}}>
-                                <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Responsibilities
+                                <Typography sx={{ mt: 1, fontFamily: "Bahnschrift", fontSize: { xs: 15 }, fontWeight: 500, opacity: 0.6, }}>Responsibilities
                                 </Typography>
                             </Box>
                             <Box sx={{}}>
@@ -288,10 +336,15 @@ const ExperienceModal = ({ setCareerModalOpenexp, isModalOpenexp, ApplicationId,
                                     name="Responsibilities"
                                     onchange={(e) => updateBoard(e)}
                                     size="md"
+                                    style={{
+                                        width: '100%',
+                                        '--Input-focusedThickness': '0.02rem',
+                                        '--Input-focusedHighlight': '#6e7782',
+                                    }}
                                 />
                             </Box>
                             <Box sx={{}}>
-                                <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Supervisor Name
+                                <Typography sx={{ mt: 1, fontFamily: "Bahnschrift", color: '#555555', fontSize: { xs: 15 }, fontWeight: 500, opacity: 0.6, }}>Supervisor Name
 
                                 </Typography>
                             </Box>
@@ -303,10 +356,15 @@ const ExperienceModal = ({ setCareerModalOpenexp, isModalOpenexp, ApplicationId,
                                     name="SupervisorName"
                                     onchange={(e) => updateBoard(e)}
                                     size="md"
+                                    style={{
+                                        width: '100%',
+                                        '--Input-focusedThickness': '0.02rem',
+                                        '--Input-focusedHighlight': '#6e7782',
+                                    }}
                                 />
                             </Box>
                             <Box sx={{}}>
-                                <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Additional Information
+                                <Typography sx={{ mt: 1, fontFamily: "Bahnschrift", color: '#555555', fontSize: { xs: 15 }, fontWeight: 500, opacity: 0.6, }}>Additional Information
 
                                 </Typography>
                             </Box>
@@ -318,10 +376,15 @@ const ExperienceModal = ({ setCareerModalOpenexp, isModalOpenexp, ApplicationId,
                                     name="Additionalinf"
                                     onchange={(e) => updateBoard(e)}
                                     size="md"
+                                    style={{
+                                        width: '100%',
+                                        '--Input-focusedThickness': '0.02rem',
+                                        '--Input-focusedHighlight': '#6e7782',
+                                    }}
                                 />
                             </Box>
                             <Box sx={{}}>
-                                <Typography sx={{ mt: 3, fontFamily: "Bahnschrift", color: '#555555', }}>Supervisor Condact Number
+                                <Typography sx={{ mt: 1, fontFamily: "Bahnschrift", color: '#555555', fontSize: { xs: 15 }, fontWeight: 500, opacity: 0.6, }}>Supervisor Condact Number
 
                                 </Typography>
                             </Box>
@@ -333,26 +396,27 @@ const ExperienceModal = ({ setCareerModalOpenexp, isModalOpenexp, ApplicationId,
                                     name='Other'
                                     onchange={(e) => updateBoard(e)}
                                     size="md"
+                                    style={{
+                                        width: '100%',
+                                        '--Input-focusedThickness': '0.02rem',
+                                        '--Input-focusedHighlight': '#6e7782',
+                                    }}
                                 />
                             </Box>
 
 
 
-                            <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
 
-                                <Button sx={{
-                                    color: '#555555',
-                                    p: 0, width: "15%", '@media screen and (max-width: 768px)': {
-                                        width: "40%",
-                                    },
-                                }} size='sm' variant="outlined"
-                                    onClick={Datasave}
-                                >
-                                    Save
-                                </Button>
+
+                            <Box sx={{ flex: 0, px: 0.5, mt: 2, display: 'flex', justifyContent: 'flex-end', }} >
+                                <Tooltip title="Add Your Experience Information" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow>
+                                    <IconButton variant="outlined" size='sm' onClick={Datasave} sx={{ p: .5 }}>
+                                        <AddCircleOutlineIcon sx={{ color: "#555555" }} />
+                                    </IconButton>
+                                </Tooltip>
                             </Box>
 
-                            <Box sx={{ mt: 1 }}>
+                            <Box sx={{ mt: 2 }}>
                                 <Table aria-label="basic table" size="sm" sx={{
                                     "--Table-headerUnderlineThickness": "1px",
                                     "--TableCell-height": "0px",
@@ -360,12 +424,12 @@ const ExperienceModal = ({ setCareerModalOpenexp, isModalOpenexp, ApplicationId,
                                 }}>
                                     <thead>
                                         <tr>
-                                            <th>Sl no</th>
+                                            <th style={{ width: '10%' }}>Sl no</th>
                                             <th style={{}}>Company Name</th>
                                             <th style={{}}>Job Title</th>
                                             <th style={{}}>Supervisor Name</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
+                                            <th style={{ width: 30, }}></th>
+                                            <th style={{ width: 30, }}> </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -383,13 +447,21 @@ const ExperienceModal = ({ setCareerModalOpenexp, isModalOpenexp, ApplicationId,
                                                         {exp?.SupervisorName === null ? "not updated" : exp?.SupervisorName}
                                                     </td>
                                                     <td>
+
+
                                                         <IconButton size='small' color='primary'>
-                                                            <EditIcon sx={{ color: "#555555" }} onClick={() => EditData(exp)} />
+                                                            <Tooltip title="Edit" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow >
+                                                                <EditIcon sx={{ color: "#555555" }} onClick={() => EditData(exp)} />
+                                                            </Tooltip>
                                                         </IconButton>
+
                                                     </td>
                                                     <td>
                                                         <IconButton size='small' color='primary'>
-                                                            <DeleteIcon sx={{ color: "#555555" }} onClick={() => DeleteData(exp)} />
+                                                            <Tooltip title="Delete" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow >
+                                                                <DeleteIcon sx={{ color: "#555555" }} onClick={() => DeleteData(exp)} />
+                                                            </Tooltip>
+
                                                         </IconButton>
                                                     </td>
                                                 </tr>

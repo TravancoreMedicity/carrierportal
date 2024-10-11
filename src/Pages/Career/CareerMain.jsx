@@ -28,11 +28,6 @@ const CareerMain = ({ data, handleChange, isModalOpen, setIsModalOpen }) => {
                 <Box>
                     {data?.map((item, index) => (
                         <Box key={index}>
-                            <Box sx={{ mt: 2, borderBottom: '1px solid #DFDFDF', display: 'flex', justifyContent: 'center' }}>
-                                <Box sx={{ width: "75%" }}>
-                                    <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 300, color: '#555555', }} >POSTED ON: {item?.annouced_date}</Typography>
-                                </Box>
-                            </Box>
 
 
                             {item?.data?.map((currentItem, idx) => {
@@ -68,8 +63,13 @@ const CareerMain = ({ data, handleChange, isModalOpen, setIsModalOpen }) => {
                                                                     <Typography sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 300, color: '#555555', }}>
                                                                         JOB ID: {currentItem?.manpower_Request_slno}
                                                                     </Typography>
-                                                                    <Typography sx={{ wordBreak: 'break-word', color: '#FF76CE', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 300, }}>
+                                                                    <Typography sx={{ wordBreak: 'break-word', color: '#FF76CE', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, }}>
                                                                         Apply Before: {moment(new Date(currentItem?.required_date)).format('DD-MM-YYYY HH MM a')}
+                                                                    </Typography>
+                                                                </Box>
+                                                                <Box sx={{ display: 'flex', justifyContent: "end" }}>
+                                                                    <Typography sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", color: '#555555', fontSize: 12, fontWeight: 300, }}>
+                                                                        Posted On: {item?.annouced_date}
                                                                     </Typography>
                                                                 </Box>
                                                             </Box>
@@ -164,8 +164,14 @@ const CareerMain = ({ data, handleChange, isModalOpen, setIsModalOpen }) => {
                                                                     <Typography sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 300, color: '#555555', }}>
                                                                         JOB ID: {currentItem?.manpower_Request_slno}
                                                                     </Typography>
-                                                                    <Typography sx={{ wordBreak: 'break-word', color: '#FF76CE', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 300, }}>
+                                                                    <Typography sx={{ wordBreak: 'break-word', color: '#FF76CE', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, }}>
                                                                         Apply Before: {moment(new Date(currentItem?.required_date)).format('DD-MM-YYYY HH MM a')}
+                                                                    </Typography>
+
+                                                                </Box>
+                                                                <Box sx={{ display: 'flex', justifyContent: "end" }}>
+                                                                    <Typography sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", color: '#555555', fontSize: 12, fontWeight: 300, }}>
+                                                                        Posted On: {item?.annouced_date}
                                                                     </Typography>
                                                                 </Box>
                                                             </Box>

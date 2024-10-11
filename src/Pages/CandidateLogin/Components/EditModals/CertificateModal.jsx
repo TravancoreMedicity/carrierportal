@@ -7,7 +7,26 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import imageCompression from 'browser-image-compression'
 import CloseSharpIcon from '@mui/icons-material/CloseSharp';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
+import AddIcon from '@mui/icons-material/Add';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { useSpring, animated } from '@react-spring/web';
+import { Backdrop } from '@mui/material';
 
+
+const Fade = React.forwardRef((props, ref) => {
+    const { in: open, children, ownerState, ...other } = props
+    const style = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: open ? 1 : 0 },
+    });
+
+    return (
+        <animated.div ref={ref} style={style} {...other}>
+            {children}
+        </animated.div>
+    );
+});
 const ViewModalCert = lazy(() => import('../CandidateEdit/ViewModalCertificate'))
 
 
@@ -197,6 +216,13 @@ const CertificateModal = ({ setCareerModalOpenCertificate, isModalOpenCertificat
                 aria-describedby="modal-desc"
                 open={isModalOpenCertificate}
                 onClose={onClose}
+                // closeAfterTransition
+                slots={{ backdrop: Backdrop }}
+                slotProps={{
+                    backdrop: {
+                        TransitionComponent: Fade,
+                    },
+                }}
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
                 <ModalDialog size='sm' sx={{
@@ -220,11 +246,11 @@ const CertificateModal = ({ setCareerModalOpenCertificate, isModalOpenCertificat
                         <Box
 
                             sx={{
-                                height: window.innerHeight - 450, overflowX: "auto", '::-webkit-scrollbar': { display: "none" },
+                                height: window.innerHeight - 250, overflowX: "auto", '::-webkit-scrollbar': { display: "none" },
                                 p: 1,
                                 borderRadius: 'md',
                                 // boxShadow: 'lg',
-                                marginTop: 2,
+                                // marginTop: 2,
                                 '@media screen and (max-width: 768px)': {
                                     padding: 1,
                                 },
@@ -233,13 +259,13 @@ const CertificateModal = ({ setCareerModalOpenCertificate, isModalOpenCertificat
                                 <Typography sx={{
                                     fontFamily: "Bahnschrift",
                                     fontSize: 18,
-                                    fontWeight: 450,
+                                    fontWeight: 400,
                                     color: '#555555',
                                 }}  >
                                     Upload Certificate
                                 </Typography>
                             </Box>
-                            <Box sx={{ mt: 1 }}>
+                            <Box sx={{ mt: 2 }}>
                                 <Select
                                     value={value}
                                     onChange={(event, newValue) => {
@@ -300,10 +326,13 @@ const CertificateModal = ({ setCareerModalOpenCertificate, isModalOpenCertificat
 
                                 </Select>
                             </Box>
+                            {/* <Box sx={{ display: 'flex', gap: 1 }}> */}
+
+
                             <Box
                                 sx={{
                                     mt: 1,
-                                    border: "3px dotted #DFDFDF",
+                                    border: "1px solid #DFDFDF",
                                     display: 'flex',
                                     flexDirection: { xs: 'column', sm: 'row' },
                                     width: '100%',
@@ -352,7 +381,7 @@ const CertificateModal = ({ setCareerModalOpenCertificate, isModalOpenCertificat
                                             }}
                                         >
                                             <Box sx={{ flexGrow: 1 }}>
-                                                <Typography level='body-xs'>{file?.name}</Typography>
+                                                <Typography level='body-xs' sx={{ pl: 1 }}>{file?.name}</Typography>
                                             </Box>
                                             <Box
                                                 sx={{
@@ -372,12 +401,21 @@ const CertificateModal = ({ setCareerModalOpenCertificate, isModalOpenCertificat
                                         </Box>
                                     ))}
                                 </Box>
+
+
+
                             </Box>
-                            <Box sx={{ mt: 2 }}>
-                                <Button variant="outlined" size='sm' onClick={handleUpload} sx={{ width: '100%', color: "#555555" }}>
-                                    Upload Your File
-                                </Button>
+
+
+                            <Box sx={{ flex: 0, px: 0.5, mt: 1, justifyContent: 'end', display: 'flex' }} >
+                                <Tooltip title="Upload Your Certificate" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow>
+                                    <IconButton variant="outlined" size='sm' onClick={handleUpload} sx={{ p: .5 }}>
+                                        <CloudUploadIcon sx={{ color: "#555555" }} />
+                                    </IconButton>
+                                </Tooltip>
+
                             </Box>
+                            {/* </Box> */}
                             <Box sx={{ mt: 2 }}>
                                 <Table aria-label="basic table" size="sm" sx={{
                                     "--Table-headerUnderlineThickness": "1px",
@@ -389,8 +427,8 @@ const CertificateModal = ({ setCareerModalOpenCertificate, isModalOpenCertificat
 
                                             <th style={{ width: '40%' }}>File Name</th>
                                             <th>date</th>
-                                            <th>view</th>
-                                            <th>Delete</th>
+                                            <th style={{ width: 30, }}></th>
+                                            <th style={{ width: 30, }}></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -411,12 +449,20 @@ const CertificateModal = ({ setCareerModalOpenCertificate, isModalOpenCertificat
 
                                                     <td>
                                                         <IconButton sx={{}} size='small' color='primary' onClick={() => EditData(filename)}>
-                                                            <ImageSearchIcon sx={{ color: "#555555" }} />
+                                                            <Tooltip title="View" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow>
+
+                                                                <ImageSearchIcon sx={{ color: "#555555" }} />
+                                                            </Tooltip>
+
                                                         </IconButton>
                                                     </td>
                                                     <td>
                                                         <IconButton sx={{}} size='small' color='primary' onClick={() => DeleteItem(fileNamePart)} >
-                                                            <DeleteIcon sx={{ color: "#555555" }} />
+                                                            <Tooltip title="Delete" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow>
+
+                                                                <DeleteIcon sx={{ color: "#555555" }} />
+                                                            </Tooltip>
+
                                                         </IconButton>
                                                     </td>
                                                 </tr>

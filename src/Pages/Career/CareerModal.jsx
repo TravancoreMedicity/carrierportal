@@ -2,7 +2,23 @@ import { Box, Modal, ModalDialog, Typography } from '@mui/joy'
 import React, { memo, useCallback, } from 'react'
 import ModalClose from '@mui/joy/ModalClose';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import { useSpring, animated } from '@react-spring/web';
+import { Backdrop } from '@mui/material';
 
+
+const Fade = React.forwardRef((props, ref) => {
+    const { in: open, children, ownerState, ...other } = props
+    const style = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: open ? 1 : 0 },
+    });
+
+    return (
+        <animated.div ref={ref} style={style} {...other}>
+            {children}
+        </animated.div>
+    );
+});
 const CareerModal = ({ setIsModalOpenmain, isModalOpenmain, SelectedData, isModalOpen, setIsModalOpen }) => {
 
 
@@ -22,6 +38,13 @@ const CareerModal = ({ setIsModalOpenmain, isModalOpenmain, SelectedData, isModa
                 aria-describedby="modal-desc"
                 open={isModalOpenmain}
                 onClose={onClose}
+                // closeAfterTransition
+                slots={{ backdrop: Backdrop }}
+                slotProps={{
+                    backdrop: {
+                        TransitionComponent: Fade,
+                    },
+                }}
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
                 <ModalDialog size='sm' sx={{ width: '70%', backgroundColor: '#FFFBF5', }}>

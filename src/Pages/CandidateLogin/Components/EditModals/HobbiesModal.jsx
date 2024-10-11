@@ -1,4 +1,4 @@
-import { Box, IconButton, Modal, ModalClose, ModalDialog, Table, Typography, } from '@mui/joy'
+import { Box, IconButton, Modal, ModalClose, ModalDialog, Table, Tooltip, Typography, } from '@mui/joy'
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import InputComponent from '../../../Muicomponents/InputComponent'
 import { succesNofity, warningNofity } from '../../../CommonCode/CommonFunc';
@@ -6,7 +6,24 @@ import axioslogin from '../../../../Axios/Axios';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { useSpring, animated } from '@react-spring/web';
+import { Backdrop } from '@mui/material';
 
+
+const Fade = React.forwardRef((props, ref) => {
+    const { in: open, children, ownerState, ...other } = props
+    const style = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: open ? 1 : 0 },
+    });
+
+    return (
+        <animated.div ref={ref} style={style} {...other}>
+            {children}
+        </animated.div>
+    );
+});
 const HobbiesModal = ({ setCareerModalOpenHobbies, isModalOpenHobbies, ApplicationId, count, setcount, }) => {
 
     const [Hobbies, setHobbies] = useState('')
@@ -121,6 +138,13 @@ const HobbiesModal = ({ setCareerModalOpenHobbies, isModalOpenHobbies, Applicati
                 aria-describedby="modal-desc"
                 open={isModalOpenHobbies}
                 onClose={onClose}
+                // closeAfterTransition
+                slots={{ backdrop: Backdrop }}
+                slotProps={{
+                    backdrop: {
+                        TransitionComponent: Fade,
+                    },
+                }}
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
                 <ModalDialog size='sm' sx={{
@@ -145,17 +169,20 @@ const HobbiesModal = ({ setCareerModalOpenHobbies, isModalOpenHobbies, Applicati
                             variant="outlined"
                             sx={{
                                 p: 1,
-                                height: window.innerHeight - 450, overflowX: "auto", '::-webkit-scrollbar': { display: "none" },
+                                height: window.innerHeight - 250, overflowX: "auto", '::-webkit-scrollbar': { display: "none" },
                                 borderRadius: 'md',
                                 // boxShadow: 'lg',
-                                marginTop: 2,
+                                // marginTop: 2,
 
                                 '@media screen and (max-width: 768px)': {
                                     padding: 1,
                                 },
                             }}>
                             <Typography level="body-md" sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', }}>Add Your Hobbies</Typography>
-
+                            <Box sx={{ mt: 2 }}>
+                                <Typography sx={{ mt: 1, fontFamily: "Bahnschrift", color: '#555555', fontSize: { xs: 15 }, fontWeight: 500, opacity: 0.6, }}>Hobbies
+                                </Typography>
+                            </Box>
                             <Box sx={{ display: "flex", alignItems: "center", pb: 0.5 }} >
                                 <Box sx={{ flex: 1, pr: 1 }}>
                                     <InputComponent
@@ -165,13 +192,20 @@ const HobbiesModal = ({ setCareerModalOpenHobbies, isModalOpenHobbies, Applicati
                                         name="Hobbies"
                                         onchange={(e) => setHobbies(e.target.value)}
                                         size="md"
+                                        style={{
+                                            width: '100%',
+                                            '--Input-focusedThickness': '0.02rem',
+                                            '--Input-focusedHighlight': '#6e7782',
+                                        }}
                                     />
 
                                 </Box>
                                 <Box sx={{ flex: 0, px: 0.5 }} >
-                                    <IconButton variant="outlined" size='sm' color='primary' onClick={SubmitFormData}>
-                                        <AddIcon sx={{ color: "#555555" }} />
-                                    </IconButton>
+                                    <Tooltip title="Add your Hobbies" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow>
+                                        <IconButton variant="outlined" size='sm' onClick={SubmitFormData} sx={{ p: .5 }}>
+                                            <AddCircleOutlineIcon sx={{ color: "#555555" }} />
+                                        </IconButton>
+                                    </Tooltip>
                                 </Box>
                             </Box>
 
@@ -183,10 +217,10 @@ const HobbiesModal = ({ setCareerModalOpenHobbies, isModalOpenHobbies, Applicati
                                 }}>
                                     <thead>
                                         <tr>
-                                            <th >Sl no</th>
+                                            <th style={{ width: '10%' }} >Sl no</th>
                                             <th style={{ width: '40%' }}>Hobbies</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
+                                            <th style={{ width: 30, }}></th>
+                                            <th style={{ width: 30, }}></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -199,12 +233,20 @@ const HobbiesModal = ({ setCareerModalOpenHobbies, isModalOpenHobbies, Applicati
                                                     <td style={{ wordBreak: 'break-word' }}>{item?.hobbies === null ? "not updated" : item?.hobbies}</td>
                                                     <td>
                                                         <IconButton sx={{}} size='small' color='primary' onClick={() => EditData(item)}>
-                                                            <EditIcon sx={{ color: "#555555" }} />
+                                                            <Tooltip title="Edit" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow>
+
+                                                                <EditIcon sx={{ color: "#555555" }} />
+                                                            </Tooltip>
+
                                                         </IconButton>
                                                     </td>
                                                     <td>
                                                         <IconButton sx={{}} size='small' color='primary' onClick={() => DeleteItem(item)}>
-                                                            <DeleteIcon sx={{ color: "#555555" }} />
+                                                            <Tooltip title="Delete" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow>
+
+                                                                <DeleteIcon sx={{ color: "#555555" }} />
+                                                            </Tooltip>
+
                                                         </IconButton>
                                                     </td>
                                                 </tr>

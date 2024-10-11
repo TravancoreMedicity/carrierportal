@@ -6,6 +6,23 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useMediaQuery } from '@mui/material'
 import { Url } from '../../Constant/Static'
+import { useSpring, animated } from '@react-spring/web';
+import { Backdrop } from '@mui/material';
+
+
+const Fade = React.forwardRef((props, ref) => {
+    const { in: open, children, ownerState, ...other } = props
+    const style = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: open ? 1 : 0 },
+    });
+
+    return (
+        <animated.div ref={ref} style={style} {...other}>
+            {children}
+        </animated.div>
+    );
+});
 
 const Login = ({ setIsModalOpen, isModalOpen }) => {
     const theme = useTheme();
@@ -40,6 +57,13 @@ const Login = ({ setIsModalOpen, isModalOpen }) => {
                 aria-labelledby="modal-title"
                 aria-describedby="modal-desc"
                 open={isModalOpen}
+                // closeaftertransition
+                slots={{ backdrop: Backdrop }}
+                slotProps={{
+                    backdrop: {
+                        TransitionComponent: Fade,
+                    },
+                }}
                 onClose={onClose}
                 sx={{
                     display: 'flex', justifyContent: 'center', alignItems: 'center',
@@ -51,17 +75,7 @@ const Login = ({ setIsModalOpen, isModalOpen }) => {
                     sx={{
                         backgroundColor: '#FFFBF5',
                         width: '25%',
-                        animation: isModalOpen ? 'fadeInScale 0.1s ease forwards' : 'none',
-                        '@keyframes fadeInScale': {
-                            '0%': {
-                                opacity: 0,
-                                transform: 'scale(1.2)',
-                            },
-                            // '100%': {
-                            //     opacity: 1,
-                            //     // transform: 'scale(1)',
-                            // },
-                        },
+
 
                     }}>
                     <ModalClose
