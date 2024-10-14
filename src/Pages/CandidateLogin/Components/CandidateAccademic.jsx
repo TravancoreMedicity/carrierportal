@@ -5,22 +5,22 @@ import SchoolIcon from '@mui/icons-material/School';
 import axioslogin from '../../../Axios/Axios';
 
 
-const CandidateAccademic = ({ personalData, ApplicationId }) => {
+const CandidateAccademic = ({ personalData, ApplicationId, count, setcount }) => {
     const [edudata, setedudata] = useState([])
 
     useEffect(() => {
-
         const fetchData = async () => {
             const result = await axioslogin.get(`/common/educationDetails/${ApplicationId}`);
             const { success, data } = result.data
             if (success === 1 && data?.length > 0) {
                 setedudata(data)
+                setcount(0)
             } else {
                 setedudata([])
             }
         }
         fetchData()
-    }, [])
+    }, [count])
     return (
         <Box
             variant="outlined" sx={{

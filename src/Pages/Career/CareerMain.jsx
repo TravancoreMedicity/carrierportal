@@ -28,11 +28,6 @@ const CareerMain = ({ data, handleChange, isModalOpen, setIsModalOpen }) => {
                 <Box>
                     {data?.map((item, index) => (
                         <Box key={index}>
-                            <Box sx={{ mt: 2, borderBottom: '1px solid #DFDFDF', display: 'flex', justifyContent: 'center' }}>
-                                <Box sx={{ width: "75%" }}>
-                                    <Typography sx={{}} level="body-xs">POSTED ON: {item?.annouced_date}</Typography>
-                                </Box>
-                            </Box>
 
 
                             {item?.data?.map((currentItem, idx) => {
@@ -40,36 +35,41 @@ const CareerMain = ({ data, handleChange, isModalOpen, setIsModalOpen }) => {
                                     return (
                                         <Box key={idx} sx={{ display: 'flex', justifyContent: 'center' }}>
                                             {/* First Box */}
-                                            <Box sx={{ width: "80%", display: 'flex', justifyContent: 'space-around' }}>
+                                            <Box sx={{ width: "80%", display: 'flex', justifyContent: 'space-around', }}>
                                                 <Box sx={{ mt: 2, width: '80%', cursor: 'pointer' }}>
-                                                    <Card sx={{ borderRadius: 15 }}>
+                                                    <Card sx={{ borderRadius: 15, backgroundColor: '#faf7f2', }}>
                                                         <Box sx={{}}>
                                                             <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                                                                <Typography level="body-lg">{currentItem?.desg_name}</Typography>
-                                                                <Typography level="body-xs">
+                                                                <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', }}>{currentItem?.desg_name}</Typography>
+                                                                <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 12, fontWeight: 300, color: '#555555', }}>
                                                                     Posted On: {currentItem?.daysDifference === 0 ? "Today" : `${currentItem?.daysDifference} Day${currentItem?.daysDifference === 1 ? '' : 's'} ago`}
                                                                 </Typography>
                                                             </Box>
-                                                            <Typography level="body-xs">{currentItem?.experiencefrom}-{currentItem?.experienceto} Year Experience</Typography>
+                                                            <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 12, fontWeight: 300, color: '#555555', }}>{currentItem?.experiencefrom}-{currentItem?.experienceto} Year Experience</Typography>
                                                         </Box>
 
                                                         <CardContent orientation="horizontal">
                                                             <Box sx={{ width: '100%' }}>
-                                                                <Typography level="body-xs" sx={{ wordBreak: 'break-word' }}>
+                                                                <Typography sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 300, color: '#555555', }}>
                                                                     {currentItem?.job_descriptions && currentItem.job_descriptions[0] ? currentItem.job_descriptions[0] : "Not Updated"}
                                                                 </Typography>
                                                                 <Box onClick={(e) => handleonclick(e, currentItem)}>
-                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word', color: '#00A9FF' }}>
+                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word', color: '#00A9FF', fontFamily: "Bahnschrift", fontSize: 12, fontWeight: 300, }}>
                                                                         ...see more
                                                                     </Typography>
                                                                 </Box>
 
                                                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1, flexWrap: 'wrap', }}>
-                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word' }}>
+                                                                    <Typography sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 300, color: '#555555', }}>
                                                                         JOB ID: {currentItem?.manpower_Request_slno}
                                                                     </Typography>
-                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word', color: '#FF76CE' }}>
+                                                                    <Typography sx={{ wordBreak: 'break-word', color: '#FF76CE', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, }}>
                                                                         Apply Before: {moment(new Date(currentItem?.required_date)).format('DD-MM-YYYY HH MM a')}
+                                                                    </Typography>
+                                                                </Box>
+                                                                <Box sx={{ display: 'flex', justifyContent: "end" }}>
+                                                                    <Typography sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", color: '#555555', fontSize: 12, fontWeight: 300, }}>
+                                                                        Posted On: {item?.annouced_date}
                                                                     </Typography>
                                                                 </Box>
                                                             </Box>
@@ -87,7 +87,7 @@ const CareerMain = ({ data, handleChange, isModalOpen, setIsModalOpen }) => {
                                                 >
                                                     {!isMobile && (
                                                         <Box>
-                                                            <Typography sx={{ ml: 1 }} variant="body1">APPLY NOW</Typography>
+                                                            <Typography sx={{ ml: 1, fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 300, color: '#555555', }} >APPLY NOW</Typography>
                                                         </Box>
                                                     )}
                                                     <Box sx={{
@@ -132,40 +132,46 @@ const CareerMain = ({ data, handleChange, isModalOpen, setIsModalOpen }) => {
                                                     <Box sx={{ ml: 1 }}>
                                                         {!isMobile && (
                                                             <Box>
-                                                                <Typography sx={{ ml: 1 }} variant="body1">APPLY NOW</Typography>
+                                                                <Typography sx={{ ml: 1, fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 300, color: '#555555', }} >APPLY NOW</Typography>
                                                             </Box>
                                                         )}
                                                     </Box>
                                                 </Box>
                                                 <Box sx={{ mt: 2, width: '80%', cursor: 'pointer' }}>
-                                                    <Card sx={{ borderRadius: 15 }}>
+                                                    <Card sx={{ borderRadius: 15, backgroundColor: '#faf7f2', }}>
                                                         <Box sx={{}}>
                                                             <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                                                                <Typography level="body-lg">{currentItem?.desg_name}</Typography>
-                                                                <Typography level="body-xs">
+                                                                <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', }}>{currentItem?.desg_name}</Typography>
+                                                                <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 12, fontWeight: 300, color: '#555555', }}>
                                                                     Posted On: {currentItem?.daysDifference === 0 ? "Today" : `${currentItem?.daysDifference} Day${currentItem?.daysDifference === 1 ? '' : 's'} ago`}
                                                                 </Typography>
                                                             </Box>
-                                                            <Typography level="body-xs">{currentItem?.experiencefrom}-{currentItem?.experienceto} Year Experience</Typography>
+                                                            <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 300, color: '#555555', }}>{currentItem?.experiencefrom}-{currentItem?.experienceto} Year Experience</Typography>
                                                         </Box>
 
                                                         <CardContent orientation="horizontal">
                                                             <Box sx={{ width: '100%' }}>
-                                                                <Typography level="body-xs" sx={{ wordBreak: 'break-word' }}>
+                                                                <Typography sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 300, color: '#555555', }}>
                                                                     {currentItem?.job_descriptions && currentItem.job_descriptions[0] ? currentItem.job_descriptions[0] : "Not Updated"}
                                                                 </Typography>
                                                                 <Box onClick={(e) => handleonclick(e, currentItem)}>
-                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word', color: '#00A9FF', }}>
+                                                                    <Typography sx={{ wordBreak: 'break-word', color: '#00A9FF', fontFamily: "Bahnschrift", fontSize: 12, fontWeight: 300, }}>
                                                                         ...see more
                                                                     </Typography>
                                                                 </Box>
 
                                                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1, flexWrap: 'wrap' }}>
-                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word' }}>
+                                                                    <Typography sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 300, color: '#555555', }}>
                                                                         JOB ID: {currentItem?.manpower_Request_slno}
                                                                     </Typography>
-                                                                    <Typography level="body-xs" sx={{ wordBreak: 'break-word', color: '#FF76CE' }}>
+                                                                    <Typography sx={{ wordBreak: 'break-word', color: '#FF76CE', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, }}>
                                                                         Apply Before: {moment(new Date(currentItem?.required_date)).format('DD-MM-YYYY HH MM a')}
+                                                                    </Typography>
+
+                                                                </Box>
+                                                                <Box sx={{ display: 'flex', justifyContent: "end" }}>
+                                                                    <Typography sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", color: '#555555', fontSize: 12, fontWeight: 300, }}>
+                                                                        Posted On: {item?.annouced_date}
                                                                     </Typography>
                                                                 </Box>
                                                             </Box>

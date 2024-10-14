@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/joy';
 import React, { lazy, memo, useCallback, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import axioslogin from '../../../Axios/Axios';
 
 
 // const CandidateAbout = lazy(() => import('./CandidateAbout'))
@@ -26,6 +27,8 @@ const HobbiesModal = lazy(() => import('./EditModals/HobbiesModal'))
 const ReferenceModal = lazy(() => import('./EditModals/ReferenceModal'))
 const CertificateModal = lazy(() => import('./EditModals/CertificateModal'))
 const AboutUs = lazy(() => import('./AboutUSpage'))
+const ExpModal = lazy(() => import('./EditModals/ExperienceModal'))
+const AcademicModal = lazy(() => import('./EditModals/AcademicModal'))
 
 
 
@@ -38,6 +41,19 @@ const CandidateDashDetails = ({ ApplicationId, personalData, count, setcount, pa
     const [isModalOpenHobbies, setCareerModalOpenHobbies] = useState(false)
     const [isModalOpenReference, setCareerModalOpenReference] = useState(false)
     const [isModalOpenCertificate, setCareerModalOpenCertificate] = useState(false)
+    const [isModalOpenexp, setCareerModalOpenexp] = useState(false)
+    const [isModalOpenAcademic, setCareerModalAcademic] = useState(false)
+    const [edu, setedu] = useState([])
+    const [courseData, setCourseData] = useState([])
+    const [spclData, setSpclData] = useState([])
+    const [UniversityData, setUniversityData] = useState([])
+    const [BoardData, setBoardData] = useState([])
+    const [education, seteducation] = useState(0)
+    const [course, setCourse] = useState(0)
+    const [SpecilizationData, setSpecialization] = useState(0)
+    const [UniData, setUniData] = useState(0)
+    const [board, setBoard] = useState(0)
+
 
     const [Aboutme, Setaboutme] = useState("")
 
@@ -64,9 +80,53 @@ const CandidateDashDetails = ({ ApplicationId, personalData, count, setcount, pa
         setCareerModalOpenCertificate(true)
     }, []);
 
+    const handleModalexp = useCallback(async (e) => {
+        setCareerModalOpenexp(true)
+    }, []);
 
+    const handleModalAcademic = useCallback(async (e) => {
+        setCareerModalAcademic(true)
 
-
+        const result = await axioslogin.get('/common/education')
+        const { success, data } = result.data
+        if (success === 1) {
+            setedu(data)
+            const result = await axioslogin.get('/common/course/ById');
+            const { success, Coursedata } = result.data
+            if (success === 1) {
+                setCourseData(Coursedata)
+                const result = await axioslogin.post('/common/specialization/ById',);
+                const { success, Spcldata } = result.data
+                if (success == 1) {
+                    setSpclData(Spcldata)
+                    const result = await axioslogin.get('/common/getUniver');
+                    const { Unidata, success } = await result.data;
+                    if (success === 1) {
+                        setUniversityData(Unidata)
+                        const result = await axioslogin.get(`/common/getBoard`);
+                        const { Boarddata, success } = await result.data;
+                        if (success === 1) {
+                            setBoardData(Boarddata)
+                        }
+                        else {
+                            setBoardData([])
+                        }
+                    }
+                    else {
+                        setUniversityData([])
+                    }
+                }
+                else {
+                    setSpclData([])
+                }
+            }
+            else {
+                setCourseData([])
+            }
+        } else {
+            setedu([])
+        }
+    }, []);
 
 
     return (
@@ -133,7 +193,7 @@ const CandidateDashDetails = ({ ApplicationId, personalData, count, setcount, pa
 
                                         <Box sx={{}}>
                                             <Box sx={{ display: { md: 'flex' }, cursor: 'pointer' }} >
-                                                {/* < AddCircleOutlineIcon fontSize='small' /> */}
+                                                < AddCircleOutlineIcon fontSize='small' onClick={() => handleModalexp()} />
                                             </Box>
                                         </Box>
                                     </Box>
@@ -154,12 +214,12 @@ const CandidateDashDetails = ({ ApplicationId, personalData, count, setcount, pa
 
                                         <Box sx={{}}>
                                             <Box sx={{ display: { md: 'flex' }, cursor: 'pointer' }} >
-                                                {/* < AddCircleOutlineIcon fontSize='small' /> */}
+                                                < AddCircleOutlineIcon fontSize='small' onClick={() => handleModalAcademic()} />
                                             </Box>
                                         </Box>
                                     </Box>
                                     <Box>
-                                        <CandidateAccademic personalData={personalData} ApplicationId={ApplicationId} />
+                                        <CandidateAccademic personalData={personalData} ApplicationId={ApplicationId} count={count} setcount={setcount} />
                                     </Box>
                                 </Box>
                                 {/* certifications */}
@@ -284,6 +344,13 @@ const CandidateDashDetails = ({ ApplicationId, personalData, count, setcount, pa
             <CertificateModal isModalOpenCertificate={isModalOpenCertificate} setCareerModalOpenCertificate={setCareerModalOpenCertificate}
                 ApplicationId={ApplicationId} count={count} setcount={setcount} />
 
+            <AcademicModal isModalOpenAcademic={isModalOpenAcademic} setCareerModalAcademic={setCareerModalAcademic} UniData={UniData}
+                ApplicationId={ApplicationId} count={count} setcount={setcount} edu={edu} course={course} setCourse={setCourse} setUniData={setUniData}
+                courseData={courseData} education={education} UniversityData={UniversityData} SpecilizationData={SpecilizationData} personalData={personalData}
+                spclData={spclData} BoardData={BoardData} seteducation={seteducation} setSpecialization={setSpecialization} board={board} setBoard={setBoard} />
+
+            <ExpModal isModalOpenexp={isModalOpenexp} setCareerModalOpenexp={setCareerModalOpenexp}
+                ApplicationId={ApplicationId} count={count} setcount={setcount} personalData={personalData} />
 
         </Box>
     );

@@ -12,13 +12,11 @@ const ContactInformation = lazy(() => import('./Components/ApplicationForm/Conta
 const CareerHome = () => {
     const [count, setcount] = useState(0)
 
+
     const [personalData, SetPersonalData] = useState([])
     // const [SkillData, SetSkillData] = useState([])
     const [pageToShow, SetPageToShow] = useState(0)
     const [loginpage, Setloginpage] = useState(0)
-
-
-
     const [jobData, setJobData] = useState([])
     const [EditCount, setEditCount] = useState(0)
     const [vaccancyData, setVaccancyData] = useState([]);
@@ -73,8 +71,8 @@ const CareerHome = () => {
 
                     // Construct URLs for each file using the file names
                     const fileUrls =
-                        //  `https://192.168.10.88/NAS/Career/profilePicture/${ApplicationId}/${dataimg}`;
-                        `http://192.168.22.5/Career/profilePicture/${ApplicationId}/${dataimg}`;
+                        `https://192.168.10.88/NAS/Career/profilePicture/${ApplicationId}/${dataimg}`;
+                    // `http://192.168.22.5/Career/profilePicture/${ApplicationId}/${dataimg}`;
 
                     setFiles(fileUrls)
                 }

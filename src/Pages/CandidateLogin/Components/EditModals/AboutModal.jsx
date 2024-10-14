@@ -8,6 +8,26 @@ import axioslogin from '../../../../Axios/Axios';
 import Files from 'react-files'
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import CloseSharpIcon from '@mui/icons-material/CloseSharp';
+import AddIcon from '@mui/icons-material/Add';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+
+import { useSpring, animated } from '@react-spring/web';
+import { Backdrop } from '@mui/material';
+
+
+const Fade = React.forwardRef((props, ref) => {
+    const { in: open, children, ownerState, ...other } = props
+    const style = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: open ? 1 : 0 },
+    });
+
+    return (
+        <animated.div ref={ref} style={style} {...other}>
+            {children}
+        </animated.div>
+    );
+});
 
 const AboutModal = ({ setCareerModalOpenAbout, isModalOpenAbout, ApplicationId, count, setcount, Aboutme, Setaboutme }) => {
 
@@ -122,13 +142,19 @@ const AboutModal = ({ setCareerModalOpenAbout, isModalOpenAbout, ApplicationId, 
                 aria-describedby="modal-desc"
                 open={isModalOpenAbout}
                 onClose={onClose}
+                // closeAfterTransition
+                slots={{ backdrop: Backdrop }}
+                slotProps={{
+                    backdrop: {
+                        TransitionComponent: Fade,
+                    },
+                }}
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
                 <ModalDialog size='sm' sx={{
                     width: '50%', backgroundColor: '#FFFBF5',
                     '@media screen and (max-width: 768px)': {
                         width: '100%',
-
                     },
                 }}>
                     <ModalClose
@@ -141,46 +167,63 @@ const AboutModal = ({ setCareerModalOpenAbout, isModalOpenAbout, ApplicationId, 
                             bgcolor: 'background.body',
                         }}
                     />
-                    <Box>
+                    <Box sx={{ p: 1, display: 'flex', flexDirection: 'column', height: window.innerHeight - 250, overflowX: "auto", '::-webkit-scrollbar': { display: "none" }, }}>
                         <Box sx={{ display: 'flex', gap: 1 }}>
-                            <Typography level="body-md" sx={{ fontFamily: "Bahnschrift", fontSize: 20, fontWeight: 350, color: '#555555', }}>About </Typography>
                             <EditIcon sx={{ color: "#555555" }} />
+                            <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', }}>About </Typography>
                         </Box>
-                        <Box sx={{ flex: 1, mt: 1 }}>
-                            <Textarea
-                                variant="plain"
-                                placeholder={"Aboutme"}
-                                type="text"
-                                value={Aboutme}
-                                name="Aboutme"
-                                onChange={(e) => Setaboutme(e.target.value)}
-                                size="sm"
-                                minRows={2}
-                            />
+                        <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', px: { xs: 0, lg: 0 }, flexGrow: 1 }}>
+                            <Box sx={{ display: 'flex', flexGrow: 1 }}>
+                                <Textarea
+                                    variant="outlined"
+                                    placeholder={"Aboutme"}
+                                    type="text"
+                                    value={Aboutme}
+                                    sx={{
+                                        width: '100%',
+                                        '--Textarea-focusedThickness': '0.02rem',
+                                        '--Textarea-focusedHighlight': '#6e7782',
+                                    }}
+                                    name="Aboutme"
+                                    onChange={(e) => Setaboutme(e.target.value)}
+                                    size="sm"
+                                // minRows={2}
+                                />
+                            </Box>
 
+                            <Box sx={{ display: "flex", flexGrow: 0, py: 0.5 }} >
+                                <Tooltip title="Update" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow >
+                                    <IconButton variant="outlined" size='sm' onClick={SubmitFormData} sx={{ p: .5 }}>
+                                        <AddCircleOutlineIcon sx={{ color: "#555555" }} />
+                                    </IconButton>
+                                </Tooltip>
+                            </Box>
                         </Box>
-                        <Box sx={{ mt: 2, textAlign: 'end' }}>
+
+
+                        {/* <Box sx={{ mt: 2, }}>
                             <Button variant="outlined" size='sm'
                                 onClick={SubmitFormData}
                                 sx={{
                                     color: '#555555',
-                                    width: '100%',
+                                    // width: '100%',
                                     '@media screen and (max-width: 768px)': {
-                                        width: '30%'
+                                        // width: '30%'
 
                                     },
                                 }}>
-                                Update
+                                <AddIcon sx={{ color: "#555555" }} />
+
                             </Button>
-                        </Box>
+                        </Box> */}
 
                         <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
-                            <Typography level="body-md" sx={{ fontFamily: "Bahnschrift", fontSize: 20, fontWeight: 350, color: '#555555', }}>Update Profile Picture </Typography>
-                            <EditIcon sx={{ color: "#555555" }} />
+                            <Typography level="body-md" sx={{ fontFamily: "Bahnschrift", fontSize: { xs: 15 }, fontWeight: 500, opacity: 0.6, color: '#555555', }}>Update Profile Picture </Typography>
+                            {/* <EditIcon sx={{ color: "#555555" }} /> */}
                         </Box>
 
 
-                        <Box sx={{ textAlign: 'center', justifyContent: 'center', mt: 1 }}>
+                        <Box sx={{ textAlign: 'center', justifyContent: 'center', mt: 0 }}>
                             <Box
                                 sx={{
                                     display: 'flex',
@@ -213,7 +256,7 @@ const AboutModal = ({ setCareerModalOpenAbout, isModalOpenAbout, ApplicationId, 
                                                 },
                                             }}
                                         >
-                                            <Tooltip title="Close">
+                                            <Tooltip title="Close" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow >
                                                 <Box sx={{ p: 0 }} aria-label="Close"
                                                     onClick={() => handleRemoveFile(index)}
                                                 >
@@ -224,14 +267,14 @@ const AboutModal = ({ setCareerModalOpenAbout, isModalOpenAbout, ApplicationId, 
                                     </Box>
                                 ))}
                             </Box>
-                            <Box sx={{ display: 'flex', mt: 1 }}>
+                            <Box sx={{ display: 'flex', mt: 1, gap: 1 }}>
                                 <Box sx={{
-                                    width: '50%',
+                                    // width: '10%',
                                 }}>
-                                    <Tooltip title="Upload Image">
-                                        <IconButton size='sm' sx={{
-                                            border: '1px solid #555555',
-                                            borderRadius: '18px', width: '100%'
+                                    <Tooltip title="Upload Image" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow >
+                                        <IconButton variant="outlined" size='sm' sx={{
+                                            // border: '1px solid #555555',
+                                            // borderRadius: '18px', width: '100%'
                                         }}  >
                                             <Files
 
@@ -257,12 +300,12 @@ const AboutModal = ({ setCareerModalOpenAbout, isModalOpenAbout, ApplicationId, 
 
 
                                 <Box sx={{
-                                    width: '50%',
+                                    // width: '10%',
                                 }} onClick={handleUpload}>
-                                    <Tooltip title="Save Image">
-                                        <IconButton size='sm' sx={{
-                                            border: '1px solid #555555',
-                                            borderRadius: '18px', width: '100%'
+                                    <Tooltip title="Save Image" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow >
+                                        <IconButton variant="outlined" size='sm' sx={{
+                                            // border: '1px solid #555555',
+                                            // borderRadius: '18px', width: '100%'
                                         }}
 
                                         >

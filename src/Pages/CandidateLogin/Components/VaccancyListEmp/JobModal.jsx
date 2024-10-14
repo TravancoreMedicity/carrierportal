@@ -38,8 +38,9 @@ const JobModal = ({ isModalOpen, setIsModalOpen, SelectedData, personalData, set
                         '@media screen and (max-width: 768px)': {
                             width: "80%",
                         },
+                        outlineColor: 'white',
                         backgroundColor: '#FFFBF5',
-                        boxShadow: 24,
+                        // boxShadow: 24,
                         p: 3,
                         borderRadius: 10,
 
@@ -56,7 +57,7 @@ const JobModal = ({ isModalOpen, setIsModalOpen, SelectedData, personalData, set
                     />
                     <Box>
                         <Box sx={{ backgroundColor: "lightblue" }}>
-                            <Typography level="body-lg" sx={{ textAlign: 'center', fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', }}>Apply Now</Typography>
+                            <Typography level="body-lg" sx={{ textAlign: 'center', fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', }}>Job Details</Typography>
                         </Box>
                         <Box sx={{ mt: 1 }}>
                             <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 24, fontWeight: 400, color: '#555555', }}>Job Position</Typography>
@@ -83,7 +84,7 @@ const JobModal = ({ isModalOpen, setIsModalOpen, SelectedData, personalData, set
                                 onClick={handleOnSave}
                             >
 
-                                Apply for Job
+                                Click here to Submit
                             </Button>
                         </Tooltip>
                     </Box>

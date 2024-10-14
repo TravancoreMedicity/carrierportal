@@ -8,6 +8,8 @@ import WorkIcon from '@mui/icons-material/Work';
 const CandidateExp = ({ personalData }) => {
 
 
+    // const experienceDetails = personalData?.Experience_details?.map(exp => JSON.parse(exp)) || [];
+
     return (
         <Box
 
@@ -37,7 +39,6 @@ const CandidateExp = ({ personalData }) => {
                                     <Box sx={{ mt: 1 }}><WorkIcon sx={{ color: '#555555' }} /></Box>
                                     <Box sx={{ display: 'flex', gap: 1, p: 0, m: 0 }}>
                                         <Box><Typography sx={{ wordBreak: 'break-word', textTransform: 'capitalize', fontFamily: "Bahnschrift", fontSize: 22, fontWeight: 450, color: '#555555' }}> {exp?.Employer}</Typography></Box>
-
                                     </Box>
                                 </Box>
                                 <Box sx={{ display: 'flex', gap: 5, }}>
@@ -47,17 +48,24 @@ const CandidateExp = ({ personalData }) => {
 
                                 </Box>
                                 {/* 
-                                <Box sx={{ display: 'flex', gap: 5 }}>
-                                    <Box></Box>
-                                    <Box><Typography level="body-sm" sx={{ wordBreak: 'break-word', textTransform: 'capitalize' }}> {exp?.Additionalinf}</Typography>  </Box>
-                                </Box> */}
+                <Box sx={{ display: 'flex', gap: 5 }}>
+                    <Box></Box>
+                    <Box><Typography level="body-sm" sx={{ wordBreak: 'break-word', textTransform: 'capitalize' }}> {exp?.Additionalinf}</Typography>  </Box>
+                </Box> */}
 
                             </Box>
 
                         </Box>
                     ))
                 ) : (
-                    <Typography level="body-sm">No experience details found.</Typography>
+                    <Typography sx={{
+                        fontFamily: "Bahnschrift",
+                        fontSize: 15,
+                        fontWeight: 350,
+                        color: '#555555',
+                    }}>
+                        No experience details found.
+                    </Typography>
                 )}
             </Box>
         </Box>

@@ -3,6 +3,7 @@ import moment from 'moment';
 import React, { memo } from 'react';
 
 const SelectedApplication = ({ jobData }) => {
+
     return (
         <Box
             variant="outlined"
@@ -50,7 +51,7 @@ const SelectedApplication = ({ jobData }) => {
                                                     </Box>
                                                     <Box>
                                                         <Typography level="body-xs" sx={{ wordBreak: 'break-word', fontFamily: "Bahnschrift", fontSize: 13, fontWeight: 400, color: '#555555', }}>
-                                                            Status: {item?.selected_status === null ? 'Pending' : item?.selected_status === 1 ? 'Selected' : item?.selected_status === 2 ? 'Rejected' : ''}
+                                                            Status: {item?.selected_status === 0 ? 'Pending' : item?.selected_status === 1 ? 'Selected' : item?.selected_status === 2 ? 'Rejected' : ''}
                                                         </Typography>
                                                     </Box>
                                                 </Box>

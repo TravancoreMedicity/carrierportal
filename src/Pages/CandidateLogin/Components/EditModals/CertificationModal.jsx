@@ -7,7 +7,24 @@ import axioslogin from '../../../../Axios/Axios';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { useSpring, animated } from '@react-spring/web';
+import { Backdrop } from '@mui/material';
 
+
+const Fade = React.forwardRef((props, ref) => {
+    const { in: open, children, ownerState, ...other } = props
+    const style = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: open ? 1 : 0 },
+    });
+
+    return (
+        <animated.div ref={ref} style={style} {...other}>
+            {children}
+        </animated.div>
+    );
+});
 const CertificationModal = ({ isModalOpenCerti, setCareerModalOpenCerti, ApplicationId, count, setcount, }) => {
     const [certification, Setcertification] = useState("")
     const [course, Setcourse] = useState("")
@@ -123,6 +140,13 @@ const CertificationModal = ({ isModalOpenCerti, setCareerModalOpenCerti, Applica
                 aria-describedby="modal-desc"
                 open={isModalOpenCerti}
                 onClose={onClose}
+                // closeAfterTransition
+                slots={{ backdrop: Backdrop }}
+                slotProps={{
+                    backdrop: {
+                        TransitionComponent: Fade,
+                    },
+                }}
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
                 <ModalDialog size='sm' sx={{
@@ -147,54 +171,72 @@ const CertificationModal = ({ isModalOpenCerti, setCareerModalOpenCerti, Applica
 
                             sx={{
 
-
-
-                                borderRadius: 'md',
+                                height: window.innerHeight - 250, overflowX: "auto", '::-webkit-scrollbar': { display: "none" },
+                                p: 1,
+                                // borderRadius: 'md',
                                 // boxShadow: 'lg',
-                                marginTop: 2,
+                                // marginTop: 2,
                                 '@media screen and (max-width: 768px)': {
                                     padding: 1,
                                 },
                             }}>
-                            <Box>
-                                <Typography level="body-md" sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', }}>Certification Details</Typography>
+
+                            <Typography sx={{ fontFamily: "Bahnschrift", fontSize: 18, fontWeight: 400, color: '#555555', }}>Certification Details</Typography>
+
+                            <Box sx={{}}>
+                                <Typography sx={{ mt: 2, fontFamily: "Bahnschrift", color: '#555555', fontSize: { xs: 15 }, fontWeight: 500, opacity: 0.6, }}>Certification Name
+                                </Typography>
                             </Box>
-                            <Box sx={{ flex: 1, pr: 1, mt: 1 }}>
+                            <Box sx={{ flex: 1, pr: 1, mt: .5 }}>
                                 <InputComponent
                                     // variant="plain"
-                                    placeholder={"Certification Name"}
+                                    // placeholder={"Certification Name"}
                                     type="text"
                                     value={certification}
                                     name="certification"
                                     onchange={(e) => Setcertification(e.target.value)}
                                     size="sm"
+                                    style={{
+                                        width: '100%',
+                                        '--Input-focusedThickness': '0.02rem',
+                                        '--Input-focusedHighlight': '#6e7782',
+                                    }}
                                 />
 
                             </Box>
-                            <Box sx={{ flex: 1, pr: 1, mt: 1 }}>
+
+                            <Box sx={{}}>
+                                <Typography sx={{ mt: 1, fontFamily: "Bahnschrift", color: '#555555', fontSize: { xs: 15 }, fontWeight: 500, opacity: 0.6, }}>Course Name
+                                </Typography>
+                            </Box>
+                            <Box sx={{ flex: 1, pr: 1, mt: .5 }}>
                                 <InputComponent
                                     // variant="plain"
-                                    placeholder={"Course Name"}
+                                    // placeholder={"Course Name"}
                                     type="text"
                                     value={course}
                                     name="course"
                                     onchange={(e) => Setcourse(e.target.value)}
                                     size="sm"
-
+                                    style={{
+                                        width: '100%',
+                                        '--Input-focusedThickness': '0.02rem',
+                                        '--Input-focusedHighlight': '#6e7782',
+                                    }}
                                 />
 
                             </Box>
 
                             <Box sx={{ flex: 0, px: 0.5, display: 'flex', justifyContent: 'end', mt: 1 }} >
-                                <Tooltip title="save" >
-                                    <IconButton variant="outlined" size='sm' color='primary' onClick={SubmitFormData}>
-                                        <AddIcon sx={{ color: "#555555" }} />
+                                <Tooltip title="Add your Certification  Details" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow >
+                                    <IconButton variant="outlined" size='sm' onClick={SubmitFormData} sx={{ p: .5 }}>
+                                        <AddCircleOutlineIcon sx={{ color: "#555555" }} />
                                     </IconButton>
                                 </Tooltip>
 
                             </Box>
 
-                            <Box sx={{ mt: 1 }}>
+                            <Box sx={{ mt: 2 }}>
                                 <Table aria-label="basic table" size="sm" sx={{
                                     "--Table-headerUnderlineThickness": "1px",
                                     "--TableCell-height": "0px",
@@ -202,11 +244,11 @@ const CertificationModal = ({ isModalOpenCerti, setCareerModalOpenCerti, Applica
                                 }}>
                                     <thead>
                                         <tr>
-                                            <th >Sl no</th>
+                                            <th style={{ width: '10%' }}>Sl no</th>
                                             <th>Certification Name</th>
                                             <th>Course Name</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
+                                            <th style={{ width: 30, }}></th>
+                                            <th style={{ width: 30, }}></th>
 
                                         </tr>
                                     </thead>
@@ -222,12 +264,18 @@ const CertificationModal = ({ isModalOpenCerti, setCareerModalOpenCerti, Applica
                                                     <td> <Typography sx={{ wordBreak: 'break-word', }}>{item?.courseName === null ? "not updated" : item?.courseName}</Typography></td>
                                                     <td>
                                                         <IconButton sx={{}} size='small' color='primary' onClick={() => EditData(item)}>
-                                                            <EditIcon sx={{ color: "#555555" }} />
+                                                            <Tooltip title="Edit" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow >
+
+                                                                <EditIcon sx={{ color: "#555555" }} />
+                                                            </Tooltip>
                                                         </IconButton>
                                                     </td>
                                                     <td>
                                                         <IconButton sx={{}} size='small' color='primary' onClick={() => DeleteItem(item)}>
-                                                            <DeleteIcon sx={{ color: "#555555" }} />
+                                                            <Tooltip title="Delete" sx={{ minWidth: 150, textAlign: 'center', bgcolor: '#8a8a8a' }} arrow >
+
+                                                                <DeleteIcon sx={{ color: "#555555" }} />
+                                                            </Tooltip>
                                                         </IconButton>
                                                     </td>
                                                 </tr>
